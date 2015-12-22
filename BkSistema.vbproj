@@ -1,0 +1,1066 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <MyType>WindowsForms</MyType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9CD0F0AE-2A0D-4689-A6F9-B51898432238}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>BkSistema</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>BkSistema.My.MyApplication</StartupObject>
+    <AssemblyMajorVersion>1</AssemblyMajorVersion>
+    <AssemblyMinorVersion>0</AssemblyMinorVersion>
+    <AssemblyRevisionNumber>0</AssemblyRevisionNumber>
+    <GenerateRevisionNumber>False</GenerateRevisionNumber>
+    <AssemblyCompanyName>fundef</AssemblyCompanyName>
+    <StartWithIE>False</StartWithIE>
+    <RootNamespace>BkSistema</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://www.fundefir.org/bksistema/</InstallUrl>
+    <UpdateUrl>http://www.fundefir.org/bksistema/</UpdateUrl>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>BkSistemas</ProductName>
+    <PublisherName>Fundefir</PublisherName>
+    <SuiteName>Bankomunales</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>35</ApplicationRevision>
+    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>.\bin\</OutputPath>
+    <DocumentationFile>BkSistema.xml</DocumentationFile>
+    <DebugSymbols>True</DebugSymbols>
+    <DefineDebug>True</DefineDebug>
+    <DefineTrace>True</DefineTrace>
+    <DefineConstants>Win32=True</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>.\bin\</OutputPath>
+    <DocumentationFile>BkSistema.xml</DocumentationFile>
+    <DebugSymbols>False</DebugSymbols>
+    <DefineDebug>False</DefineDebug>
+    <DefineTrace>True</DefineTrace>
+    <DefineConstants>Win32=True</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Text</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>90C6AC3A199096A4B9210969F80F696550C38163</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>BkSistema_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>Win32=True</DefineConstants>
+    <DocumentationFile>BkSistema.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>Win32=True</DefineConstants>
+    <DocumentationFile>BkSistema.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>Win32=True</DefineConstants>
+    <DocumentationFile>BkSistema.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>Win32=True</DefineConstants>
+    <DocumentationFile>BkSistema.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42353,42354,42355</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.VisualBasic.Compatibility">
+      <Name>Microsoft.VisualBasic.Compatibility</Name>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.XML">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="Microsoft.VisualBasic.Compatibility" />
+    <Import Include="Newtonsoft" />
+    <Import Include="Newtonsoft.Json" />
+    <Import Include="Newtonsoft.Json.Converters" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="AssemblyInfo.vb" />
+    <Compile Include="Dialogs\Autentificacion.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Autentificacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Autentificacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\StringDlg.Designer.vb">
+      <DependentUpon>StringDlg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StringDlg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\BA.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>BA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\BA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainDS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Menu_Configuracion.Designer.vb">
+      <DependentUpon>Menu_Configuracion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Menu_Configuracion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelBeneficiario.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>PanelBeneficiario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelBeneficiario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FilterDlg.Designer.vb">
+      <DependentUpon>FilterDlg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\FilterDlg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatabaseWebAdapter.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DatabaseWebCommand.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DatabaseWebConnection.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Clave.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Clave.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Clave.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\CONNUEVO.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>CONNUEVO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\CONNUEVO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Consolidado.Designer.vb">
+      <DependentUpon>Consolidado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Consolidado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CrearBK.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>CrearBK.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CrearBK.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\DatosBanko.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>DatosBanko.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\DatosBanko.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\DO.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>DO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\DO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\EG.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>EG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\EG.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Fecha.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Fecha.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Fecha.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Fecha2.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Fecha2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Fecha2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\Fecha3.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Fecha3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\Fecha3.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FechaRendimiento.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>FechaRendimiento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\FechaRendimiento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Cuadre.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Cuadre.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Cuadre.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUsuarios.Designer.vb">
+      <DependentUpon>FrmUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUsuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\GBK.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>GBK.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\GBK.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Gestion.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Gestion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Gestion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\IFG.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>IFG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\IFG.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\LC.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>LC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\LC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\LibroIE.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>LibroIE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\LibroIE.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainDS.vb">
+      <DependentUpon>MainDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Menu_Principal.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Menu_Principal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Menu_Principal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\Menu_Socios.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Menu_Socios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Menu_Socios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\Menu_Cuadre_Cierre.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Menu_Cuadre_Cierre.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Menu_Cuadre_Cierre.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\Menu_Reportes.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Menu_Reportes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Menu_Reportes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\Menu_RptFinancieros.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Menu_RptFinancieros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Menu_RptFinancieros.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\MO.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>MO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\MO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module1.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\OI.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>OI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\OI.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\ORD.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>ORD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\ORD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelClaseCredito.Designer.vb">
+      <DependentUpon>PanelClaseCredito.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelClaseCredito.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelClasifCredito.Designer.vb">
+      <DependentUpon>PanelClasifCredito.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelClasifCredito.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelCredito.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>PanelCredito.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelCredito.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelEstados.Designer.vb">
+      <DependentUpon>PanelEstados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelEstados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelMunicipios.Designer.vb">
+      <DependentUpon>PanelMunicipios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelMunicipios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelPaises.Designer.vb">
+      <DependentUpon>PanelPaises.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelPaises.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelProyectos.Designer.vb">
+      <DependentUpon>PanelProyectos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelProyectos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelSocios.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>PanelSocios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelSocios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\PDP.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>PDP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\PDP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Procesar.Designer.vb">
+      <DependentUpon>Procesar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Procesar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProfileConfig.Designer.vb">
+      <DependentUpon>ProfileConfig.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ProfileConfig.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\RET.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>RET.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\RET.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\RI.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>RI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\RI.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelTipoCredito.Designer.vb">
+      <DependentUpon>PanelTipoCredito.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelTipoCredito.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelUsuarios.Designer.vb">
+      <DependentUpon>PanelUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\PanelUsuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptBalance.Designer.vb">
+      <DependentUpon>RptBalance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptBalance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptClasifCreditoxClase.Designer.vb">
+      <DependentUpon>RptClasifCreditoxClase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptClasifCreditoxClase.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptConsolidado.Designer.vb">
+      <DependentUpon>RptConsolidado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptConsolidado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptCreditosActivos.Designer.vb">
+      <DependentUpon>RptCreditosActivos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptCreditosActivos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptCreditosVencidos.Designer.vb">
+      <DependentUpon>RptCreditosVencidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptCreditosVencidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\RptDataset.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RptDataset.vb">
+      <DependentUpon>RptDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptFiadores.Designer.vb">
+      <DependentUpon>RptFiadores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptFiadores.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptFondo.Designer.vb">
+      <DependentUpon>RptFondo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptFondo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptGestion.Designer.vb">
+      <DependentUpon>RptGestion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptGestion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptLibroIE.Designer.vb">
+      <DependentUpon>RptLibroIE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptLibroIE.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptMovAcum.Designer.vb">
+      <DependentUpon>RptMovAcum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptMovAcum.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptMovi.Designer.vb">
+      <DependentUpon>RptMovi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptMovi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptRendimiento.Designer.vb">
+      <DependentUpon>RptRendimiento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptRendimiento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form\RptSocios.Designer.vb">
+      <DependentUpon>RptSocios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Form\RptSocios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CrearSocio.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>CrearSocio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CrearSocio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test.Designer.vb">
+      <DependentUpon>Test.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Test.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\UR.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>UR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\UR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\PC.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>PC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\PC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroIE\VCC.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>VCC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LibroIE\VCC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Balance.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Balance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Balance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Dialogs\Autentificacion.resX">
+      <DependentUpon>Autentificacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\StringDlg.resx">
+      <DependentUpon>StringDlg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\BA.resX">
+      <DependentUpon>BA.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Menu_Configuracion.resX">
+      <DependentUpon>Menu_Configuracion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelBeneficiario.resX">
+      <DependentUpon>PanelBeneficiario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FilterDlg.resX">
+      <DependentUpon>FilterDlg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Clave.resX">
+      <DependentUpon>Clave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\CONNUEVO.resX">
+      <DependentUpon>CONNUEVO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Consolidado.resx">
+      <DependentUpon>Consolidado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CrearBK.resX">
+      <DependentUpon>CrearBK.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\DatosBanko.resX">
+      <DependentUpon>DatosBanko.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\DO.resX">
+      <DependentUpon>DO.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\EG.resX">
+      <DependentUpon>EG.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Fecha.resX">
+      <DependentUpon>Fecha.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Fecha2.resX">
+      <DependentUpon>Fecha2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\Fecha3.resX">
+      <DependentUpon>Fecha3.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FechaRendimiento.resX">
+      <DependentUpon>FechaRendimiento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Cuadre.resX">
+      <DependentUpon>Cuadre.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUsuarios.resx">
+      <DependentUpon>FrmUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\GBK.resX">
+      <DependentUpon>GBK.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Gestion.resX">
+      <DependentUpon>Gestion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\IFG.resX">
+      <DependentUpon>IFG.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\LC.resX">
+      <DependentUpon>LC.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\LibroIE.resX">
+      <DependentUpon>LibroIE.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Menu_Principal.resX">
+      <DependentUpon>Menu_Principal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Menu_Socios.resX">
+      <DependentUpon>Menu_Socios.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Menu_Cuadre_Cierre.resX">
+      <DependentUpon>Menu_Cuadre_Cierre.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Menu_Reportes.resX">
+      <DependentUpon>Menu_Reportes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Menu_RptFinancieros.resX">
+      <DependentUpon>Menu_RptFinancieros.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\MO.resX">
+      <DependentUpon>MO.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\OI.resX">
+      <DependentUpon>OI.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\ORD.resX">
+      <DependentUpon>ORD.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelClaseCredito.resx">
+      <DependentUpon>PanelClaseCredito.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelCredito.resX">
+      <DependentUpon>PanelCredito.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelEstados.resx">
+      <DependentUpon>PanelEstados.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelMunicipios.resx">
+      <DependentUpon>PanelMunicipios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelPaises.resx">
+      <DependentUpon>PanelPaises.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelProyectos.resx">
+      <DependentUpon>PanelProyectos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelSocios.resX">
+      <DependentUpon>PanelSocios.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\PDP.resX">
+      <DependentUpon>PDP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Procesar.resx">
+      <DependentUpon>Procesar.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProfileConfig.resx">
+      <DependentUpon>ProfileConfig.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelTipoCredito.resx">
+      <DependentUpon>PanelTipoCredito.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelUsuarios.resx">
+      <DependentUpon>PanelUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\File\RptBalance.rdlc" />
+    <EmbeddedResource Include="Reports\Form\RptBalance.resx">
+      <DependentUpon>RptBalance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\File\RptConsolidado.rdlc" />
+    <EmbeddedResource Include="Reports\Form\RptConsolidado.resx">
+      <DependentUpon>RptConsolidado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\File\RptMovi.rdlc" />
+    <EmbeddedResource Include="Reports\File\RptMovAcum.rdlc" />
+    <EmbeddedResource Include="Reports\Form\RptClasifCreditoxClase.resx">
+      <DependentUpon>RptClasifCreditoxClase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Form\RptFondo.resx">
+      <DependentUpon>RptFondo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\File\RptClasifCreditoxClase.rdlc" />
+    <EmbeddedResource Include="Reports\File\RptBaseReport.rdlc" />
+    <EmbeddedResource Include="Reports\Form\RptMovAcum.resx">
+      <DependentUpon>RptMovAcum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Form\RptMovi.resx">
+      <DependentUpon>RptMovi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\File\RptRendimiento.rdlc" />
+    <EmbeddedResource Include="Reports\File\RptLibroIE.rdlc" />
+    <EmbeddedResource Include="Reports\File\RptCreditosActivos.rdlc" />
+    <EmbeddedResource Include="Reports\Form\RptCreditosActivos.resx">
+      <DependentUpon>RptCreditosActivos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Form\RptCreditosVencidos.resx">
+      <DependentUpon>RptCreditosVencidos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\File\RptCreditosVencidos.rdlc" />
+    <EmbeddedResource Include="Reports\File\RptFiadores.rdlc" />
+    <EmbeddedResource Include="Reports\Form\RptFiadores.resx">
+      <DependentUpon>RptFiadores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\File\RptGestion.rdlc" />
+    <EmbeddedResource Include="Reports\Form\RptGestion.resx">
+      <DependentUpon>RptGestion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Form\RptLibroIE.resx">
+      <DependentUpon>RptLibroIE.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Form\RptRendimiento.resx">
+      <DependentUpon>RptRendimiento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\File\RptSocios.rdlc" />
+    <EmbeddedResource Include="LibroIE\RET.resX">
+      <DependentUpon>RET.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\RI.resX">
+      <DependentUpon>RI.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Form\RptSocios.resx">
+      <DependentUpon>RptSocios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CrearSocio.resX">
+      <DependentUpon>CrearSocio.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test.resx">
+      <DependentUpon>Test.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\UR.resX">
+      <DependentUpon>UR.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\PC.resX">
+      <DependentUpon>PC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroIE\VCC.resX">
+      <DependentUpon>VCC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Balance.resX">
+      <DependentUpon>Balance.vb</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="BkSistema_TemporaryKey.pfx" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="MainDS.xsc">
+      <DependentUpon>MainDS.xsd</DependentUpon>
+    </None>
+    <None Include="MainDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MainDS.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="MainDS.xss">
+      <DependentUpon>MainDS.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\DataSources\MainDS.TblBankoRow.datasource" />
+    <None Include="My Project\DataSources\Menu4.datasource" />
+    <None Include="My Project\DataSources\Project1.My.MyApplication.datasource" />
+    <None Include="My Project\Settings.settings">
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reports\RptDataset.xsc">
+      <DependentUpon>RptDataset.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\RptDataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RptDataset.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reports\RptDataset.xss">
+      <DependentUpon>RptDataset.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\1449861089_button_ok.png" />
+    <None Include="Resources\1449861210_Delete.png" />
+    <None Include="Resources\1449861492_button_ok.png" />
+    <None Include="Resources\1449861492_button_cancel.png" />
+    <None Include="Resources\Check.bmp" />
+    <None Include="Resources\1449861604_camera_test.png" />
+    <None Include="Resources\1449861611_button_cancel.png" />
+    <Content Include="Resources\plus-small.PNG" />
+    <Content Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.ReportViewer.11.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Report Viewer 2012 Runtime</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.SQLSysClrTypes.11.0.x86">
+      <Visible>False</Visible>
+      <ProductName>Microsoft® System CLR Types for SQL Server® 2012 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Microsoft.ReportViewer.Common">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.DataVisualization">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.ProcessingObjectModel">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.WinForms">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.SqlServer.Types">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="TODO.txt">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TODO.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

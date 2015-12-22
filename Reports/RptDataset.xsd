@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RptDataset" targetNamespace="http://tempuri.org/RptDataset.xsd" xmlns:mstns="http://tempuri.org/RptDataset.xsd" xmlns="http://tempuri.org/RptDataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="RptDataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="RptDataset" msprop:Generator_UserDSName="RptDataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RptFiadores" msprop:Generator_TableClassName="RptFiadoresDataTable" msprop:Generator_TableVarName="tableRptFiadores" msprop:Generator_TablePropName="RptFiadores" msprop:Generator_RowDeletingName="RptFiadoresRowDeleting" msprop:Generator_RowChangingName="RptFiadoresRowChanging" msprop:Generator_RowEvHandlerName="RptFiadoresRowChangeEventHandler" msprop:Generator_RowDeletedName="RptFiadoresRowDeleted" msprop:Generator_UserTableName="RptFiadores" msprop:Generator_RowChangedName="RptFiadoresRowChanged" msprop:Generator_RowEvArgName="RptFiadoresRowChangeEvent" msprop:Generator_RowClassName="RptFiadoresRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nombres" msprop:Generator_ColumnVarNameInTable="columnNombres" msprop:Generator_ColumnPropNameInRow="Nombres" msprop:Generator_ColumnPropNameInTable="NombresColumn" msprop:Generator_UserColumnName="Nombres" type="xs:string" minOccurs="0" />
+              <xs:element name="CI" msprop:Generator_ColumnVarNameInTable="columnCI" msprop:Generator_ColumnPropNameInRow="CI" msprop:Generator_ColumnPropNameInTable="CIColumn" msprop:Generator_UserColumnName="CI" type="xs:string" minOccurs="0" />
+              <xs:element name="NoCredito" msprop:Generator_ColumnVarNameInTable="columnNoCredito" msprop:Generator_ColumnPropNameInRow="NoCredito" msprop:Generator_ColumnPropNameInTable="NoCreditoColumn" msprop:Generator_UserColumnName="NoCredito" type="xs:int" minOccurs="0" />
+              <xs:element name="cap" msprop:Generator_ColumnVarNameInTable="columncap" msprop:Generator_ColumnPropNameInRow="cap" msprop:Generator_ColumnPropNameInTable="capColumn" msprop:Generator_UserColumnName="cap" type="xs:int" minOccurs="0" />
+              <xs:element name="CapsGarantia" msprop:Generator_ColumnVarNameInTable="columnCapsGarantia" msprop:Generator_ColumnPropNameInRow="CapsGarantia" msprop:Generator_ColumnPropNameInTable="CapsGarantiaColumn" msprop:Generator_UserColumnName="CapsGarantia" type="xs:double" minOccurs="0" />
+              <xs:element name="porcentajegarantizado" msprop:Generator_ColumnVarNameInTable="columnporcentajegarantizado" msprop:Generator_ColumnPropNameInRow="porcentajegarantizado" msprop:Generator_ColumnPropNameInTable="porcentajegarantizadoColumn" msprop:Generator_UserColumnName="porcentajegarantizado" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RptCreditosVencidos" msprop:Generator_TableClassName="RptCreditosVencidosDataTable" msprop:Generator_TableVarName="tableRptCreditosVencidos" msprop:Generator_TablePropName="RptCreditosVencidos" msprop:Generator_RowDeletingName="RptCreditosVencidosRowDeleting" msprop:Generator_RowChangingName="RptCreditosVencidosRowChanging" msprop:Generator_RowEvHandlerName="RptCreditosVencidosRowChangeEventHandler" msprop:Generator_RowDeletedName="RptCreditosVencidosRowDeleted" msprop:Generator_UserTableName="RptCreditosVencidos" msprop:Generator_RowChangedName="RptCreditosVencidosRowChanged" msprop:Generator_RowEvArgName="RptCreditosVencidosRowChangeEvent" msprop:Generator_RowClassName="RptCreditosVencidosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nombres" msprop:Generator_ColumnVarNameInTable="columnNombres" msprop:Generator_ColumnPropNameInRow="Nombres" msprop:Generator_ColumnPropNameInTable="NombresColumn" msprop:Generator_UserColumnName="Nombres" type="xs:string" minOccurs="0" />
+              <xs:element name="CI" msprop:Generator_ColumnVarNameInTable="columnCI" msprop:Generator_ColumnPropNameInRow="CI" msprop:Generator_ColumnPropNameInTable="CIColumn" msprop:Generator_UserColumnName="CI" type="xs:string" minOccurs="0" />
+              <xs:element name="NoCredito" msprop:Generator_ColumnVarNameInTable="columnNoCredito" msprop:Generator_ColumnPropNameInRow="NoCredito" msprop:Generator_ColumnPropNameInTable="NoCreditoColumn" msprop:Generator_UserColumnName="NoCredito" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:string" minOccurs="0" />
+              <xs:element name="FechaVence" msprop:Generator_ColumnVarNameInTable="columnFechaVence" msprop:Generator_ColumnPropNameInRow="FechaVence" msprop:Generator_ColumnPropNameInTable="FechaVenceColumn" msprop:Generator_UserColumnName="FechaVence" type="xs:string" minOccurs="0" />
+              <xs:element name="MontoCred" msprop:Generator_ColumnVarNameInTable="columnMontoCred" msprop:Generator_ColumnPropNameInRow="MontoCred" msprop:Generator_ColumnPropNameInTable="MontoCredColumn" msprop:Generator_UserColumnName="MontoCred" type="xs:string" minOccurs="0" />
+              <xs:element name="Saldo" msprop:Generator_ColumnVarNameInTable="columnSaldo" msprop:Generator_ColumnPropNameInRow="Saldo" msprop:Generator_ColumnPropNameInTable="SaldoColumn" msprop:Generator_UserColumnName="Saldo" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
