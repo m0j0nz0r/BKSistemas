@@ -377,8 +377,10 @@ Module Module1
     End Sub
 
     Public Sub LoadOnline(ByRef DS As MainDS)
+        Dim DoAsync As Boolean = True
         GetTableList(DS)
         Dim adapter As New DatabaseWebAdapter
+        Dim filler As New DatabaseWebAdapter.FillAsync(AddressOf adapter.FillByCommandStr)
         adapter.SelectCommand = New DatabaseWebCommand("", New DatabaseWebConnection(My.Settings.ConnectionString))
         Dim dlg As New Form
         Dim pb As New ProgressBar
@@ -397,59 +399,82 @@ Module Module1
             municipio = ThisBanko("Municipio").ToString
             proyecto = ThisBanko("Proyecto").ToString
         End If
+        Dim AsyncResults As New Generic.List(Of IAsyncResult)
         For Each t As DataTable In DS.Tables
             Try
                 Debug.WriteLine("Loading table: " & t.TableName)
-                adapter.SelectCommand.CommandText = "SELECT * FROM " + t.TableName
+                Dim command As String = "SELECT * FROM " + t.TableName
                 If ForceSelect Then
                     Select Case t.TableName
                         Case "Gestion"
-                            adapter.SelectCommand.CommandText += " WHERE CodBK = '" + codi + "'"
+                            command += " WHERE CodBK = '" + codi + "'"
                         Case "gestiontemp"
-                            adapter.SelectCommand.CommandText += " WHERE codBK = '" + codi + "'"
+                            command += " WHERE codBK = '" + codi + "'"
                         Case "TblBanko"
-                            adapter.SelectCommand.CommandText += " WHERE CodBk='" + codi + "'"
+                            command += " WHERE CodBk='" + codi + "'"
                         Case "TblBenef"
-                            adapter.SelectCommand.CommandText += " WHERE CodBK = '" + codi + "'"
+                            command += " WHERE CodBK = '" + codi + "'"
                         Case "TblCorrige"
-                            adapter.SelectCommand.CommandText += " WHERE codbK = '" + codi + "'"
+                            command += " WHERE codbK = '" + codi + "'"
                         Case "TblCredito"
-                            adapter.SelectCommand.CommandText += " WHERE VBK = '" + codi + "'"
+                            command += " WHERE VBK = '" + codi + "'"
                         Case "TblFiadores"
-                            adapter.SelectCommand.CommandText += " WHERE CodBK = '" + codi + "'"
+                            command += " WHERE CodBK = '" + codi + "'"
                         Case "TblLibroIE"
-                            adapter.SelectCommand.CommandText += " WHERE IdBK = '" + codi + "'"
+                            command += " WHERE IdBK = '" + codi + "'"
                         Case "TblMesbloqueado"
-                            adapter.SelectCommand.CommandText += " WHERE codBanco = '" + codi + "'"
+                            command += " WHERE codBanco = '" + codi + "'"
                         Case "TblSocios"
-                            adapter.SelectCommand.CommandText += " WHERE CodBK = '" + codi + "'"
+                            command += " WHERE CodBK = '" + codi + "'"
                         Case "tblreportecred"
-                            adapter.SelectCommand.CommandText += " WHERE codbK = '" + codi + "'"
+                            command += " WHERE codbK = '" + codi + "'"
                         Case "tblTraspasos"
-                            adapter.SelectCommand.CommandText += " WHERE idbk = '" + codi + "'"
+                            command += " WHERE idbk = '" + codi + "'"
                         Case "tblUsuario"
-                            adapter.SelectCommand.CommandText += " WHERE Bk = '" + codi + "'"
+                            command += " WHERE Bk = '" + codi + "'"
                         Case "TblPaises"
-                            adapter.SelectCommand.CommandText += " WHERE ID = (SELECT PID FROM TblEstados WHERE ID = (SELECT EID FROM TblMunicipios WHERE ID = '" & municipio & "'))"
+                            command += " WHERE ID = (SELECT PID FROM TblEstados WHERE ID = (SELECT EID FROM TblMunicipios WHERE ID = '" & municipio & "'))"
                         Case "TblEstados"
-                            adapter.SelectCommand.CommandText += " WHERE ID = (SELECT EID FROM TblMunicipios WHERE ID = '" & municipio & "')"
+                            command += " WHERE ID = (SELECT EID FROM TblMunicipios WHERE ID = '" & municipio & "')"
                         Case "TblMunicipios"
-                            adapter.SelectCommand.CommandText += " WHERE ID = '" & municipio & "'"
+                            command += " WHERE ID = '" & municipio & "'"
                         Case "TblProyectos"
-                            adapter.SelectCommand.CommandText += " WHERE ID = '" & municipio & "'"
+                            command += " WHERE ID = '" & municipio & "'"
                     End Select
                 End If
-
-                adapter.Fill(DS)
-                lbl.Text = "Cargando data... " & pb.Value + 1 & "/" & pb.Maximum + 1 & ""
-                pb.PerformStep()
+                If DoAsync Then
+                    AsyncResults.Add(filler.BeginInvoke(DS, command, Nothing, Nothing))
+                Else
+                    lbl.Text = "Cargando data... " & pb.Value + 1 & "/" & pb.Maximum + 1 & ""
+                    pb.PerformStep()
+                    adapter.SelectCommand.CommandText = command
+                    adapter.Fill(DS)
+                End If
             Catch ex As RowNotInTableException
                 Debug.WriteLine(ex.Message & vbNewLine & ex.Source & vbNewLine & ex.StackTrace)
             Catch ex As Exception
-                MsgBox(ex.Message & " // " & ex.StackTrace)
-
+                Debug.WriteLine(ex.Message & vbNewLine & ex.Source & vbNewLine & ex.StackTrace)
             End Try
         Next
+        While AsyncResults.Count > 0
+            Dim i As Integer = 0
+            Dim r As Boolean = False
+            For Each result As IAsyncResult In AsyncResults
+                If result.IsCompleted Then
+                    Dim j As Integer = filler.EndInvoke(result)
+                    'Debug.WriteLine(j)
+                    i = AsyncResults.IndexOf(result)
+                    r = True
+                    Exit For
+                End If
+            Next
+            If r Then
+                lbl.Text = "Cargando data... " & pb.Value + 1 & "/" & pb.Maximum + 1 & ""
+                pb.PerformStep()
+                AsyncResults.RemoveAt(i)
+                r = False
+            End If
+        End While
         dlg.Close()
     End Sub
 

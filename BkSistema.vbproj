@@ -203,6 +203,32 @@
     <Compile Include="Dialogs\Autentificacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\MunicipioDlg.Designer.vb">
+      <DependentUpon>MunicipioDlg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MunicipioDlg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\List.vb" />
+    <Compile Include="Dialogs\List1.vb" />
+    <Compile Include="Dialogs\PaisDlg.Designer.vb">
+      <DependentUpon>PaisDlg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PaisDlg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EstadoDlg.Designer.vb">
+      <DependentUpon>EstadoDlg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EstadoDlg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProyectoDlg.Designer.vb">
+      <DependentUpon>ProyectoDlg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ProyectoDlg.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\StringDlg.Designer.vb">
       <DependentUpon>StringDlg.vb</DependentUpon>
     </Compile>
@@ -679,6 +705,18 @@
     </Compile>
     <EmbeddedResource Include="Dialogs\Autentificacion.resX">
       <DependentUpon>Autentificacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MunicipioDlg.resx">
+      <DependentUpon>MunicipioDlg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PaisDlg.resx">
+      <DependentUpon>PaisDlg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EstadoDlg.resx">
+      <DependentUpon>EstadoDlg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProyectoDlg.resx">
+      <DependentUpon>ProyectoDlg.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\StringDlg.resx">
       <DependentUpon>StringDlg.vb</DependentUpon>

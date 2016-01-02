@@ -240,7 +240,6 @@
         Me.MinimizeBox = False
         Me.Name = "Autentificacion"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "::: BKSistema :::"
         Me.Frame1.ResumeLayout(False)

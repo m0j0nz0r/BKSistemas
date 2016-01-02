@@ -590,7 +590,6 @@
         Me.MinimizeBox = False
         Me.Name = "Menu_Principal"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Picture1.ResumeLayout(False)
         Me.Frame2.ResumeLayout(False)

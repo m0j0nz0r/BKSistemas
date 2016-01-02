@@ -7576,8 +7576,8 @@ Partial Public Class MainDS
                     ByVal VCI As String,  _
                     ByVal VBK As String,  _
                     ByVal NoCredito As Integer,  _
-                    ByVal Fecha As String,  _
-                    ByVal FechaVence As String,  _
+                    ByVal Fecha As Date,  _
+                    ByVal FechaVence As Date,  _
                     ByVal MontoCred As Double,  _
                     ByVal Tipo As String,  _
                     ByVal Saldo As Double,  _
@@ -7585,9 +7585,9 @@ Partial Public Class MainDS
                     ByVal MontoIntDEX As String,  _
                     ByVal MoraDEX As String,  _
                     ByVal Cancelado As String,  _
-                    ByVal FechaCancela As String,  _
+                    ByVal FechaCancela As Date,  _
                     ByVal sexo As String,  _
-                    ByVal deuda As String,  _
+                    ByVal deuda As Double,  _
                     ByVal incobrable As String,  _
                     ByVal TasaIO As String,  _
                     ByVal TasaMO As String,  _
@@ -7653,9 +7653,9 @@ Partial Public Class MainDS
             MyBase.Columns.Add(Me.columnVBK)
             Me.columnNoCredito = New Global.System.Data.DataColumn("NoCredito", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNoCredito)
-            Me.columnFecha = New Global.System.Data.DataColumn("Fecha", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnFecha = New Global.System.Data.DataColumn("Fecha", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFecha)
-            Me.columnFechaVence = New Global.System.Data.DataColumn("FechaVence", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnFechaVence = New Global.System.Data.DataColumn("FechaVence", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFechaVence)
             Me.columnMontoCred = New Global.System.Data.DataColumn("MontoCred", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMontoCred)
@@ -7671,11 +7671,11 @@ Partial Public Class MainDS
             MyBase.Columns.Add(Me.columnMoraDEX)
             Me.columnCancelado = New Global.System.Data.DataColumn("Cancelado", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCancelado)
-            Me.columnFechaCancela = New Global.System.Data.DataColumn("FechaCancela", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnFechaCancela = New Global.System.Data.DataColumn("FechaCancela", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFechaCancela)
             Me.columnsexo = New Global.System.Data.DataColumn("sexo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnsexo)
-            Me.columndeuda = New Global.System.Data.DataColumn("deuda", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columndeuda = New Global.System.Data.DataColumn("deuda", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndeuda)
             Me.columnincobrable = New Global.System.Data.DataColumn("incobrable", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnincobrable)
@@ -10016,7 +10016,7 @@ Partial Public Class MainDS
                     ByVal FIngreso As Date,  _
                     ByVal AcumMoras As Integer,  _
                     ByVal Estatus As Integer,  _
-                    ByVal Deuda As Integer,  _
+                    ByVal Deuda As Double,  _
                     ByVal Fretiro As Date,  _
                     ByVal cap As Integer,  _
                     ByVal CapLiq As Integer,  _
@@ -10094,7 +10094,7 @@ Partial Public Class MainDS
             MyBase.Columns.Add(Me.columnAcumMoras)
             Me.columnEstatus = New Global.System.Data.DataColumn("Estatus", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnEstatus)
-            Me.columnDeuda = New Global.System.Data.DataColumn("Deuda", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnDeuda = New Global.System.Data.DataColumn("Deuda", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDeuda)
             Me.columnFretiro = New Global.System.Data.DataColumn("Fretiro", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFretiro)
@@ -20850,10 +20850,10 @@ Partial Public Class MainDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Fecha() As String
+        Public Property Fecha() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableTblCredito.FechaColumn),String)
+                    Return CType(Me(Me.tableTblCredito.FechaColumn),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Fecha' in table 'TblCredito' is DBNull.", e)
                 End Try
@@ -20865,10 +20865,10 @@ Partial Public Class MainDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property FechaVence() As String
+        Public Property FechaVence() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableTblCredito.FechaVenceColumn),String)
+                    Return CType(Me(Me.tableTblCredito.FechaVenceColumn),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'FechaVence' in table 'TblCredito' is DBNull.", e)
                 End Try
@@ -20985,10 +20985,10 @@ Partial Public Class MainDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property FechaCancela() As String
+        Public Property FechaCancela() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableTblCredito.FechaCancelaColumn),String)
+                    Return CType(Me(Me.tableTblCredito.FechaCancelaColumn),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'FechaCancela' in table 'TblCredito' is DBNull.", e)
                 End Try
@@ -21015,10 +21015,10 @@ Partial Public Class MainDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property deuda() As String
+        Public Property deuda() As Double
             Get
                 Try 
-                    Return CType(Me(Me.tableTblCredito.deudaColumn),String)
+                    Return CType(Me(Me.tableTblCredito.deudaColumn),Double)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'deuda' in table 'TblCredito' is DBNull.", e)
                 End Try
@@ -22619,10 +22619,10 @@ Partial Public Class MainDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Deuda() As Integer
+        Public Property Deuda() As Double
             Get
                 Try 
-                    Return CType(Me(Me.tableTblSocios.DeudaColumn),Integer)
+                    Return CType(Me(Me.tableTblSocios.DeudaColumn),Double)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Deuda' in table 'TblSocios' is DBNull.", e)
                 End Try

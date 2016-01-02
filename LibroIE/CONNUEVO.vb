@@ -1,7 +1,9 @@
 Option Strict Off
 Option Explicit On
 Friend Class CONNUEVO
-	Inherits System.Windows.Forms.Form
+    Inherits System.Windows.Forms.Form
+
+
     Private Function CheckFiadoresDuplicados() As Boolean
         Dim retval As Boolean = (TCONFiador1.Text <> TCONFIador2.Text) Or (TCONFiador1.Text = "") Or (TCONFIador2.Text = "")
         If Not retval Then
@@ -569,8 +571,8 @@ Friend Class CONNUEVO
         End If
 
         TCONTipoC.Items.Clear()
-        For Each r As DataRow In MainDSO.Tables("TblClaseCredito").Rows
-            TCONTipoC.Items.Add((r("CodClase")))
+        For Each r As MainDS.TblClaseCreditoRow In MainDSO.TblClaseCredito.Rows
+            TCONTipoC.Items.Add((r.Descripcion))
         Next
 
         For Each r As DataRowView In Socios

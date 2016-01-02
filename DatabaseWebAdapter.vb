@@ -21,11 +21,13 @@ Public Class DatabaseWebAdapter
     Public Sub New()
         _InstructionLimit = 100
     End Sub
+
     Public Function GetStream(inst As Collection, ConnectionString As String) As Stream
         Try
 
             Dim browser As HttpWebRequest
             browser = HttpWebRequest.Create(ConnectionString)
+            browser.UserAgent = "BKSistema"
             browser.Credentials = CredentialCache.DefaultCredentials
             browser.Method = "POST"
             Dim postData As String = ""
@@ -51,18 +53,30 @@ Public Class DatabaseWebAdapter
                     stream.Close()
                     stream.Dispose()
                     a = 0
+                Catch ex As WebException
+                    Debug.WriteLine(ex.Message & vbNewLine & ex.Source & vbNewLine & ex.StackTrace)
+                    For Each s As String In inst
+                        Debug.WriteLine(s)
+                    Next
+                    Debug.WriteLine(ex.Response)
+                    Debug.WriteLine(ex.Status)
+                    Threading.Thread.Sleep(10000)
                 Catch ex As Exception
-                    MsgBox(ex.Message)
-
+                    Debug.WriteLine(ex.Message & vbNewLine & ex.Source & vbNewLine & ex.StackTrace)
+                    For Each s As String In inst
+                        Debug.WriteLine(s)
+                    Next
+                    Threading.Thread.Sleep(10000)
                 End Try
             Loop Until a = 0
 
             Dim response As HttpWebResponse = browser.GetResponse()
             Return response.GetResponseStream()
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            Debug.WriteLine(ex.Message & vbNewLine & ex.Source & vbNewLine & ex.StackTrace & vbNewLine & inst(1))
+            Threading.Thread.Sleep(10000)
         End Try
-        Return Stream.Null
+        Return Nothing
     End Function
 
     Private Function GetTableFromCommand(command As String) As String
@@ -502,23 +516,24 @@ Public Class DatabaseWebAdapter
     End Sub
 
     Public Overrides Function Fill(dataSet As DataSet) As Integer
-        Dim stream As Stream
+        Dim stream As Stream = Nothing
         Dim inst As New Collection
         inst.Add(Me.SelectCommand.CommandText)
-        stream = GetStream(inst, Me.SelectCommand.Connection.ConnectionString)
+        Dim table As String = GetTableFromCommand(inst(1))
+        Dim dTable As DataTable
+        Debug.WriteLine("Filling: " & table)
+        While stream Is Nothing
+            stream = GetStream(inst, Me.SelectCommand.Connection.ConnectionString)
+        End While
         Dim reader As New StreamReader(stream)
         Dim line As String = reader.ReadLine()
         Dim lineArr As New Dictionary(Of String, String)
-
-        Dim table As String = GetTableFromCommand(Me.SelectCommand.CommandText)
-        Dim dTable As DataTable
         If Not dataSet.Tables.Contains(table) Then
             dTable = dataSet.Tables.Add(table)
         Else
             dataSet.Tables(table).Rows.Clear()
             dTable = dataSet.Tables.Item(table)
         End If
-
         'Try
 
         While (line <> "</html>")
@@ -554,7 +569,11 @@ Public Class DatabaseWebAdapter
                             End If
                         End If
                     Next
-                    dTable.Rows.Add(row)
+                    Try
+                        dTable.Rows.Add(row)
+                    Catch ex As Exception
+                        Debug.WriteLine(ex.Message & vbNewLine & ex.Source & vbNewLine & ex.StackTrace)
+                    End Try
                 End If
             End If
         End While
@@ -562,8 +581,16 @@ Public Class DatabaseWebAdapter
         'Catch ex As Exception
         'MessageBox.Show(ex.Message & " " & ex.StackTrace)
         'End Try
+        Debug.WriteLine("Finished: " & table)
         Return dTable.Rows.Count
     End Function
+    Public Function FillByCommandStr(dataset As DataSet, command As String) As Integer
+        Dim adapter As New DatabaseWebAdapter
+        adapter.SelectCommand = New DatabaseWebCommand(command, Me.SelectCommand.Connection)
+        Return adapter.Fill(dataset)
+    End Function
+    Public Delegate Function FillAsync(dataSet As DataSet, command As String) As Integer
+
     Public Overrides Function Update(dataSet As DataSet) As Integer
         Dim OriginalDataset As New MainDS
         Dim inst As New Collection

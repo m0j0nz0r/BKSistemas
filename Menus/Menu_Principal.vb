@@ -211,20 +211,18 @@ Friend Class Menu_Principal
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim file As IO.StreamWriter
-        Dim openfileDlg As New SaveFileDialog
-        openfileDlg.Filter = "Respaldo BkSistema (*.bks)|*.bks"
-        openfileDlg.AddExtension = True
-        openfileDlg.Title = "Seleccionar el directorio donde desea respaldar la Data"
-        openfileDlg.ShowDialog()
-        Try
-            file = My.Computer.FileSystem.OpenTextFileWriter(openfileDlg.FileName, False)
-            file.Write(JsonConvert.SerializeObject(MainDSO))
-            file.Close()
-            MessageBox.Show("Respaldo exitoso!")
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
+        Dim TestDs As New MainDS
+        Dim SumTime As Double = 0
+        Dim Exectime As DateTime
+        For i As Integer = 1 To 10
+            Debug.WriteLine(i)
+            Exectime = Now
+            LoadOnline(TestDs)
+            SumTime += (Now - Exectime).TotalSeconds
+            Debug.WriteLine(SumTime / (i))
+            TestDs.Clear()
+        Next
+        MsgBox(SumTime / 10 & " Segundos en promedio.")
     End Sub
 
     Private Sub Label14_Click(sender As Object, e As EventArgs) Handles Label14.Click
@@ -233,5 +231,10 @@ Friend Class Menu_Principal
 
     Private Sub Label13_Click(sender As Object, e As EventArgs) Handles LblClasifCred.Click
 
+    End Sub
+
+    Private Sub BtnProcesar_Click(sender As Object, e As EventArgs) Handles BtnProcesar.Click
+        Dim frm As New Procesar
+        frm.ShowDialog()
     End Sub
 End Class
