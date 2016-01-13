@@ -5,6 +5,7 @@
     Private Sub ProyectoDlg_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TblProyectosBindingSource.DataSource = MainDSO.TblProyectos
         Label1.Text = Prompt
+        AddProyecto.Visible = FindPermit(tuser, "PanelConfigProyectos") = "1"
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -21,5 +22,10 @@
                 e.Cancel = True
             End If
         End If
+    End Sub
+
+    Private Sub AddProyecto_Click(sender As Object, e As EventArgs) Handles AddProyecto.Click
+        Dim f As New PanelProyectos
+        f.ShowDialog()
     End Sub
 End Class

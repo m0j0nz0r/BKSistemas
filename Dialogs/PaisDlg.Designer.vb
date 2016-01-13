@@ -25,12 +25,13 @@ Partial Class PaisDlg
         Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ProyectList = New System.Windows.Forms.ComboBox()
+        Me.TblPaisesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.MainDS = New BkSistema.MainDS()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ChkAgain = New System.Windows.Forms.CheckBox()
-        Me.TblPaisesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.AddPais = New System.Windows.Forms.Button()
         CType(Me.TblPaisesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -52,6 +53,11 @@ Partial Class PaisDlg
         Me.ProyectList.Size = New System.Drawing.Size(210, 21)
         Me.ProyectList.TabIndex = 1
         Me.ProyectList.ValueMember = "ID"
+        '
+        'TblPaisesBindingSource
+        '
+        Me.TblPaisesBindingSource.DataMember = "TblPaises"
+        Me.TblPaisesBindingSource.DataSource = Me.MainDS
         '
         'MainDS
         '
@@ -79,24 +85,29 @@ Partial Class PaisDlg
         Me.ChkAgain.Text = "No preguntarme de nuevo."
         Me.ChkAgain.UseVisualStyleBackColor = True
         '
-        'TblPaisesBindingSource
+        'AddPais
         '
-        Me.TblPaisesBindingSource.DataMember = "TblPaises"
-        Me.TblPaisesBindingSource.DataSource = Me.MainDS
+        Me.AddPais.Image = Global.BkSistema.My.Resources.Resources.plus
+        Me.AddPais.Location = New System.Drawing.Point(230, 27)
+        Me.AddPais.Name = "AddPais"
+        Me.AddPais.Size = New System.Drawing.Size(27, 23)
+        Me.AddPais.TabIndex = 4
+        Me.AddPais.UseVisualStyleBackColor = True
         '
         'PaisDlg
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(235, 114)
+        Me.ClientSize = New System.Drawing.Size(269, 114)
+        Me.Controls.Add(Me.AddPais)
         Me.Controls.Add(Me.ChkAgain)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ProyectList)
         Me.Controls.Add(Me.Label1)
         Me.Name = "PaisDlg"
         Me.Text = "Pais"
-        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TblPaisesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -107,4 +118,5 @@ Partial Class PaisDlg
     Friend WithEvents MainDS As BkSistema.MainDS
     Friend WithEvents ChkAgain As System.Windows.Forms.CheckBox
     Friend WithEvents TblPaisesBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents AddPais As System.Windows.Forms.Button
 End Class

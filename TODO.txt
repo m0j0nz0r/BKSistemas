@@ -1,5 +1,5 @@
-﻿-Agregar al BKsistema la habilidad de importar data desde archivos Access junto a los archivos .BKS Similar al antiguo "Procesar".
--Abrir el BKSistema haciendo doble click sobre archivos .BKS
--Agregar opción"Actualizar Data" Hace el proceso de actualizar la base de datos online como lo hace al cerrar.
+﻿-Abrir el BKSistema haciendo doble click sobre archivos .BKS
+-Agregar opción"Actualizar Data" Hace el proceso de actualizar la base de datos 
+	online como lo hace al cerrar.
 -Agregar opción "Crear Respaldo" Crea un nuevo archivo .BKS con la data cargada.
--Agregar opción "Deshacer Cierre" Para permitir trabajar en meses cerrados.
+-Agregar Carpeta de respaldos por cierre.

@@ -5,6 +5,7 @@
     Private Sub ProyectoDlg_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TblPaisesBindingSource.DataSource = MainDSO.TblPaises
         Label1.Text = Prompt
+        AddPais.Visible = FindPermit(tuser, "PanelConfigPaises")
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -21,5 +22,10 @@
                 e.Cancel = True
             End If
         End If
+    End Sub
+
+    Private Sub AddPais_Click(sender As Object, e As EventArgs) Handles AddPais.Click
+        Dim f As New PanelPaises
+        f.ShowDialog()
     End Sub
 End Class

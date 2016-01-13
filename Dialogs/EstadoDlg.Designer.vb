@@ -25,12 +25,13 @@ Partial Class EstadoDlg
         Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ProyectList = New System.Windows.Forms.ComboBox()
+        Me.TblEstadosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.MainDS = New BkSistema.MainDS()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ChkAgain = New System.Windows.Forms.CheckBox()
-        Me.TblEstadosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.AddEstado = New System.Windows.Forms.Button()
         CType(Me.TblEstadosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -52,6 +53,11 @@ Partial Class EstadoDlg
         Me.ProyectList.Size = New System.Drawing.Size(210, 21)
         Me.ProyectList.TabIndex = 1
         Me.ProyectList.ValueMember = "ID"
+        '
+        'TblEstadosBindingSource
+        '
+        Me.TblEstadosBindingSource.DataMember = "TblEstados"
+        Me.TblEstadosBindingSource.DataSource = Me.MainDS
         '
         'MainDS
         '
@@ -79,24 +85,29 @@ Partial Class EstadoDlg
         Me.ChkAgain.Text = "No preguntarme de nuevo."
         Me.ChkAgain.UseVisualStyleBackColor = True
         '
-        'TblEstadosBindingSource
+        'AddEstado
         '
-        Me.TblEstadosBindingSource.DataMember = "TblEstados"
-        Me.TblEstadosBindingSource.DataSource = Me.MainDS
+        Me.AddEstado.Image = Global.BkSistema.My.Resources.Resources.plus
+        Me.AddEstado.Location = New System.Drawing.Point(230, 27)
+        Me.AddEstado.Name = "AddEstado"
+        Me.AddEstado.Size = New System.Drawing.Size(25, 23)
+        Me.AddEstado.TabIndex = 4
+        Me.AddEstado.UseVisualStyleBackColor = True
         '
         'EstadoDlg
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(235, 114)
+        Me.ClientSize = New System.Drawing.Size(267, 114)
+        Me.Controls.Add(Me.AddEstado)
         Me.Controls.Add(Me.ChkAgain)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ProyectList)
         Me.Controls.Add(Me.Label1)
         Me.Name = "EstadoDlg"
         Me.Text = "Estado"
-        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TblEstadosBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -107,4 +118,5 @@ Partial Class EstadoDlg
     Friend WithEvents MainDS As BkSistema.MainDS
     Friend WithEvents ChkAgain As System.Windows.Forms.CheckBox
     Friend WithEvents TblEstadosBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents AddEstado As System.Windows.Forms.Button
 End Class

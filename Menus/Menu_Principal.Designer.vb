@@ -58,26 +58,9 @@
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Menu_Principal))
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtnProcesar = New System.Windows.Forms.Button()
-        Me.BtnRptFinancieros = New System.Windows.Forms.Button()
-        Me.Picture1 = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label14 = New System.Windows.Forms.Label()
         Me.CommonDialog1Open = New System.Windows.Forms.OpenFileDialog()
         Me.CommonDialog1Save = New System.Windows.Forms.SaveFileDialog()
         Me.Frame2 = New System.Windows.Forms.Panel()
-        Me.BtnClasifCred = New System.Windows.Forms.Button()
-        Me.BtnTablas = New System.Windows.Forms.Button()
-        Me.BtnNewBk = New System.Windows.Forms.Button()
-        Me.BtnProfiles = New System.Windows.Forms.Button()
-        Me.BtnBackup = New System.Windows.Forms.Button()
-        Me.BtnPanelRpt = New System.Windows.Forms.Button()
-        Me.BtnLibroIE = New System.Windows.Forms.Button()
-        Me.BtnDatosCreditos = New System.Windows.Forms.Button()
-        Me.BtnPanelSocios = New System.Windows.Forms.Button()
-        Me.BtnCuadreCierre = New System.Windows.Forms.Button()
-        Me.BtnVolver = New System.Windows.Forms.Button()
-        Me.BtnDatosBanko = New System.Windows.Forms.Button()
         Me.LblProcesar = New System.Windows.Forms.Label()
         Me.LblRptFinancieros = New System.Windows.Forms.Label()
         Me.LblClasifCred = New System.Windows.Forms.Label()
@@ -93,76 +76,26 @@
         Me.LblCuadreCierre = New System.Windows.Forms.Label()
         Me.LblVolver = New System.Windows.Forms.Label()
         Me.LblDatosBanko = New System.Windows.Forms.Label()
-        Me.Picture1.SuspendLayout()
+        Me.BtnProcesar = New System.Windows.Forms.Button()
+        Me.BtnRptFinancieros = New System.Windows.Forms.Button()
+        Me.Picture1 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.BtnClasifCred = New System.Windows.Forms.Button()
+        Me.BtnTablas = New System.Windows.Forms.Button()
+        Me.BtnNewBk = New System.Windows.Forms.Button()
+        Me.BtnProfiles = New System.Windows.Forms.Button()
+        Me.BtnBackup = New System.Windows.Forms.Button()
+        Me.BtnPanelRpt = New System.Windows.Forms.Button()
+        Me.BtnLibroIE = New System.Windows.Forms.Button()
+        Me.BtnDatosCreditos = New System.Windows.Forms.Button()
+        Me.BtnPanelSocios = New System.Windows.Forms.Button()
+        Me.BtnCuadreCierre = New System.Windows.Forms.Button()
+        Me.BtnVolver = New System.Windows.Forms.Button()
+        Me.BtnDatosBanko = New System.Windows.Forms.Button()
         Me.Frame2.SuspendLayout()
+        Me.Picture1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'BtnProcesar
-        '
-        Me.BtnProcesar.BackColor = System.Drawing.Color.White
-        Me.BtnProcesar.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnProcesar.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnProcesar.Image = CType(resources.GetObject("BtnProcesar.Image"), System.Drawing.Image)
-        Me.BtnProcesar.Location = New System.Drawing.Point(288, 416)
-        Me.BtnProcesar.Name = "BtnProcesar"
-        Me.BtnProcesar.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnProcesar.Size = New System.Drawing.Size(41, 41)
-        Me.BtnProcesar.TabIndex = 31
-        Me.BtnProcesar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnProcesar.UseVisualStyleBackColor = False
-        '
-        'BtnRptFinancieros
-        '
-        Me.BtnRptFinancieros.BackColor = System.Drawing.Color.White
-        Me.BtnRptFinancieros.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnRptFinancieros.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnRptFinancieros.Image = CType(resources.GetObject("BtnRptFinancieros.Image"), System.Drawing.Image)
-        Me.BtnRptFinancieros.Location = New System.Drawing.Point(288, 368)
-        Me.BtnRptFinancieros.Name = "BtnRptFinancieros"
-        Me.BtnRptFinancieros.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnRptFinancieros.Size = New System.Drawing.Size(41, 41)
-        Me.BtnRptFinancieros.TabIndex = 28
-        Me.BtnRptFinancieros.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnRptFinancieros.UseVisualStyleBackColor = False
-        '
-        'Picture1
-        '
-        Me.Picture1.BackColor = System.Drawing.SystemColors.Control
-        Me.Picture1.BackgroundImage = CType(resources.GetObject("Picture1.BackgroundImage"), System.Drawing.Image)
-        Me.Picture1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Picture1.Controls.Add(Me.Button1)
-        Me.Picture1.Controls.Add(Me.Label14)
-        Me.Picture1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Picture1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Picture1.Location = New System.Drawing.Point(-32, 0)
-        Me.Picture1.Name = "Picture1"
-        Me.Picture1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Picture1.Size = New System.Drawing.Size(537, 97)
-        Me.Picture1.TabIndex = 14
-        Me.Picture1.TabStop = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(446, 5)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 16
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        Me.Button1.Visible = False
-        '
-        'Label14
-        '
-        Me.Label14.BackColor = System.Drawing.Color.White
-        Me.Label14.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Label14.Font = New System.Drawing.Font("Arial", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label14.Location = New System.Drawing.Point(221, 40)
-        Me.Label14.Name = "Label14"
-        Me.Label14.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Label14.Size = New System.Drawing.Size(310, 41)
-        Me.Label14.TabIndex = 15
-        Me.Label14.Text = "::: Menu Principal"
         '
         'CommonDialog1Open
         '
@@ -209,174 +142,6 @@
         Me.Frame2.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Frame2.Size = New System.Drawing.Size(505, 361)
         Me.Frame2.TabIndex = 7
-        '
-        'BtnClasifCred
-        '
-        Me.BtnClasifCred.BackColor = System.Drawing.Color.White
-        Me.BtnClasifCred.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnClasifCred.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnClasifCred.Image = CType(resources.GetObject("BtnClasifCred.Image"), System.Drawing.Image)
-        Me.BtnClasifCred.Location = New System.Drawing.Point(280, 216)
-        Me.BtnClasifCred.Name = "BtnClasifCred"
-        Me.BtnClasifCred.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnClasifCred.Size = New System.Drawing.Size(41, 41)
-        Me.BtnClasifCred.TabIndex = 26
-        Me.BtnClasifCred.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnClasifCred.UseVisualStyleBackColor = False
-        '
-        'BtnTablas
-        '
-        Me.BtnTablas.BackColor = System.Drawing.Color.White
-        Me.BtnTablas.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnTablas.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnTablas.Image = CType(resources.GetObject("BtnTablas.Image"), System.Drawing.Image)
-        Me.BtnTablas.Location = New System.Drawing.Point(280, 168)
-        Me.BtnTablas.Name = "BtnTablas"
-        Me.BtnTablas.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnTablas.Size = New System.Drawing.Size(41, 41)
-        Me.BtnTablas.TabIndex = 24
-        Me.BtnTablas.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnTablas.UseVisualStyleBackColor = False
-        '
-        'BtnNewBk
-        '
-        Me.BtnNewBk.BackColor = System.Drawing.Color.White
-        Me.BtnNewBk.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnNewBk.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnNewBk.Image = CType(resources.GetObject("BtnNewBk.Image"), System.Drawing.Image)
-        Me.BtnNewBk.Location = New System.Drawing.Point(280, 120)
-        Me.BtnNewBk.Name = "BtnNewBk"
-        Me.BtnNewBk.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnNewBk.Size = New System.Drawing.Size(41, 41)
-        Me.BtnNewBk.TabIndex = 20
-        Me.BtnNewBk.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnNewBk.UseVisualStyleBackColor = False
-        '
-        'BtnProfiles
-        '
-        Me.BtnProfiles.BackColor = System.Drawing.Color.White
-        Me.BtnProfiles.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnProfiles.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnProfiles.Image = CType(resources.GetObject("BtnProfiles.Image"), System.Drawing.Image)
-        Me.BtnProfiles.Location = New System.Drawing.Point(280, 72)
-        Me.BtnProfiles.Name = "BtnProfiles"
-        Me.BtnProfiles.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnProfiles.Size = New System.Drawing.Size(41, 41)
-        Me.BtnProfiles.TabIndex = 19
-        Me.BtnProfiles.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnProfiles.UseVisualStyleBackColor = False
-        '
-        'BtnBackup
-        '
-        Me.BtnBackup.BackColor = System.Drawing.Color.White
-        Me.BtnBackup.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnBackup.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnBackup.Image = CType(resources.GetObject("BtnBackup.Image"), System.Drawing.Image)
-        Me.BtnBackup.Location = New System.Drawing.Point(280, 24)
-        Me.BtnBackup.Name = "BtnBackup"
-        Me.BtnBackup.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnBackup.Size = New System.Drawing.Size(41, 41)
-        Me.BtnBackup.TabIndex = 18
-        Me.BtnBackup.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnBackup.UseVisualStyleBackColor = False
-        '
-        'BtnPanelRpt
-        '
-        Me.BtnPanelRpt.BackColor = System.Drawing.Color.White
-        Me.BtnPanelRpt.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnPanelRpt.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnPanelRpt.Image = CType(resources.GetObject("BtnPanelRpt.Image"), System.Drawing.Image)
-        Me.BtnPanelRpt.Location = New System.Drawing.Point(24, 264)
-        Me.BtnPanelRpt.Name = "BtnPanelRpt"
-        Me.BtnPanelRpt.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnPanelRpt.Size = New System.Drawing.Size(41, 41)
-        Me.BtnPanelRpt.TabIndex = 5
-        Me.BtnPanelRpt.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnPanelRpt.UseVisualStyleBackColor = False
-        '
-        'BtnLibroIE
-        '
-        Me.BtnLibroIE.BackColor = System.Drawing.Color.White
-        Me.BtnLibroIE.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnLibroIE.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnLibroIE.Image = CType(resources.GetObject("BtnLibroIE.Image"), System.Drawing.Image)
-        Me.BtnLibroIE.Location = New System.Drawing.Point(24, 72)
-        Me.BtnLibroIE.Name = "BtnLibroIE"
-        Me.BtnLibroIE.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnLibroIE.Size = New System.Drawing.Size(41, 41)
-        Me.BtnLibroIE.TabIndex = 1
-        Me.BtnLibroIE.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnLibroIE.UseVisualStyleBackColor = False
-        '
-        'BtnDatosCreditos
-        '
-        Me.BtnDatosCreditos.BackColor = System.Drawing.Color.White
-        Me.BtnDatosCreditos.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnDatosCreditos.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnDatosCreditos.Image = CType(resources.GetObject("BtnDatosCreditos.Image"), System.Drawing.Image)
-        Me.BtnDatosCreditos.Location = New System.Drawing.Point(24, 120)
-        Me.BtnDatosCreditos.Name = "BtnDatosCreditos"
-        Me.BtnDatosCreditos.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnDatosCreditos.Size = New System.Drawing.Size(41, 41)
-        Me.BtnDatosCreditos.TabIndex = 2
-        Me.BtnDatosCreditos.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnDatosCreditos.UseVisualStyleBackColor = False
-        '
-        'BtnPanelSocios
-        '
-        Me.BtnPanelSocios.BackColor = System.Drawing.Color.White
-        Me.BtnPanelSocios.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnPanelSocios.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnPanelSocios.Image = CType(resources.GetObject("BtnPanelSocios.Image"), System.Drawing.Image)
-        Me.BtnPanelSocios.Location = New System.Drawing.Point(24, 168)
-        Me.BtnPanelSocios.Name = "BtnPanelSocios"
-        Me.BtnPanelSocios.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnPanelSocios.Size = New System.Drawing.Size(41, 41)
-        Me.BtnPanelSocios.TabIndex = 3
-        Me.BtnPanelSocios.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnPanelSocios.UseVisualStyleBackColor = False
-        '
-        'BtnCuadreCierre
-        '
-        Me.BtnCuadreCierre.BackColor = System.Drawing.Color.White
-        Me.BtnCuadreCierre.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnCuadreCierre.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnCuadreCierre.Image = CType(resources.GetObject("BtnCuadreCierre.Image"), System.Drawing.Image)
-        Me.BtnCuadreCierre.Location = New System.Drawing.Point(24, 216)
-        Me.BtnCuadreCierre.Name = "BtnCuadreCierre"
-        Me.BtnCuadreCierre.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnCuadreCierre.Size = New System.Drawing.Size(41, 41)
-        Me.BtnCuadreCierre.TabIndex = 4
-        Me.BtnCuadreCierre.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnCuadreCierre.UseVisualStyleBackColor = False
-        '
-        'BtnVolver
-        '
-        Me.BtnVolver.BackColor = System.Drawing.Color.White
-        Me.BtnVolver.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnVolver.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnVolver.Image = CType(resources.GetObject("BtnVolver.Image"), System.Drawing.Image)
-        Me.BtnVolver.Location = New System.Drawing.Point(24, 312)
-        Me.BtnVolver.Name = "BtnVolver"
-        Me.BtnVolver.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnVolver.Size = New System.Drawing.Size(41, 41)
-        Me.BtnVolver.TabIndex = 6
-        Me.BtnVolver.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnVolver.UseVisualStyleBackColor = False
-        '
-        'BtnDatosBanko
-        '
-        Me.BtnDatosBanko.BackColor = System.Drawing.Color.White
-        Me.BtnDatosBanko.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtnDatosBanko.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtnDatosBanko.Image = CType(resources.GetObject("BtnDatosBanko.Image"), System.Drawing.Image)
-        Me.BtnDatosBanko.Location = New System.Drawing.Point(24, 24)
-        Me.BtnDatosBanko.Name = "BtnDatosBanko"
-        Me.BtnDatosBanko.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtnDatosBanko.Size = New System.Drawing.Size(41, 41)
-        Me.BtnDatosBanko.TabIndex = 0
-        Me.BtnDatosBanko.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BtnDatosBanko.UseVisualStyleBackColor = False
         '
         'LblProcesar
         '
@@ -573,6 +338,241 @@
         Me.LblDatosBanko.TabIndex = 8
         Me.LblDatosBanko.Text = "Datos del Bankomunal"
         '
+        'BtnProcesar
+        '
+        Me.BtnProcesar.BackColor = System.Drawing.Color.White
+        Me.BtnProcesar.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnProcesar.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnProcesar.Image = CType(resources.GetObject("BtnProcesar.Image"), System.Drawing.Image)
+        Me.BtnProcesar.Location = New System.Drawing.Point(288, 416)
+        Me.BtnProcesar.Name = "BtnProcesar"
+        Me.BtnProcesar.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnProcesar.Size = New System.Drawing.Size(41, 41)
+        Me.BtnProcesar.TabIndex = 31
+        Me.BtnProcesar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnProcesar.UseVisualStyleBackColor = False
+        '
+        'BtnRptFinancieros
+        '
+        Me.BtnRptFinancieros.BackColor = System.Drawing.Color.White
+        Me.BtnRptFinancieros.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnRptFinancieros.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnRptFinancieros.Image = CType(resources.GetObject("BtnRptFinancieros.Image"), System.Drawing.Image)
+        Me.BtnRptFinancieros.Location = New System.Drawing.Point(288, 368)
+        Me.BtnRptFinancieros.Name = "BtnRptFinancieros"
+        Me.BtnRptFinancieros.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnRptFinancieros.Size = New System.Drawing.Size(41, 41)
+        Me.BtnRptFinancieros.TabIndex = 28
+        Me.BtnRptFinancieros.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnRptFinancieros.UseVisualStyleBackColor = False
+        '
+        'Picture1
+        '
+        Me.Picture1.BackColor = System.Drawing.SystemColors.Control
+        Me.Picture1.BackgroundImage = CType(resources.GetObject("Picture1.BackgroundImage"), System.Drawing.Image)
+        Me.Picture1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Picture1.Controls.Add(Me.Button1)
+        Me.Picture1.Controls.Add(Me.Label14)
+        Me.Picture1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.Picture1.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Picture1.Location = New System.Drawing.Point(-32, 0)
+        Me.Picture1.Name = "Picture1"
+        Me.Picture1.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Picture1.Size = New System.Drawing.Size(537, 97)
+        Me.Picture1.TabIndex = 14
+        Me.Picture1.TabStop = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(446, 5)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 16
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
+        '
+        'Label14
+        '
+        Me.Label14.BackColor = System.Drawing.Color.White
+        Me.Label14.Cursor = System.Windows.Forms.Cursors.Default
+        Me.Label14.Font = New System.Drawing.Font("Arial", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label14.Location = New System.Drawing.Point(221, 40)
+        Me.Label14.Name = "Label14"
+        Me.Label14.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Label14.Size = New System.Drawing.Size(310, 41)
+        Me.Label14.TabIndex = 15
+        Me.Label14.Text = "::: Menu Principal"
+        '
+        'BtnClasifCred
+        '
+        Me.BtnClasifCred.BackColor = System.Drawing.Color.White
+        Me.BtnClasifCred.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnClasifCred.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnClasifCred.Image = CType(resources.GetObject("BtnClasifCred.Image"), System.Drawing.Image)
+        Me.BtnClasifCred.Location = New System.Drawing.Point(280, 216)
+        Me.BtnClasifCred.Name = "BtnClasifCred"
+        Me.BtnClasifCred.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnClasifCred.Size = New System.Drawing.Size(41, 41)
+        Me.BtnClasifCred.TabIndex = 26
+        Me.BtnClasifCred.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnClasifCred.UseVisualStyleBackColor = False
+        '
+        'BtnTablas
+        '
+        Me.BtnTablas.BackColor = System.Drawing.Color.White
+        Me.BtnTablas.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnTablas.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnTablas.Image = CType(resources.GetObject("BtnTablas.Image"), System.Drawing.Image)
+        Me.BtnTablas.Location = New System.Drawing.Point(280, 168)
+        Me.BtnTablas.Name = "BtnTablas"
+        Me.BtnTablas.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnTablas.Size = New System.Drawing.Size(41, 41)
+        Me.BtnTablas.TabIndex = 24
+        Me.BtnTablas.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnTablas.UseVisualStyleBackColor = False
+        '
+        'BtnNewBk
+        '
+        Me.BtnNewBk.BackColor = System.Drawing.Color.White
+        Me.BtnNewBk.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnNewBk.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnNewBk.Image = CType(resources.GetObject("BtnNewBk.Image"), System.Drawing.Image)
+        Me.BtnNewBk.Location = New System.Drawing.Point(280, 120)
+        Me.BtnNewBk.Name = "BtnNewBk"
+        Me.BtnNewBk.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnNewBk.Size = New System.Drawing.Size(41, 41)
+        Me.BtnNewBk.TabIndex = 20
+        Me.BtnNewBk.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnNewBk.UseVisualStyleBackColor = False
+        '
+        'BtnProfiles
+        '
+        Me.BtnProfiles.BackColor = System.Drawing.Color.White
+        Me.BtnProfiles.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnProfiles.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnProfiles.Image = CType(resources.GetObject("BtnProfiles.Image"), System.Drawing.Image)
+        Me.BtnProfiles.Location = New System.Drawing.Point(280, 72)
+        Me.BtnProfiles.Name = "BtnProfiles"
+        Me.BtnProfiles.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnProfiles.Size = New System.Drawing.Size(41, 41)
+        Me.BtnProfiles.TabIndex = 19
+        Me.BtnProfiles.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnProfiles.UseVisualStyleBackColor = False
+        '
+        'BtnBackup
+        '
+        Me.BtnBackup.BackColor = System.Drawing.Color.White
+        Me.BtnBackup.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnBackup.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnBackup.Image = CType(resources.GetObject("BtnBackup.Image"), System.Drawing.Image)
+        Me.BtnBackup.Location = New System.Drawing.Point(280, 24)
+        Me.BtnBackup.Name = "BtnBackup"
+        Me.BtnBackup.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnBackup.Size = New System.Drawing.Size(41, 41)
+        Me.BtnBackup.TabIndex = 18
+        Me.BtnBackup.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnBackup.UseVisualStyleBackColor = False
+        '
+        'BtnPanelRpt
+        '
+        Me.BtnPanelRpt.BackColor = System.Drawing.Color.White
+        Me.BtnPanelRpt.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnPanelRpt.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnPanelRpt.Image = CType(resources.GetObject("BtnPanelRpt.Image"), System.Drawing.Image)
+        Me.BtnPanelRpt.Location = New System.Drawing.Point(24, 264)
+        Me.BtnPanelRpt.Name = "BtnPanelRpt"
+        Me.BtnPanelRpt.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnPanelRpt.Size = New System.Drawing.Size(41, 41)
+        Me.BtnPanelRpt.TabIndex = 5
+        Me.BtnPanelRpt.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnPanelRpt.UseVisualStyleBackColor = False
+        '
+        'BtnLibroIE
+        '
+        Me.BtnLibroIE.BackColor = System.Drawing.Color.White
+        Me.BtnLibroIE.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnLibroIE.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnLibroIE.Image = CType(resources.GetObject("BtnLibroIE.Image"), System.Drawing.Image)
+        Me.BtnLibroIE.Location = New System.Drawing.Point(24, 72)
+        Me.BtnLibroIE.Name = "BtnLibroIE"
+        Me.BtnLibroIE.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnLibroIE.Size = New System.Drawing.Size(41, 41)
+        Me.BtnLibroIE.TabIndex = 1
+        Me.BtnLibroIE.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnLibroIE.UseVisualStyleBackColor = False
+        '
+        'BtnDatosCreditos
+        '
+        Me.BtnDatosCreditos.BackColor = System.Drawing.Color.White
+        Me.BtnDatosCreditos.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnDatosCreditos.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnDatosCreditos.Image = CType(resources.GetObject("BtnDatosCreditos.Image"), System.Drawing.Image)
+        Me.BtnDatosCreditos.Location = New System.Drawing.Point(24, 120)
+        Me.BtnDatosCreditos.Name = "BtnDatosCreditos"
+        Me.BtnDatosCreditos.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnDatosCreditos.Size = New System.Drawing.Size(41, 41)
+        Me.BtnDatosCreditos.TabIndex = 2
+        Me.BtnDatosCreditos.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnDatosCreditos.UseVisualStyleBackColor = False
+        '
+        'BtnPanelSocios
+        '
+        Me.BtnPanelSocios.BackColor = System.Drawing.Color.White
+        Me.BtnPanelSocios.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnPanelSocios.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnPanelSocios.Image = CType(resources.GetObject("BtnPanelSocios.Image"), System.Drawing.Image)
+        Me.BtnPanelSocios.Location = New System.Drawing.Point(24, 168)
+        Me.BtnPanelSocios.Name = "BtnPanelSocios"
+        Me.BtnPanelSocios.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnPanelSocios.Size = New System.Drawing.Size(41, 41)
+        Me.BtnPanelSocios.TabIndex = 3
+        Me.BtnPanelSocios.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnPanelSocios.UseVisualStyleBackColor = False
+        '
+        'BtnCuadreCierre
+        '
+        Me.BtnCuadreCierre.BackColor = System.Drawing.Color.White
+        Me.BtnCuadreCierre.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnCuadreCierre.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnCuadreCierre.Image = CType(resources.GetObject("BtnCuadreCierre.Image"), System.Drawing.Image)
+        Me.BtnCuadreCierre.Location = New System.Drawing.Point(24, 216)
+        Me.BtnCuadreCierre.Name = "BtnCuadreCierre"
+        Me.BtnCuadreCierre.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnCuadreCierre.Size = New System.Drawing.Size(41, 41)
+        Me.BtnCuadreCierre.TabIndex = 4
+        Me.BtnCuadreCierre.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnCuadreCierre.UseVisualStyleBackColor = False
+        '
+        'BtnVolver
+        '
+        Me.BtnVolver.BackColor = System.Drawing.Color.White
+        Me.BtnVolver.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnVolver.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnVolver.Image = CType(resources.GetObject("BtnVolver.Image"), System.Drawing.Image)
+        Me.BtnVolver.Location = New System.Drawing.Point(24, 312)
+        Me.BtnVolver.Name = "BtnVolver"
+        Me.BtnVolver.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnVolver.Size = New System.Drawing.Size(41, 41)
+        Me.BtnVolver.TabIndex = 6
+        Me.BtnVolver.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnVolver.UseVisualStyleBackColor = False
+        '
+        'BtnDatosBanko
+        '
+        Me.BtnDatosBanko.BackColor = System.Drawing.Color.White
+        Me.BtnDatosBanko.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnDatosBanko.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnDatosBanko.Image = CType(resources.GetObject("BtnDatosBanko.Image"), System.Drawing.Image)
+        Me.BtnDatosBanko.Location = New System.Drawing.Point(24, 24)
+        Me.BtnDatosBanko.Name = "BtnDatosBanko"
+        Me.BtnDatosBanko.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnDatosBanko.Size = New System.Drawing.Size(41, 41)
+        Me.BtnDatosBanko.TabIndex = 0
+        Me.BtnDatosBanko.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnDatosBanko.UseVisualStyleBackColor = False
+        '
         'Menu_Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -585,14 +585,15 @@
         Me.Controls.Add(Me.Frame2)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Location = New System.Drawing.Point(255, 166)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Menu_Principal"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Picture1.ResumeLayout(False)
         Me.Frame2.ResumeLayout(False)
+        Me.Picture1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

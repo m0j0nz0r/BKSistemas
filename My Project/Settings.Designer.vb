@@ -92,6 +92,18 @@ Namespace My
                 Return CType(Me("DynamicPermits"),Boolean)
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property FileStart() As Boolean
+            Get
+                Return CType(Me("FileStart"),Boolean)
+            End Get
+            Set
+                Me("FileStart") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

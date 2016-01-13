@@ -38,13 +38,13 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://www.fundefir.org/bksistema/</InstallUrl>
     <UpdateUrl>http://www.fundefir.org/bksistema/</UpdateUrl>
-    <TargetCulture>en</TargetCulture>
+    <TargetCulture>es</TargetCulture>
     <ProductName>BkSistemas</ProductName>
     <PublisherName>Fundefir</PublisherName>
     <SuiteName>Bankomunales</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>35</ApplicationRevision>
+    <ApplicationRevision>37</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -153,6 +153,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
@@ -989,11 +992,14 @@
     <None Include="Resources\1449861210_Delete.png" />
     <None Include="Resources\1449861492_button_ok.png" />
     <None Include="Resources\1449861492_button_cancel.png" />
-    <None Include="Resources\Check.bmp" />
     <None Include="Resources\1449861604_camera_test.png" />
     <None Include="Resources\1449861611_button_cancel.png" />
+    <None Include="Resources\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Resources\plus-small.PNG" />
     <Content Include="Resources\plus.png" />
+    <Content Include="Resources\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -1093,7 +1099,14 @@
   <ItemGroup>
     <Content Include="TODO.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <FileAssociation Include=".bks">
+      <Visible>False</Visible>
+      <Description>Archivo BKSistemas</Description>
+      <Progid>BKSistemas</Progid>
+      <DefaultIcon>Resources\favicon.ico</DefaultIcon>
+    </FileAssociation>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent>

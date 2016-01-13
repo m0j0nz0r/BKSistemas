@@ -51,7 +51,16 @@
                 'noclose.Close()
             End If
         End Sub
+        Private Sub StartupEvent(ByVal sender As Object, ByVal e As Microsoft.VisualBasic.ApplicationServices.StartupEventArgs) Handles Me.Startup
+            Dim keys As String() = My.Computer.Registry.ClassesRoot.GetSubKeyNames()
+            Dim found As Boolean = False
+            For Each s As String In keys
+                If s.ToLower = ".bks" Then
+                    found = True
+                    Exit For
+                End If
+            Next
+        End Sub
     End Class
-
 End Namespace
 

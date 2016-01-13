@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 ' TODO: Review the values of the assembly attributes
 
 
-<Assembly: AssemblyTitle("")>
+<Assembly: AssemblyTitle("BKSistemas")> 
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("fundefir")> 
 <Assembly: AssemblyProduct("")>

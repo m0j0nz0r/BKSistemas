@@ -25,12 +25,13 @@ Partial Class MunicipioDlg
         Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ProyectList = New System.Windows.Forms.ComboBox()
+        Me.TblMunicipiosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.MainDS = New BkSistema.MainDS()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ChkAgain = New System.Windows.Forms.CheckBox()
-        Me.TblMunicipiosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.AddMunicipio = New System.Windows.Forms.Button()
         CType(Me.TblMunicipiosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -52,6 +53,11 @@ Partial Class MunicipioDlg
         Me.ProyectList.Size = New System.Drawing.Size(210, 21)
         Me.ProyectList.TabIndex = 1
         Me.ProyectList.ValueMember = "ID"
+        '
+        'TblMunicipiosBindingSource
+        '
+        Me.TblMunicipiosBindingSource.DataMember = "TblMunicipios"
+        Me.TblMunicipiosBindingSource.DataSource = Me.MainDS
         '
         'MainDS
         '
@@ -79,24 +85,29 @@ Partial Class MunicipioDlg
         Me.ChkAgain.Text = "No preguntarme de nuevo."
         Me.ChkAgain.UseVisualStyleBackColor = True
         '
-        'TblMunicipiosBindingSource
+        'AddMunicipio
         '
-        Me.TblMunicipiosBindingSource.DataMember = "TblMunicipios"
-        Me.TblMunicipiosBindingSource.DataSource = Me.MainDS
+        Me.AddMunicipio.Image = Global.BkSistema.My.Resources.Resources.plus
+        Me.AddMunicipio.Location = New System.Drawing.Point(229, 30)
+        Me.AddMunicipio.Name = "AddMunicipio"
+        Me.AddMunicipio.Size = New System.Drawing.Size(22, 23)
+        Me.AddMunicipio.TabIndex = 4
+        Me.AddMunicipio.UseVisualStyleBackColor = True
         '
         'MunicipioDlg
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(235, 114)
+        Me.ClientSize = New System.Drawing.Size(258, 114)
+        Me.Controls.Add(Me.AddMunicipio)
         Me.Controls.Add(Me.ChkAgain)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ProyectList)
         Me.Controls.Add(Me.Label1)
         Me.Name = "MunicipioDlg"
         Me.Text = "Estado"
-        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TblMunicipiosBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MainDS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -107,4 +118,5 @@ Partial Class MunicipioDlg
     Friend WithEvents MainDS As BkSistema.MainDS
     Friend WithEvents ChkAgain As System.Windows.Forms.CheckBox
     Friend WithEvents TblMunicipiosBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents AddMunicipio As System.Windows.Forms.Button
 End Class

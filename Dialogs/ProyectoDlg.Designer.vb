@@ -29,6 +29,7 @@ Partial Class ProyectoDlg
         Me.MainDS = New BkSistema.MainDS()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ChkAgain = New System.Windows.Forms.CheckBox()
+        Me.AddProyecto = New System.Windows.Forms.Button()
         CType(Me.TblProyectosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MainDS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -84,11 +85,21 @@ Partial Class ProyectoDlg
         Me.ChkAgain.Text = "No preguntarme de nuevo."
         Me.ChkAgain.UseVisualStyleBackColor = True
         '
+        'AddProyecto
+        '
+        Me.AddProyecto.Image = Global.BkSistema.My.Resources.Resources.plus
+        Me.AddProyecto.Location = New System.Drawing.Point(229, 30)
+        Me.AddProyecto.Name = "AddProyecto"
+        Me.AddProyecto.Size = New System.Drawing.Size(22, 23)
+        Me.AddProyecto.TabIndex = 4
+        Me.AddProyecto.UseVisualStyleBackColor = True
+        '
         'ProyectoDlg
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(235, 114)
+        Me.ClientSize = New System.Drawing.Size(263, 114)
+        Me.Controls.Add(Me.AddProyecto)
         Me.Controls.Add(Me.ChkAgain)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ProyectList)
@@ -107,4 +118,5 @@ Partial Class ProyectoDlg
     Friend WithEvents TblProyectosBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents MainDS As BkSistema.MainDS
     Friend WithEvents ChkAgain As System.Windows.Forms.CheckBox
+    Friend WithEvents AddProyecto As System.Windows.Forms.Button
 End Class

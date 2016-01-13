@@ -33,11 +33,12 @@ Module Module1
     Public fiador1 As String
     Public fiador2 As String
     Public idregistro As Double
+    Public CurrentUserPermits As MainDS.TblUserconfigDataTable
 
     Function FindPermit(ID As Integer, var As String) As String
         Dim retval As String = ""
-        If MainDSO.Tables("TblUserConfig").Rows.Contains({ID, var}) Then
-            retval = MainDSO.Tables("TblUserConfig").Rows.Find({ID, var})("val")
+        If CurrentUserPermits.Rows.Contains({ID, var}) Then
+            retval = CurrentUserPermits.Rows.Find({ID, var})("val")
         End If
         Return retval
     End Function
@@ -203,13 +204,26 @@ Module Module1
 
     Function LibroFind(reg As Double) As DataRow
         Dim view As New DataView
-        view.Table = MainDSO.Tables("TblLibroIE")
+        view.Table = MainDSO.TblLibroIE
         view.RowFilter = "IdReg=" + reg
         Return view(0).Row
     End Function
 
     Sub Init()
-        If HaveInternetConnection() Then
+        If Not AppDomain.CurrentDomain.SetupInformation.ActivationArguments Is Nothing Or My.Application.CommandLineArgs.Count > 0 Then
+            'checks if being started from a file. If so, it loads only file data.
+            Dim path As String
+            If My.Application.CommandLineArgs.Count > 0 Then
+                path = My.Application.CommandLineArgs(0)
+            Else
+                path = AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData(0)
+            End If
+            Dim save As String = My.Settings.SaveData
+            My.Settings.SaveData = path
+            LoadOffline(MainDSO)
+            My.Settings.SaveData = save
+
+        ElseIf HaveInternetConnection() Then
             LoadOnline(MainDSO)
         Else
             LoadOffline(MainDSO)
@@ -228,7 +242,7 @@ Module Module1
             End If
         Next
 
-        ThisBanko = MainDSO.Tables("TblBanko").Rows.Find(codi)
+        ThisBanko = MainDSO.TblBanko.FindByCodBk(codi)
     End Sub
 
     Public Function HaveInternetConnection() As Boolean
@@ -536,9 +550,9 @@ Module Module1
             ds.Tables(t).ImportRow(r)
         Next
     End Sub
-    Public Sub FilterTables(filter As String, ByRef ds As DataSet)
+    Public Sub FilterTables(filter As String, ByRef ds As MainDS)
         ApplyFilter(ds, filter, "TblBanko")
-        Dim tbl As DataTable = ds.Tables("TblBanko")
+        Dim tbl As MainDS.TblBankoDataTable = ds.TblBanko
         Dim bks As New Generic.List(Of String)
         Dim proyectos As New Generic.List(Of String)
         Dim paises As New Generic.List(Of String)
@@ -546,15 +560,15 @@ Module Module1
         Dim municipios As New Generic.List(Of String)
         Dim tables As New Generic.List(Of String)
 
-        For Each r As DataRow In tbl.Rows
-            If Not bks.Contains(r("CodBk")) Then 'Creando lista de bks
-                bks.Add(r("CodBk"))
+        For Each r As MainDS.TblBankoRow In tbl.Rows
+            If Not bks.Contains(r.CodBk) Then 'Creando lista de bks
+                bks.Add(r.CodBk)
             End If
-            If Not proyectos.Contains(r("Proyecto")) Then 'Creando lista de proyectos
-                proyectos.Add(r("Proyecto"))
+            If Not proyectos.Contains(r.Proyecto) Then 'Creando lista de proyectos
+                proyectos.Add(r.Proyecto)
             End If
-            If Not municipios.Contains(r("Municipio")) Then 'Creando lista de Municipios
-                municipios.Add(r("municipio"))
+            If Not municipios.Contains(r.Municipio) Then 'Creando lista de Municipios
+                municipios.Add(r.Municipio)
             End If
         Next
 
@@ -569,16 +583,16 @@ Module Module1
         ApplyFilter(ds, CreateCustomFilter("ID", proyectos), "TblProyectos")
         ApplyFilter(ds, CreateCustomFilter("ID", municipios), "TblMunicipios")
 
-        For Each r As DataRow In ds.Tables("TblMunicipios").Rows 'Creando lista de estados
-            If Not estados.Contains(r("EID")) Then
-                estados.Add(r("EID"))
+        For Each r As MainDS.TblMunicipiosRow In ds.TblMunicipios.Rows 'Creando lista de estados
+            If Not estados.Contains(r.EID) Then
+                estados.Add(r.EID)
             End If
         Next
         ApplyFilter(ds, CreateCustomFilter("ID", estados), "TblEstados")
 
-        For Each r As DataRow In ds.Tables("Tblestados").Rows 'Creando lista de paises
-            If Not paises.Contains(r("PID")) Then
-                paises.Add(r("PID"))
+        For Each r As MainDS.TblEstadosRow In ds.TblEstados.Rows 'Creando lista de paises
+            If Not paises.Contains(r.PID) Then
+                paises.Add(r.PID)
             End If
         Next
         ApplyFilter(ds, CreateCustomFilter("ID", paises), "TblPaises")

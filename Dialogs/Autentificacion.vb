@@ -80,14 +80,15 @@ Friend Class Autentificacion
                     rstUser.CommandText = "SELECT * FROM TblUserConfig WHERE ID = '" & tuser & "'"
                     Adapter.Fill(MainDSO)
                 End If
-                If MainDSO.Tables("TblUserConfig").Rows.Contains({tuser, "ForceSelect"}) Then
+                CurrentUserPermits = MainDSO.TblUserconfig.Copy
+                If CurrentUserPermits.Rows.Contains({tuser, "ForceSelect"}) Then
                     ForceSelect = (FindPermit(tuser, "ForceSelect") = "1")
                     FilterCode = FindPermit(tuser, "FilterCode")
 
                     If ForceSelect And bk.Text.Trim = "" Then
                         MsgBox("Debe seleccionar un bankomunal de la lista.")
                     Else
-                        If forceSelect Then
+                        If ForceSelect Then
                             cedu = Split(bk.Text, "|")
                             codi = cedu(0).Trim
                         End If
@@ -111,6 +112,7 @@ Friend Class Autentificacion
 	
     Private Sub Autentificacion_Load(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles MyBase.Load
         logged = False
+        Debug.WriteLine(My.Settings.SaveData)
         If HaveInternetConnection() Then
             Try
                 Dim conn As DatabaseWebConnection
@@ -127,13 +129,13 @@ Friend Class Autentificacion
             MsgBox("No se detectó conección a internet... ingresando en modo offline.")
             LoadOffline(MainDSO)
         End If
-        Dim view As New DataView
-        view.Table = MainDSO.Tables("TblBanko")
-        view.Sort = "CodBk"
-        For Each row As DataRowView In view
-            bk.Items.Add(row.Item("CodBK") + " | " + row.Item("NombreBk"))
-        Next
-        codi = ""
+            Dim view As New DataView
+            view.Table = MainDSO.Tables("TblBanko")
+            view.Sort = "CodBk"
+            For Each row As DataRowView In view
+                bk.Items.Add(row.Item("CodBK") + " | " + row.Item("NombreBk"))
+            Next
+            codi = ""
 
     End Sub
 	
