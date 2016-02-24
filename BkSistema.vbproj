@@ -44,7 +44,7 @@
     <SuiteName>Bankomunales</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>37</ApplicationRevision>
+    <ApplicationRevision>44</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -173,6 +173,7 @@
       <Name>System.Data</Name>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
     </Reference>
@@ -212,8 +213,12 @@
     <Compile Include="Dialogs\MunicipioDlg.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\List.vb" />
-    <Compile Include="Dialogs\List1.vb" />
+    <Compile Include="Dialogs\Opciones.Designer.vb">
+      <DependentUpon>Opciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Opciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\PaisDlg.Designer.vb">
       <DependentUpon>PaisDlg.vb</DependentUpon>
     </Compile>
@@ -712,6 +717,9 @@
     <EmbeddedResource Include="Dialogs\MunicipioDlg.resx">
       <DependentUpon>MunicipioDlg.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Opciones.resx">
+      <DependentUpon>Opciones.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\PaisDlg.resx">
       <DependentUpon>PaisDlg.vb</DependentUpon>
     </EmbeddedResource>
@@ -839,6 +847,9 @@
     <EmbeddedResource Include="Panel\PanelClaseCredito.resx">
       <DependentUpon>PanelClaseCredito.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelClasifCredito.resx">
+      <DependentUpon>PanelClasifCredito.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panel\PanelCredito.resX">
       <DependentUpon>PanelCredito.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -876,6 +887,7 @@
       <DependentUpon>PanelUsuarios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\File\RptBalance.rdlc" />
+    <EmbeddedResource Include="Reports\File\RptGanancias.rdlc" />
     <EmbeddedResource Include="Reports\Form\RptBalance.resx">
       <DependentUpon>RptBalance.vb</DependentUpon>
     </EmbeddedResource>
@@ -970,8 +982,6 @@
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\DataSources\MainDS.TblBankoRow.datasource" />
-    <None Include="My Project\DataSources\Menu4.datasource" />
-    <None Include="My Project\DataSources\Project1.My.MyApplication.datasource" />
     <None Include="My Project\Settings.settings">
       <CustomToolNamespace>My</CustomToolNamespace>
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1099,14 +1109,7 @@
   <ItemGroup>
     <Content Include="TODO.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <FileAssociation Include=".bks">
-      <Visible>False</Visible>
-      <Description>Archivo BKSistemas</Description>
-      <Progid>BKSistemas</Progid>
-      <DefaultIcon>Resources\favicon.ico</DefaultIcon>
-    </FileAssociation>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent>

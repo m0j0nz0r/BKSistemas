@@ -196,7 +196,9 @@
         End If
         If Not found Then
             Dim dlg As New MunicipioDlg
-            dlg.Prompt = "Seleccione el municipio equivalente a: " & value
+            Dim st As String = ""
+            If estado > 0 Then st = vbNewLine & " en el estado: " & MainDSO.TblEstados.FindByID(estado).Nombre
+            dlg.Prompt = "Seleccione el municipio equivalente a: " & value & st
             dlg.Estado = estado
             dlg.ShowDialog()
             retval = dlg.ID
@@ -212,7 +214,6 @@
         Dim tables As String() = {"Gestion",
                                   "TblBanko",
                                   "TblBenef",
-                                  "TblCredito",
                                   "TblCredito",
                                   "TblFiadores",
                                   "TblLibroIE",
@@ -273,10 +274,10 @@
                                         row.NTSMRACUM = CInt(reader("NTSMRACUM"))
                                         row.NTSMA = CInt(reader("NTSMA"))
                                         row.NTSF = (CInt(reader("NTSF")))
-                                        row.NTSMACUM = CInt(reader("NTSFACUM"))
+                                        row.NTSFACUM = CInt(reader("NTSFACUM"))
                                         row.NTSFR = CInt(reader("NTSFR"))
-                                        row.NTSMRACUM = CInt(reader("NTSFRACUM"))
-                                        row.NTSMA = CInt(reader("NTSFA"))
+                                        row.NTSFRACUM = CInt(reader("NTSFRACUM"))
+                                        row.NTSFA = CInt(reader("NTSFA"))
                                         row.qVCt = CInt(reader("qVCt"))
                                         row.qVCACUMt = CInt(reader("qVCACUMt"))
                                         row.ZVC = CDbl(reader("ZVC"))
@@ -457,7 +458,9 @@
                                         row.MontoIntDEX = reader("IntDEX")
                                         row.MoraDEX = reader("MoraDEX")
                                         row.Cancelado = reader("Cancelado")
-                                        row.FechaCancela = CDate("FechaCancela")
+                                        If Not reader.IsDBNull(reader.GetOrdinal("FechaCancela")) Then
+                                            row.FechaCancela = CDate(reader("FechaCancela"))
+                                        End If
                                         row.sexo = reader("sexo")
                                         row.deuda = CDbl(reader("deuda"))
                                         row.incobrable = reader("incobrable")
@@ -488,7 +491,9 @@
                                         row.CI = reader("CI")
                                         row.CapsGarantia = CDbl(reader("CapsGarantia"))
                                         row.porcentajegarantizado = CDbl(reader("porcentajegarantizado"))
-                                        row.Observacion = reader("Observacion")
+                                        If Not reader.IsDBNull(reader.GetOrdinal("Observacion")) Then
+                                            row.Observacion = reader("Observacion")
+                                        End If
                                         If add Then MainDSO.TblFiadores.AddTblFiadoresRow(row)
                                     Case "TblLibroIE"
                                         Dim row As MainDS.TblLibroIERow
@@ -547,18 +552,28 @@
                                         row.CodBk = reader("CodBk")
                                         row.Nombres = reader("Nombres")
                                         row.Sexo = reader("Sexo")
-                                        row.FNace = CDate(reader("FNace"))
-                                        row.Profesion = reader("Profesion")
-                                        row.Direccion = reader("Direccion")
+                                        If Not reader.IsDBNull(reader.GetOrdinal("FNace")) Then
+                                            row.FNace = CDate(reader("FNace"))
+                                        End If
+                                        If Not reader.IsDBNull(reader.GetOrdinal("Profesion")) Then
+                                            row.Profesion = reader("Profesion")
+                                        End If
+                                        If Not reader.IsDBNull(reader.GetOrdinal("Direccion")) Then
+                                            row.Direccion = reader("Direccion")
+                                        End If
                                         row.Telefono = reader("Telefono")
                                         row.FIngreso = CDate(reader("FIngreso"))
                                         row.AcumMoras = CInt(reader("AcumMoras"))
                                         row.Estatus = CInt(reader("Estatus"))
                                         row.Deuda = CDbl(reader("Deuda"))
-                                        row.Fretiro = CDate(reader("Fretiro"))
+                                        If Not reader.IsDBNull(reader.GetOrdinal("Fretiro")) Then
+                                            row.Fretiro = CDate(reader("Fretiro"))
+                                        End If
                                         row.cap = CInt(reader("cap"))
                                         row.CapLiq = CInt(reader("CapLiq"))
-                                        row.Email = reader("Email")
+                                        If Not reader.IsDBNull(reader.GetOrdinal("Email")) Then
+                                            row.Email = reader("Email")
+                                        End If
                                         If add Then MainDSO.TblSocios.AddTblSociosRow(row)
                                 End Select
                             End While

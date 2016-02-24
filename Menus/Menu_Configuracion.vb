@@ -18,6 +18,8 @@ Friend Class Menu_Configuracion
         LblTipoCredito.Visible = BtnTipoCredito.Visible
         BtnClaseCredito.Visible = (FindPermit(tuser, "PanelConfigClaseCredito") = "1")
         LblClaseCredito.Visible = BtnClaseCredito.Visible
+        BtnOpciones.Visible = (FindPermit(tuser, "PanelConfigOpciones") = "1")
+        LblOpciones.Visible = BtnClaseCredito.Visible
         'BtnClasifCreditos.Visible = (FindPermit(tuser, "PanelConfigClasifCredito") = "1")
         BtnClasifCreditos.Visible = False
         LblClasifCreditos.Visible = BtnClasifCreditos.Visible
@@ -66,6 +68,11 @@ Friend Class Menu_Configuracion
 
     Private Sub BtnClasifCreditos_Click(sender As Object, e As EventArgs) Handles BtnClasifCreditos.Click
         Dim f As New PanelClasifCredito
+        f.ShowDialog()
+    End Sub
+
+    Private Sub BtnOpciones_Click(sender As Object, e As EventArgs) Handles BtnOpciones.Click
+        Dim f As New Opciones
         f.ShowDialog()
     End Sub
 End Class

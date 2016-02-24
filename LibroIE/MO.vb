@@ -4,6 +4,7 @@ Friend Class MO
     Inherits System.Windows.Forms.Form
     Public reg As Double
     Public moexiste As Short
+    Public AutoClose As Boolean = False
  
     Private Sub Command28_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Command28.Click
         Dim rstCreditos As DataRow
@@ -295,6 +296,7 @@ Friend Class MO
                             fechas = Fcod(fechaU, ncod)
                             TMONumero.Text = CStr(ncod)
                         End With
+                        If AutoClose Then Close()
                     Else
                         MsgBox("ERROR: El Credito no Existe. Verifique el N° de Credito")
                     End If

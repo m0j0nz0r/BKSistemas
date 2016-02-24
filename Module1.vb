@@ -163,6 +163,7 @@ Module Module1
                     fechas = Fcod(fechaU, ncod)
                     f.TORNumero.Text = ncod
                     f.CORCredito.Text = row.NoCredito
+                    f.AutoClose = True
                     f.ShowDialog()
                 End If
             End If
@@ -196,6 +197,7 @@ Module Module1
                     f.TMONumero.Text = ncod
                     f.TMOCredito.Text = row.NoCredito
                     f.TMOMonto.Text = ""
+                    f.AutoClose = True
                     f.ShowDialog()
                 End If
             End If
@@ -210,25 +212,34 @@ Module Module1
     End Function
 
     Sub Init()
-        If Not AppDomain.CurrentDomain.SetupInformation.ActivationArguments Is Nothing Or My.Application.CommandLineArgs.Count > 0 Then
-            'checks if being started from a file. If so, it loads only file data.
+        Try
             Dim path As String
             If My.Application.CommandLineArgs.Count > 0 Then
                 path = My.Application.CommandLineArgs(0)
             Else
                 path = AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData(0)
+                Dim uri As New Uri(path)
+                If uri.IsFile Then
+                    path = uri.LocalPath
+                End If
             End If
+            MsgBox("Cargando data de: " & path)
             Dim save As String = My.Settings.SaveData
             My.Settings.SaveData = path
+            My.Settings.Save()
             LoadOffline(MainDSO)
             My.Settings.SaveData = save
+            My.Settings.Save()
+        Catch ex As Exception
+            If HaveInternetConnection() Then
+                LoadOnline(MainDSO)
+            Else
+                LoadOffline(MainDSO)
+            End If
+        End Try
+        'checks if being started from a file. If so, it loads only file data.
 
-        ElseIf HaveInternetConnection() Then
-            LoadOnline(MainDSO)
-        Else
-            LoadOffline(MainDSO)
-        End If
-
+        
         'Filter data
         If Not ForceSelect And FilterCode <> "" Then 'No point in filtering twice or filtering with no filter
             FilterTables(FilterCode, MainDSO)
@@ -251,7 +262,7 @@ Module Module1
         Else
             Try
                 Debug.WriteLine("Testing connection...")
-                Return My.Computer.Network.Ping("www.google.com")
+                Return My.Computer.Network.Ping("www.fundefir.org")
             Catch e As Exception
                 Debug.WriteLine(e.Message)
                 Return False
@@ -349,20 +360,6 @@ Module Module1
     Public Sub LoadOffline(ByRef DS As MainDS)
 
         GetTableList(DS)
-        Dim dlg As New Form()
-        dlg.Size = New Size(500, 100)
-        dlg.ControlBox = False
-        dlg.MaximizeBox = False
-        dlg.MinimizeBox = False
-        Dim pb As New ProgressBar()
-        pb.Step = 1
-        pb.Value = 0
-        pb.Maximum = DS.Tables.Count
-        pb.Minimum = 0
-        pb.Size = New Size(400, 20)
-        pb.Left = 50
-        pb.Top = 50
-        dlg.Controls.Add(pb)
         If My.Settings.SaveData <> "" Then
             If Not IO.File.Exists(My.Settings.SaveData) Then
                 My.Settings.SaveData = ""
@@ -375,7 +372,6 @@ Module Module1
             openfileDlg.AddExtension = True
             openfileDlg.Title = "Seleccionar el archivo de respaldo"
             openfileDlg.ShowDialog()
-            dlg.Show()
             My.Settings.SaveData = openfileDlg.FileName
             My.Settings.Save()
         End If
@@ -384,14 +380,15 @@ Module Module1
             file = My.Computer.FileSystem.OpenTextFileReader(My.Settings.SaveData)
             DS = JsonConvert.DeserializeObject(Of MainDS)(file.ReadToEnd())
             file.Close()
+        Catch ex As System.ArgumentNullException
+            MsgBox("No puede iniciar en modo Offline sin un archivo de data...")
+            Application.Exit()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
-        dlg.Close()
     End Sub
 
     Public Sub LoadOnline(ByRef DS As MainDS)
-        Dim DoAsync As Boolean = True
         GetTableList(DS)
         Dim adapter As New DatabaseWebAdapter
         Dim filler As New DatabaseWebAdapter.FillAsync(AddressOf adapter.FillByCommandStr)
@@ -456,7 +453,7 @@ Module Module1
                             command += " WHERE ID = '" & municipio & "'"
                     End Select
                 End If
-                If DoAsync Then
+                If My.Settings.AsyncLoading Then
                     AsyncResults.Add(filler.BeginInvoke(DS, command, Nothing, Nothing))
                 Else
                     lbl.Text = "Cargando data... " & pb.Value + 1 & "/" & pb.Maximum + 1 & ""

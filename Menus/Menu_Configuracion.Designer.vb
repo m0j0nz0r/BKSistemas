@@ -27,7 +27,6 @@
     Public WithEvents BtnProyectos As System.Windows.Forms.Button
     Public WithEvents BtnPaises As System.Windows.Forms.Button
     Public WithEvents BtnEstados As System.Windows.Forms.Button
-    Public WithEvents Command6 As System.Windows.Forms.Button
     Public WithEvents LblFondo As System.Windows.Forms.Label
     Public WithEvents LblClasifCreditos As System.Windows.Forms.Label
     Public WithEvents LblClaseCredito As System.Windows.Forms.Label
@@ -61,7 +60,6 @@
         Me.BtnProyectos = New System.Windows.Forms.Button()
         Me.BtnPaises = New System.Windows.Forms.Button()
         Me.BtnEstados = New System.Windows.Forms.Button()
-        Me.Command6 = New System.Windows.Forms.Button()
         Me.LblFondo = New System.Windows.Forms.Label()
         Me.LblClasifCreditos = New System.Windows.Forms.Label()
         Me.LblClaseCredito = New System.Windows.Forms.Label()
@@ -76,6 +74,8 @@
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label1 = New Microsoft.VisualBasic.Compatibility.VB6.LabelArray(Me.components)
+        Me.BtnOpciones = New System.Windows.Forms.Button()
+        Me.LblOpciones = New System.Windows.Forms.Label()
         Me.Frame1.SuspendLayout()
         Me.Picture1.SuspendLayout()
         CType(Me.Label1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,6 +84,8 @@
         'Frame1
         '
         Me.Frame1.BackColor = System.Drawing.Color.White
+        Me.Frame1.Controls.Add(Me.BtnOpciones)
+        Me.Frame1.Controls.Add(Me.LblOpciones)
         Me.Frame1.Controls.Add(Me.BtnFondo)
         Me.Frame1.Controls.Add(Me.BtnClasifCreditos)
         Me.Frame1.Controls.Add(Me.BtnTipoCredito)
@@ -94,7 +96,6 @@
         Me.Frame1.Controls.Add(Me.BtnProyectos)
         Me.Frame1.Controls.Add(Me.BtnPaises)
         Me.Frame1.Controls.Add(Me.BtnEstados)
-        Me.Frame1.Controls.Add(Me.Command6)
         Me.Frame1.Controls.Add(Me.LblFondo)
         Me.Frame1.Controls.Add(Me.LblClasifCreditos)
         Me.Frame1.Controls.Add(Me.LblClaseCredito)
@@ -110,7 +111,7 @@
         Me.Frame1.Location = New System.Drawing.Point(8, 104)
         Me.Frame1.Name = "Frame1"
         Me.Frame1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Frame1.Size = New System.Drawing.Size(521, 361)
+        Me.Frame1.Size = New System.Drawing.Size(521, 290)
         Me.Frame1.TabIndex = 11
         '
         'BtnFondo
@@ -119,7 +120,7 @@
         Me.BtnFondo.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnFondo.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnFondo.Image = CType(resources.GetObject("BtnFondo.Image"), System.Drawing.Image)
-        Me.BtnFondo.Location = New System.Drawing.Point(248, 280)
+        Me.BtnFondo.Location = New System.Drawing.Point(228, 191)
         Me.BtnFondo.Name = "BtnFondo"
         Me.BtnFondo.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnFondo.Size = New System.Drawing.Size(41, 41)
@@ -133,7 +134,7 @@
         Me.BtnClasifCreditos.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnClasifCreditos.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnClasifCreditos.Image = CType(resources.GetObject("BtnClasifCreditos.Image"), System.Drawing.Image)
-        Me.BtnClasifCreditos.Location = New System.Drawing.Point(248, 224)
+        Me.BtnClasifCreditos.Location = New System.Drawing.Point(228, 144)
         Me.BtnClasifCreditos.Name = "BtnClasifCreditos"
         Me.BtnClasifCreditos.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnClasifCreditos.Size = New System.Drawing.Size(41, 41)
@@ -147,7 +148,7 @@
         Me.BtnTipoCredito.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnTipoCredito.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnTipoCredito.Image = CType(resources.GetObject("BtnTipoCredito.Image"), System.Drawing.Image)
-        Me.BtnTipoCredito.Location = New System.Drawing.Point(248, 112)
+        Me.BtnTipoCredito.Location = New System.Drawing.Point(228, 50)
         Me.BtnTipoCredito.Name = "BtnTipoCredito"
         Me.BtnTipoCredito.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnTipoCredito.Size = New System.Drawing.Size(41, 41)
@@ -161,7 +162,7 @@
         Me.BtnClaseCredito.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnClaseCredito.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnClaseCredito.Image = CType(resources.GetObject("BtnClaseCredito.Image"), System.Drawing.Image)
-        Me.BtnClaseCredito.Location = New System.Drawing.Point(248, 168)
+        Me.BtnClaseCredito.Location = New System.Drawing.Point(228, 97)
         Me.BtnClaseCredito.Name = "BtnClaseCredito"
         Me.BtnClaseCredito.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnClaseCredito.Size = New System.Drawing.Size(41, 41)
@@ -175,7 +176,7 @@
         Me.BtnUsuarios.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnUsuarios.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnUsuarios.Image = CType(resources.GetObject("BtnUsuarios.Image"), System.Drawing.Image)
-        Me.BtnUsuarios.Location = New System.Drawing.Point(248, 56)
+        Me.BtnUsuarios.Location = New System.Drawing.Point(228, 3)
         Me.BtnUsuarios.Name = "BtnUsuarios"
         Me.BtnUsuarios.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnUsuarios.Size = New System.Drawing.Size(41, 41)
@@ -189,7 +190,7 @@
         Me.BtnExit.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnExit.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnExit.Image = CType(resources.GetObject("BtnExit.Image"), System.Drawing.Image)
-        Me.BtnExit.Location = New System.Drawing.Point(24, 296)
+        Me.BtnExit.Location = New System.Drawing.Point(228, 238)
         Me.BtnExit.Name = "BtnExit"
         Me.BtnExit.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnExit.Size = New System.Drawing.Size(41, 41)
@@ -203,7 +204,7 @@
         Me.BtnMunicipios.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnMunicipios.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnMunicipios.Image = CType(resources.GetObject("BtnMunicipios.Image"), System.Drawing.Image)
-        Me.BtnMunicipios.Location = New System.Drawing.Point(24, 232)
+        Me.BtnMunicipios.Location = New System.Drawing.Point(4, 144)
         Me.BtnMunicipios.Name = "BtnMunicipios"
         Me.BtnMunicipios.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnMunicipios.Size = New System.Drawing.Size(41, 41)
@@ -217,7 +218,7 @@
         Me.BtnProyectos.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnProyectos.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnProyectos.Image = CType(resources.GetObject("BtnProyectos.Image"), System.Drawing.Image)
-        Me.BtnProyectos.Location = New System.Drawing.Point(24, 64)
+        Me.BtnProyectos.Location = New System.Drawing.Point(4, 3)
         Me.BtnProyectos.Name = "BtnProyectos"
         Me.BtnProyectos.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnProyectos.Size = New System.Drawing.Size(41, 41)
@@ -231,7 +232,7 @@
         Me.BtnPaises.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnPaises.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnPaises.Image = CType(resources.GetObject("BtnPaises.Image"), System.Drawing.Image)
-        Me.BtnPaises.Location = New System.Drawing.Point(24, 120)
+        Me.BtnPaises.Location = New System.Drawing.Point(4, 50)
         Me.BtnPaises.Name = "BtnPaises"
         Me.BtnPaises.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnPaises.Size = New System.Drawing.Size(41, 41)
@@ -245,27 +246,13 @@
         Me.BtnEstados.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtnEstados.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtnEstados.Image = CType(resources.GetObject("BtnEstados.Image"), System.Drawing.Image)
-        Me.BtnEstados.Location = New System.Drawing.Point(24, 176)
+        Me.BtnEstados.Location = New System.Drawing.Point(4, 97)
         Me.BtnEstados.Name = "BtnEstados"
         Me.BtnEstados.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.BtnEstados.Size = New System.Drawing.Size(41, 41)
         Me.BtnEstados.TabIndex = 2
         Me.BtnEstados.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.BtnEstados.UseVisualStyleBackColor = False
-        '
-        'Command6
-        '
-        Me.Command6.BackColor = System.Drawing.SystemColors.Desktop
-        Me.Command6.Cursor = System.Windows.Forms.Cursors.Default
-        Me.Command6.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Command6.Image = CType(resources.GetObject("Command6.Image"), System.Drawing.Image)
-        Me.Command6.Location = New System.Drawing.Point(24, 120)
-        Me.Command6.Name = "Command6"
-        Me.Command6.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Command6.Size = New System.Drawing.Size(41, 41)
-        Me.Command6.TabIndex = 12
-        Me.Command6.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Command6.UseVisualStyleBackColor = False
         '
         'LblFondo
         '
@@ -274,7 +261,7 @@
         Me.LblFondo.Font = New System.Drawing.Font("Trebuchet MS", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblFondo.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label1.SetIndex(Me.LblFondo, CType(5, Short))
-        Me.LblFondo.Location = New System.Drawing.Point(296, 288)
+        Me.LblFondo.Location = New System.Drawing.Point(284, 199)
         Me.LblFondo.Name = "LblFondo"
         Me.LblFondo.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.LblFondo.Size = New System.Drawing.Size(209, 25)
@@ -288,7 +275,7 @@
         Me.LblClasifCreditos.Font = New System.Drawing.Font("Trebuchet MS", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblClasifCreditos.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label1.SetIndex(Me.LblClasifCreditos, CType(4, Short))
-        Me.LblClasifCreditos.Location = New System.Drawing.Point(304, 232)
+        Me.LblClasifCreditos.Location = New System.Drawing.Point(284, 152)
         Me.LblClasifCreditos.Name = "LblClasifCreditos"
         Me.LblClasifCreditos.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.LblClasifCreditos.Size = New System.Drawing.Size(209, 25)
@@ -302,7 +289,7 @@
         Me.LblClaseCredito.Font = New System.Drawing.Font("Trebuchet MS", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblClaseCredito.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label1.SetIndex(Me.LblClaseCredito, CType(3, Short))
-        Me.LblClaseCredito.Location = New System.Drawing.Point(304, 176)
+        Me.LblClaseCredito.Location = New System.Drawing.Point(284, 105)
         Me.LblClaseCredito.Name = "LblClaseCredito"
         Me.LblClaseCredito.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.LblClaseCredito.Size = New System.Drawing.Size(209, 25)
@@ -316,7 +303,7 @@
         Me.LblTipoCredito.Font = New System.Drawing.Font("Trebuchet MS", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblTipoCredito.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label1.SetIndex(Me.LblTipoCredito, CType(2, Short))
-        Me.LblTipoCredito.Location = New System.Drawing.Point(304, 120)
+        Me.LblTipoCredito.Location = New System.Drawing.Point(284, 58)
         Me.LblTipoCredito.Name = "LblTipoCredito"
         Me.LblTipoCredito.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.LblTipoCredito.Size = New System.Drawing.Size(209, 25)
@@ -330,7 +317,7 @@
         Me.LblUsuarios.Font = New System.Drawing.Font("Trebuchet MS", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblUsuarios.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label1.SetIndex(Me.LblUsuarios, CType(1, Short))
-        Me.LblUsuarios.Location = New System.Drawing.Point(304, 64)
+        Me.LblUsuarios.Location = New System.Drawing.Point(284, 11)
         Me.LblUsuarios.Name = "LblUsuarios"
         Me.LblUsuarios.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.LblUsuarios.Size = New System.Drawing.Size(209, 25)
@@ -343,10 +330,10 @@
         Me.LblExit.Cursor = System.Windows.Forms.Cursors.Default
         Me.LblExit.Font = New System.Drawing.Font("Trebuchet MS", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblExit.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LblExit.Location = New System.Drawing.Point(72, 304)
+        Me.LblExit.Location = New System.Drawing.Point(267, 246)
         Me.LblExit.Name = "LblExit"
         Me.LblExit.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.LblExit.Size = New System.Drawing.Size(193, 25)
+        Me.LblExit.Size = New System.Drawing.Size(178, 25)
         Me.LblExit.TabIndex = 17
         Me.LblExit.Text = "Volver al Menu"
         '
@@ -356,10 +343,10 @@
         Me.LblMunicipios.Cursor = System.Windows.Forms.Cursors.Default
         Me.LblMunicipios.Font = New System.Drawing.Font("Trebuchet MS", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblMunicipios.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LblMunicipios.Location = New System.Drawing.Point(72, 240)
+        Me.LblMunicipios.Location = New System.Drawing.Point(52, 152)
         Me.LblMunicipios.Name = "LblMunicipios"
         Me.LblMunicipios.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.LblMunicipios.Size = New System.Drawing.Size(201, 25)
+        Me.LblMunicipios.Size = New System.Drawing.Size(170, 25)
         Me.LblMunicipios.TabIndex = 16
         Me.LblMunicipios.Text = "Municipios"
         '
@@ -369,10 +356,10 @@
         Me.LblEstados.Cursor = System.Windows.Forms.Cursors.Default
         Me.LblEstados.Font = New System.Drawing.Font("Trebuchet MS", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblEstados.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LblEstados.Location = New System.Drawing.Point(72, 184)
+        Me.LblEstados.Location = New System.Drawing.Point(52, 105)
         Me.LblEstados.Name = "LblEstados"
         Me.LblEstados.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.LblEstados.Size = New System.Drawing.Size(193, 25)
+        Me.LblEstados.Size = New System.Drawing.Size(170, 25)
         Me.LblEstados.TabIndex = 15
         Me.LblEstados.Text = "Estados"
         '
@@ -382,10 +369,10 @@
         Me.LblPaises.Cursor = System.Windows.Forms.Cursors.Default
         Me.LblPaises.Font = New System.Drawing.Font("Trebuchet MS", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblPaises.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LblPaises.Location = New System.Drawing.Point(72, 128)
+        Me.LblPaises.Location = New System.Drawing.Point(52, 58)
         Me.LblPaises.Name = "LblPaises"
         Me.LblPaises.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.LblPaises.Size = New System.Drawing.Size(193, 17)
+        Me.LblPaises.Size = New System.Drawing.Size(170, 17)
         Me.LblPaises.TabIndex = 14
         Me.LblPaises.Text = "Paises"
         '
@@ -396,10 +383,10 @@
         Me.LblProyectos.Font = New System.Drawing.Font("Trebuchet MS", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblProyectos.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label1.SetIndex(Me.LblProyectos, CType(0, Short))
-        Me.LblProyectos.Location = New System.Drawing.Point(72, 72)
+        Me.LblProyectos.Location = New System.Drawing.Point(52, 11)
         Me.LblProyectos.Name = "LblProyectos"
         Me.LblProyectos.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.LblProyectos.Size = New System.Drawing.Size(265, 25)
+        Me.LblProyectos.Size = New System.Drawing.Size(170, 25)
         Me.LblProyectos.TabIndex = 13
         Me.LblProyectos.Text = "Proyectos"
         '
@@ -444,12 +431,39 @@
         Me.Label6.TabIndex = 18
         Me.Label6.Text = "Socios Activos "
         '
+        'BtnOpciones
+        '
+        Me.BtnOpciones.BackColor = System.Drawing.Color.White
+        Me.BtnOpciones.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtnOpciones.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtnOpciones.Image = CType(resources.GetObject("BtnOpciones.Image"), System.Drawing.Image)
+        Me.BtnOpciones.Location = New System.Drawing.Point(4, 191)
+        Me.BtnOpciones.Name = "BtnOpciones"
+        Me.BtnOpciones.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtnOpciones.Size = New System.Drawing.Size(41, 41)
+        Me.BtnOpciones.TabIndex = 25
+        Me.BtnOpciones.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BtnOpciones.UseVisualStyleBackColor = False
+        '
+        'LblOpciones
+        '
+        Me.LblOpciones.BackColor = System.Drawing.Color.White
+        Me.LblOpciones.Cursor = System.Windows.Forms.Cursors.Default
+        Me.LblOpciones.Font = New System.Drawing.Font("Trebuchet MS", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblOpciones.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.LblOpciones.Location = New System.Drawing.Point(52, 199)
+        Me.LblOpciones.Name = "LblOpciones"
+        Me.LblOpciones.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.LblOpciones.Size = New System.Drawing.Size(170, 25)
+        Me.LblOpciones.TabIndex = 26
+        Me.LblOpciones.Text = "Opciones"
+        '
         'Menu_Configuracion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(535, 474)
+        Me.ClientSize = New System.Drawing.Size(535, 406)
         Me.Controls.Add(Me.Frame1)
         Me.Controls.Add(Me.Picture1)
         Me.Controls.Add(Me.Label6)
@@ -469,5 +483,7 @@
         Me.ResumeLayout(False)
 
     End Sub
+    Public WithEvents BtnOpciones As System.Windows.Forms.Button
+    Public WithEvents LblOpciones As System.Windows.Forms.Label
 #End Region
 End Class

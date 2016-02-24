@@ -333,7 +333,7 @@ Friend Class CONNUEVO
                         'Antes de Guardar la clase de credito se debe buscar su equivalente de tipo de credito
                         Dim view As New DataView
                         view.Table = MainDSO.Tables("TblClaseCredito")
-                        view.RowFilter = "CodClase = '" & TCONTipoC.Text & "'"
+                        view.RowFilter = "CodClase = '" & TCONTipoC.Text.Split(" | ")(0) & "'"
                         RstEquivalenteClase = view.Item(0).Row
                         rstCreditoNew("tipo") = RstEquivalenteClase.Item("TipoCreidito")
                         rstCreditoNew("TasaIO") = TTasaOR.Text
@@ -572,7 +572,7 @@ Friend Class CONNUEVO
 
         TCONTipoC.Items.Clear()
         For Each r As MainDS.TblClaseCreditoRow In MainDSO.TblClaseCredito.Rows
-            TCONTipoC.Items.Add((r.Descripcion))
+            TCONTipoC.Items.Add(r.CodClase & " | " & r.Descripcion)
         Next
 
         For Each r As DataRowView In Socios

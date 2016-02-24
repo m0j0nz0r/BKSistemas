@@ -2,7 +2,7 @@ Option Strict Off
 Option Explicit On
 Friend Class OI
 	Inherits System.Windows.Forms.Form
- 
+
     Private Sub Command6_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Command6.Click
         TIONumero.Text = ""
         TIOMonto.Text = ""

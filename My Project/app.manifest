@@ -51,4 +51,5 @@
         />
     </dependentAssembly>
   </dependency>-->
+  <fileAssociation xmlns="urn:schemas-microsoft-com:clickonce.v1" extension=".bks" description="BKSistema Data File" progid="bksData" defaultIcon="Resources\favicon.ico" />
 </asmv1:assembly>

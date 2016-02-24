@@ -63,13 +63,16 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public ReadOnly Property Offline() As Boolean
+        Public Property Offline() As Boolean
             Get
                 Return CType(Me("Offline"),Boolean)
             End Get
+            Set
+                Me("Offline") = value
+            End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
@@ -102,6 +105,18 @@ Namespace My
             End Get
             Set
                 Me("FileStart") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property AsyncLoading() As Boolean
+            Get
+                Return CType(Me("AsyncLoading"),Boolean)
+            End Get
+            Set
+                Me("AsyncLoading") = value
             End Set
         End Property
     End Class

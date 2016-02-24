@@ -182,9 +182,10 @@ Friend Class Menu_Cuadre_Cierre
             Inicio = Microsoft.VisualBasic.DateSerial(view(0)("FInicio").Year, view(0)("FInicio").Month, 1)
             view(0).Delete()
             view.Table = MainDSO.TblLibroIE
-            view.RowFilter = "bloqueo=1 AND Fecha >= #" & Inicio.ToString("yyyy-MM-dd") & "#"
+            view.RowFilter = "bloqueo<>0 AND Fecha >= #" & Inicio.ToString("yyyy-MM-dd") & "#"
+            'view.RowFilter = "Bloqueo=1 AND Fecha >= #" & Inicio.ToShortDateString & "#"
             For Each r As DataRowView In view
-                r("bloqueo") = 0
+                r("Bloqueo") = 0
             Next
             MsgBox("El cierre con fecha de inicio " & Inicio.ToString("dd/MM/yyyy") & " ha sido revertido.")
         End If

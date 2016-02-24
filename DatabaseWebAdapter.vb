@@ -524,6 +524,10 @@ Public Class DatabaseWebAdapter
         Debug.WriteLine("Filling: " & table)
         While stream Is Nothing
             stream = GetStream(inst, Me.SelectCommand.Connection.ConnectionString)
+            If stream Is Nothing Then
+                Dim res As Integer = MsgBox("Error cargando la tabla: " & table & ". Presione aceptar para volver a intentar, presione Cancelar para salir del sistema.", MsgBoxStyle.OkCancel)
+                If res = vbCancel Then Application.Exit()
+            End If
         End While
         Dim reader As New StreamReader(stream)
         Dim line As String = reader.ReadLine()

@@ -31,7 +31,7 @@
     End Sub
 
     Private Sub AddMunicipio_Click(sender As Object, e As EventArgs) Handles AddMunicipio.Click
-        Dim f As New PanelEstados
+        Dim f As New PanelMunicipios
         f.ShowDialog()
     End Sub
 End Class

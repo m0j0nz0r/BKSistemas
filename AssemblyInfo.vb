@@ -31,3 +31,5 @@ Imports System.Runtime.InteropServices
 <Assembly:  AssemblyVersion("1.0.*")>
 
 
+
+<Assembly: GuidAttribute("E411A7F2-43A9-4872-B061-DF188CFD2EBC")> 

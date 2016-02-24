@@ -66,6 +66,7 @@ Friend Class RET
             'Se registra un LC
             ok = LC.LiquidarAcciones(CInt(TRETLCNumero.Text), TRETFecha.Value, cod, CDbl(TRETLCMonto.Text), "Ret. Liquidacion total Certif.")
             If Not ok Then Exit Sub
+
             If (TRETURMonto.Text = "") Then
                 TRETURMonto.Text = CStr(0)
             End If

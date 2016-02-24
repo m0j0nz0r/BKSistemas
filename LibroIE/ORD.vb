@@ -3,6 +3,7 @@ Option Explicit On
 Friend Class ORD
     Inherits System.Windows.Forms.Form
     Public orexiste As Short
+    Public AutoClose As Boolean = False
  
  
     Private Sub Command26_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles Command26.Click
@@ -75,6 +76,7 @@ Friend Class ORD
                         Label63.Visible = False
                         Label64.Visible = False
                         Label69.Visible = False
+                        If AutoClose Then Close()
                     Else
                         MsgBox("ERROR: El Credito no Existe. Verifique el N° de Credito")
                     End If

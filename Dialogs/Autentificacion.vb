@@ -148,5 +148,6 @@ Friend Class Autentificacion
 		If KeyAscii = 0 Then
 			eventArgs.Handled = True
 		End If
-	End Sub
+    End Sub
+
 End Class

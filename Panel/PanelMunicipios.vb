@@ -1,7 +1,7 @@
 ﻿Public Class PanelMunicipios
     Private States As DataView
     Private StatesTbl As MainDS.TblEstadosDataTable
-    Private Handling = False
+    Private Handling = True
 
     Private Sub PanelMunicipios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         States = New DataView(MainDSO.TblEstados)
@@ -16,6 +16,7 @@
         EIDComboBox.ValueMember = "ID"
         EIDComboBox.DisplayMember = "Nombre"
 
+        Handling = False
     End Sub
 
     Private Sub NombreComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles NombreComboBox.SelectedIndexChanged
@@ -25,7 +26,7 @@
     End Sub
 
     Private Sub ComboBox1_SelectedValueChanged(sender As Object, e As EventArgs) Handles EIDComboBox.SelectedValueChanged
-        If Not Handling And EIDComboBox.SelectedValue.GetType.Equals(GetType(Integer)) Then
+        If Not Handling And EIDComboBox.SelectedValue IsNot Nothing Then
             Handling = True
             If Not TblMunicipiosBindingSource.Current Is Nothing Then
                 TblMunicipiosBindingSource.Current("EID") = EIDComboBox.SelectedValue
@@ -35,7 +36,7 @@
     End Sub
 
     Private Sub TblMunicipiosBindingSource_CurrentItemChanged(sender As Object, e As EventArgs) Handles TblMunicipiosBindingSource.CurrentItemChanged
-        If Not Handling And EIDComboBox.SelectedValue.GetType.Equals(GetType(Integer)) Then
+        If Not Handling And EIDComboBox.SelectedValue IsNot Nothing Then
             Handling = True
             EIDComboBox.SelectedValue = TblMunicipiosBindingSource.Current("EID")
             Handling = False
