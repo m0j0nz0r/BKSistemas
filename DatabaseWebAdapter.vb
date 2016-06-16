@@ -43,7 +43,7 @@ Public Class DatabaseWebAdapter
             Dim byte1 As Byte() = encoding.GetBytes(postData)
             browser.ContentType = "application/x-www-form-urlencoded"
             browser.ContentLength = byte1.Length
-            browser.Timeout = 50000
+            browser.Timeout = 600000
             Dim stream As Stream
             Dim a As Integer = 1
             Do
@@ -54,6 +54,7 @@ Public Class DatabaseWebAdapter
                     stream.Dispose()
                     a = 0
                 Catch ex As WebException
+                    Debug.WriteLine("Caught web exception...")
                     Debug.WriteLine(ex.Message & vbNewLine & ex.Source & vbNewLine & ex.StackTrace)
                     For Each s As String In inst
                         Debug.WriteLine(s)
@@ -62,6 +63,7 @@ Public Class DatabaseWebAdapter
                     Debug.WriteLine(ex.Status)
                     Threading.Thread.Sleep(10000)
                 Catch ex As Exception
+                    Debug.WriteLine("Caught exception...")
                     Debug.WriteLine(ex.Message & vbNewLine & ex.Source & vbNewLine & ex.StackTrace)
                     For Each s As String In inst
                         Debug.WriteLine(s)
@@ -73,6 +75,7 @@ Public Class DatabaseWebAdapter
             Dim response As HttpWebResponse = browser.GetResponse()
             Return response.GetResponseStream()
         Catch ex As Exception
+            Debug.WriteLine("Caught final exception...")
             Debug.WriteLine(ex.Message & vbNewLine & ex.Source & vbNewLine & ex.StackTrace & vbNewLine & inst(1))
             Threading.Thread.Sleep(10000)
         End Try

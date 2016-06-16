@@ -403,7 +403,14 @@ Friend Class Cuadre
 
             'Calcular el Balance de Gestion Mensual Bruto restar excedente de incobrables si es negativo
             GestionMB = System.Math.Round(((ZOR + ZMO + ZOI)) - ZEG, 2)
-            'ZRICBACUM = rstACUM(0)("ZRICBACUM") - ZICB
+            If rstACUM.Count > 0 Then
+                ZRICBACUM = rstACUM(0)("ZRICBACUM")
+            End If
+            ZRICBACUM -= ZICB
+            If ZRICBACUM < 0 Then
+                GestionMB += ZRICBACUM
+                ZRICBACUM = 0
+            End If
             If (CDbl(mes) <> 1) Then
                 If rstACUM.Count > 0 Then
                     GestionMBACUM = System.Math.Round(GestionMB + rstACUM(0)("GestionMBACUM"), 2)
@@ -413,33 +420,16 @@ Friend Class Cuadre
             Else
                 GestionMBACUM = System.Math.Round(GestionMB, 2)
             End If
-            'Calcular el Monto Retenido para Fondo de Protección
-            ZPRFP = (((GestionMB) * PRFP) / 100)
 
             'Calcular la Provision por Mora (ZRICB Y ZRICBACUM)
 
-            If rstACUM.Count > 0 Then
-                If (rstACUM(0)("ZRICBACUM") < tope) Then
-                    ZRICB = System.Math.Round(((GestionMB) * ppi) / 100, 2)
-                Else
-                    ZRICB = 0
-                End If
-            Else
+            If (ZRICBACUM < tope) Then
                 ZRICB = System.Math.Round(((GestionMB) * ppi) / 100, 2)
-            End If
-
-            If (GestionMB < 0) Then
+            Else
                 ZRICB = 0
             End If
 
-            If rstACUM.Count > 0 Then
-                ZRICBACUM = System.Math.Round(ZRICB + rstACUM(0)("ZRICBACUM"), 2)
-            Else
-                ZRICBACUM = System.Math.Round(ZRICB, 2)
-            End If
-            ZRICBACUM = ZRICBACUM - ZICB
-            
-            'If ZRICBACUM < 0 Then GestionMB += ZRICBACUM
+            ZRICBACUM = System.Math.Round(ZRICB + ZRICBACUM, 2)
 
             'calcular la retencion para el Fondo de Gastos
 
@@ -454,8 +444,10 @@ Friend Class Cuadre
                 ZMRFACUM = System.Math.Round(ZMRF, 2)
             End If
 
+            'Calcular el Monto Retenido para Fondo de Protección
+            ZPRFP = (((GestionMB) * PRFP) / 100)
             'Calcular el Balance de Gestion Mensual Neto
-            ZGestionMNeto = System.Math.Round(((GestionMB - ZRICB) - ZMRF) - ZPRFP, 2)
+            ZGestionMNeto = System.Math.Round(GestionMB - ZRICB - ZMRF - ZPRFP, 2)
             If (CDbl(mes) <> 1) Then
                 If rstACUM.Count > 0 Then
                     ZGestionMNetoACUM = System.Math.Round(ZGestionMNeto + rstACUM(0)("ZGestionMNetoACUM"), 2)
@@ -514,13 +506,6 @@ Friend Class Cuadre
                 DECIERRE = rstACUM(0)("DECIERRE")
             End If
 
-            If ZRICBACUM < 0 Then
-                GestionMB += ZRICBACUM
-                GestionMBACUM += ZRICBACUM
-                ZGestionMNeto += ZRICBACUM
-                ZGestionMNetoACUM += ZRICBACUM
-                ZRICBACUM = 0
-            End If
             rstLibro.Sort = "Fecha"
 
             f2 = valnominal
@@ -533,10 +518,11 @@ Friend Class Cuadre
             utilidades = ZGestionMNetoACUM + safgastos - ZURACUM
             activo = DECIERRE + MPRECUP - ZRICBACUM + ZBAACUM
             f1 = System.Math.Round(pasivo + capital + utilidades - activo)
-            If (f1 = 0) Then
-                gest = 1 'Si balance cuadra entonces gest = 1
+
+            If (f1) Then
+                gest = 0 'Si balance cuadra entonces gest = 1
             Else
-                gest = 0
+                gest = 1
             End If
             '######################
             'gest = 0

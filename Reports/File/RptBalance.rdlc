@@ -2457,7 +2457,7 @@
       <Value>=(Sum(Fields!ZVCACUM.Value, "Main")-Sum(Fields!ZLCACUM.Value, "Main"))*Parameters!ValNominal.Value</Value>
     </Variable>
     <Variable Name="cuadra">
-      <Value>=(Sum(Fields!MTCPAGAR.Value, "Main")+(((Sum(Fields!ZVCACUM.Value, "Main")-Sum(Fields!ZLCACUM.Value, "Main"))*Parameters!ValNominal.Value)+Sum(Fields!ZDO1ACUM.Value, "Main")+Sum(Fields!ZDO2ACUM.Value, "Main"))+((Sum(Fields!ZGestionMNetoACUM.Value, "Main")+Variables!safgastos.Value)-Sum(Fields!ZURACUM.Value, "Main")))-(((Sum(Fields!DECIERRE.Value, "Main")+(Variables!MPRECUP.Value-Sum(Fields!ZRICBACUM.Value, "Main")))) + Sum(Fields!ZBAACUM.Value, "Main"))</Value>
+      <Value>=(Round(Sum(Fields!MTCPAGAR.Value, "Main")+(((Sum(Fields!ZVCACUM.Value, "Main")-Sum(Fields!ZLCACUM.Value, "Main"))*Parameters!ValNominal.Value)+Sum(Fields!ZDO1ACUM.Value, "Main")+Sum(Fields!ZDO2ACUM.Value, "Main"))+Sum(Fields!ZGestionMNetoACUM.Value, "Main")+Variables!safgastos.Value-Sum(Fields!ZURACUM.Value, "Main")-(Sum(Fields!DECIERRE.Value, "Main")+Variables!MPRECUP.Value-Sum(Fields!ZRICBACUM.Value, "Main")+Sum(Fields!ZBAACUM.Value, "Main")),2))</Value>
     </Variable>
   </Variables>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>

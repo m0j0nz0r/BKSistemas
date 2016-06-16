@@ -29,8 +29,8 @@ Friend Class CONNUEVO
         If cedula = "" Then
             Return 0
         Else
-            If MainDSO.Tables("TblSocios").Rows.Contains(cedula) Then
-                If MainDSO.Tables("TblSocios").Rows.Find(cedula)("Estatus") = 1 Then
+            If MainDSO.TblSocios.Rows.Contains(cedula) Then
+                If MainDSO.TblSocios.FindByCI(cedula).Estatus = 1 Then
                     Return 0
                 End If
             End If
@@ -41,12 +41,12 @@ Friend Class CONNUEVO
     Private Function CheckPendingCredit(Cedula As String) As Double
         Dim view As New DataView
         Dim retval As Double
-        view.Table = MainDSO.Tables("TblCredito")
-        view.RowFilter = "VCI='" & Cedula & "'"
+        view.Table = MainDSO.TblCredito
+        view.RowFilter = "VCI='" & Cedula & "' AND IdOp=0"
         If view.Count = 0 Then
             retval = 0
         Else
-            retval = CDbl(MainDSO.Tables("TblCredito").Compute("SUM(Saldo)", "VCI = '" & Cedula & "'"))
+            retval = CDbl(MainDSO.TblCredito.Compute("SUM(Saldo)", "VCI = '" & Cedula & "' AND IdOp=0"))
         End If
 
         If retval > 0 Then
@@ -56,15 +56,15 @@ Friend Class CONNUEVO
     End Function
     Private Function CheckSocio(cedula As String, ByRef row As MainDS.TblSociosRow) As Boolean
         Dim retval As Boolean = False
-        If MainDSO.Tables("TblSocios").Rows.Contains(cedula) Then
-            row = MainDSO.Tables("TblSocios").Rows.Find(cedula)
-            If row("Estatus") = 1 Then retval = True
+        If MainDSO.TblSocios.Rows.Contains(cedula) Then
+            row = MainDSO.TblSocios.FindByCI(cedula)
+            If row.Estatus = 1 Then retval = True
         End If
         If Not retval Then MsgBox("Socio CI: " & cedula & ", no Registrado o se encuentra RETIRADO Verifique la Cedula ")
         Return retval
     End Function
     Private Function CheckMaxAmount(monto As Double) As Boolean
-        Dim retval As Boolean = ThisBanko("MontoMaximo") >= monto
+        Dim retval As Boolean = ThisBanko.MontoMaximo >= monto
         If Not retval Then MsgBox("EL Monto para el Otorgamiento supera el Monto Maximo establecido en el reglamento")
         Return retval
     End Function
@@ -104,7 +104,7 @@ Friend Class CONNUEVO
                 Garantizado += Fiadores(1)("CapsGarantia")
             End If
         End If
-        Dim GarantiaNecesaria As Double = ThisBanko("GarantiaFiador") + ThisBanko("Caps-Creditos")
+        Dim GarantiaNecesaria As Double = (credito.MontoCred / ThisBanko.Val_nominal) * (ThisBanko.GarantiaFiador + ThisBanko._Caps_Creditos) / 100
         If Garantizado >= GarantiaNecesaria Then
             retval = "BR"
         ElseIf Garantizado >= GarantiaNecesaria * 0.75 Then
@@ -117,7 +117,7 @@ Friend Class CONNUEVO
     Public Function CapsGarantia(cedula As String) As Double
         Dim retval As Double = 0
         Dim Fiadores As New DataView
-        Fiadores.Table = MainDSO.Tables("TblFiadores")
+        Fiadores.Table = MainDSO.TblFiadores
         Fiadores.RowFilter = "NOT (Observacion LIKE '%Anulado%') AND CI ='" & cedula & "'"
 
         If Fiadores.Count > 0 Then
@@ -329,7 +329,7 @@ Friend Class CONNUEVO
                         rstCreditoNew("Saldo") = CDbl(TCONMonto.Text)
                         rstCreditoNew("NoCredito") = ncredito
                         'Se guarda la clase de credito
-                        rstCreditoNew("Clase") = TCONTipoC.Text
+                        rstCreditoNew("Clase") = TCONTipoC.Text.Split(" | ")(0)
                         'Antes de Guardar la clase de credito se debe buscar su equivalente de tipo de credito
                         Dim view As New DataView
                         view.Table = MainDSO.Tables("TblClaseCredito")

@@ -20,6 +20,17 @@ Friend Class PanelCredito
         Dim socios As New DataView
         socios.Table = MainDSO.Tables("TblSocios")
 
+        Label9.Text = ""
+        Label10.Text = ""
+        Label11.Text = ""
+        Label12.Text = ""
+        Label13.Text = ""
+        Label15.Text = ""
+        Label16.Text = ""
+        Label17.Text = ""
+        Label20.Text = ""
+        Label21.Text = ""
+
         If fiadores.Count > 0 Then
             cedfiador1 = fiadores(0)("CI")
 
@@ -68,13 +79,13 @@ Friend Class PanelCredito
                         Label15.Visible = True
                         Label17.Visible = True
                         Label21.Visible = True
-                    Else
-                        Label12.Visible = False
-                        Label13.Visible = False
-                        Label15.Visible = False
-                        Label17.Visible = False
-                        Label21.Visible = False
                     End If
+                Else
+                    Label12.Visible = False
+                    Label13.Visible = False
+                    Label15.Visible = False
+                    Label17.Visible = False
+                    Label21.Visible = False
                 End If
             Else
                 Label9.Visible = False

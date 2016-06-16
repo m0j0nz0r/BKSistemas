@@ -14,7 +14,7 @@ Module Module1
     Public cornum As Double
     Public Const ENCRYPT As Short = 1
     Public Const DECRYPT As Short = 2
-    Public rstentrar As DataRow
+    Public rstentrar As MainDS.TblLibroIERow
     Public ThisBanko As MainDS.TblBankoRow
     'Public rstbk2 As DataRow
     Public RstSocio As MainDS.TblSociosRow

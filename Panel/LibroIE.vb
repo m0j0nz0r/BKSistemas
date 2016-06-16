@@ -360,7 +360,7 @@ Friend Class LibroIE
         Saldototal.Text = ThisBanko.SaldoBk
 
         'anula registros en otras tablas
-        Dim sign As Integer = IIf(oldval = 0, -1, 1)
+        Dim sign As Integer = IIf(oldval = 0, -1, 1) 'negativo si se está anulando.
         Select Case CodOpe
             Case "IFG1"
                 If LibroRow.Descripcion = "Ingresos al Fondo de Gastos" Then
@@ -438,62 +438,64 @@ Friend Class LibroIE
                 socio.cap = socio.cap + sign * (CDbl(LibroRow.Ingreso / ThisBanko.Val_nominal))
             Case "PC"
                 'Tabla creditos
-                Dim credito As MainDS.TblCreditoRow = MainDSO.TblCredito.Rows.Find({ThisBanko.CodBk, LibroRow.NoCredito})
+                Dim credito As MainDS.TblCreditoRow = MainDSO.TblCredito.Rows.Find({ThisBanko.CodBk, _
+                                                                                    LibroRow.NoCredito})
                 credito.Saldo = credito.Saldo - sign * LibroRow.Ingreso
                 credito.Cancelado = IIf(credito.Saldo < 1, 1, 0)
-                If credito.Cancelado = 0 Then
-                    credito.incobrable = 0
-                    credito.deuda = 0
-                    If LibroRow.Descripcion.Contains("Ret.") Then
-                        credito.incobrable = 1
-                        credito.deuda = credito.Saldo
-                        credito.Saldo = 0
-                    End If
+                credito.incobrable = 0
+                credito.deuda = 0
+                If credito.Cancelado = 0 And _
+                    LibroRow.Descripcion.Contains("Ret.") And _
+                    oldval = 1 Then
+                    credito.incobrable = 1
+                    credito.deuda = credito.Saldo
+                    credito.Saldo = 0
+                    credito.FechaCancela = Nothing
                 End If
                 'Tabla fiadores
                 PC.RecalcularFiadores(credito.NoCredito, 0)
 
 
             Case "LC"
-                    Dim socio As MainDS.TblSociosRow = MainDSO.TblSocios.Rows.Find(LibroRow.CI)
-                    Dim caps As Double = sign * (CDbl(LibroRow.Egreso / ThisBanko.Val_nominal))
-                    socio.cap = socio.cap - caps
-                    socio.CapLiq = socio.CapLiq + caps
+                Dim socio As MainDS.TblSociosRow = MainDSO.TblSocios.Rows.Find(LibroRow.CI)
+                Dim caps As Double = sign * (CDbl(LibroRow.Egreso / ThisBanko.Val_nominal))
+                socio.cap = socio.cap - caps
+                socio.CapLiq = socio.CapLiq + caps
 
-                    'Recalcula fiadores.
-                    Dim creditos As New Generic.List(Of String) 'crear lista de creditos en los que el socio es fiador
-                    Dim fiadores As New DataView
-                    fiadores.Table = MainDSO.TblFiadores
-                    fiadores.RowFilter = "CI='" & socio.CI & "'"
-                    For Each r As DataRowView In fiadores
-                        If Not creditos.Contains(r("NoCredito")) Then
-                            creditos.Add(r("NoCredito"))
-                        End If
-                    Next
-
-                    'recalcular fiadores por cada credito siempre que el saldo del credito sea > 0
-                    Dim credito As MainDS.TblCreditoRow
-                    For Each c As String In creditos
-                        credito = MainDSO.TblCredito.Rows.Find({codi, c})
-                        If credito.Saldo > 0 And credito.IdOp = 0 Then
-                            PC.RecalcularFiadores(c, False)
-                            credito.Riezgo = CONNUEVO.GetRiesgo(credito) 'Recalcula el riesgo del crédito.
-                        End If
-                    Next
-
-                    'definir si el socio está activo o no.
-                    If LibroRow.Descripcion.Contains("Ret.") Then
-                        If oldval = 0 Then
-                            socio.Estatus = 1
-                            socio.Fretiro = Nothing
-                        ElseIf socio.Deuda < 1 Then
-                            socio.Estatus = 2
-                            socio.Fretiro = LibroRow.Fecha
-                        Else
-                            socio.Estatus = 3
-                            socio.Fretiro = LibroRow.Fecha
-                        End If
+                'Recalcula fiadores.
+                Dim creditos As New Generic.List(Of String) 'crear lista de creditos en los que el socio es fiador
+                Dim fiadores As New DataView
+                fiadores.Table = MainDSO.TblFiadores
+                fiadores.RowFilter = "CI='" & socio.CI & "'"
+                For Each r As DataRowView In fiadores
+                    If Not creditos.Contains(r("NoCredito")) Then
+                        creditos.Add(r("NoCredito"))
                     End If
+                Next
+
+                'recalcular fiadores por cada credito siempre que el saldo del credito sea > 0
+                Dim credito As MainDS.TblCreditoRow
+                For Each c As String In creditos
+                    credito = MainDSO.TblCredito.Rows.Find({codi, c})
+                    If credito.Saldo > 0 And credito.IdOp = 0 Then
+                        PC.RecalcularFiadores(c, False)
+                        credito.Riezgo = CONNUEVO.GetRiesgo(credito) 'Recalcula el riesgo del crédito.
+                    End If
+                Next
+
+                'definir si el socio está activo o no.
+                If LibroRow.Descripcion.Contains("Ret.") Then
+                    If oldval = 0 Then
+                        socio.Estatus = 1
+                        socio.Fretiro = Nothing
+                    ElseIf socio.Deuda < 1 Then
+                        socio.Estatus = 2
+                        socio.Fretiro = LibroRow.Fecha
+                    Else
+                        socio.Estatus = 3
+                        socio.Fretiro = LibroRow.Fecha
+                    End If
+                End If
         End Select
 
         'anula los demás registros del mismo recibo

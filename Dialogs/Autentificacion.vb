@@ -84,14 +84,30 @@ Friend Class Autentificacion
                 If CurrentUserPermits.Rows.Contains({tuser, "ForceSelect"}) Then
                     ForceSelect = (FindPermit(tuser, "ForceSelect") = "1")
                     FilterCode = FindPermit(tuser, "FilterCode")
-
-                    If ForceSelect And bk.Text.Trim = "" Then
+                    Dim bankos As New DataView(MainDSO.TblBanko)
+                    bankos.RowFilter = FilterCode
+                    Dim byFilter As Integer = bankos.Count
+                    If ForceSelect Then
+                        cedu = Split(bk.Text, "|")
+                        codi = cedu(0).Trim
+                    End If
+                    If byFilter > 0 And ForceSelect And view(0)("bk") <> "" Then
+                        byFilter = 0
+                        For Each r As DataRowView In bankos
+                            If r("CodBk") = view(0)("bk") Then
+                                byFilter = 1
+                                Exit For
+                            End If
+                        Next
+                        If byFilter > 0 Then
+                            byFilter = IIf(view(0)("bk") = codi, 1, 0)
+                        End If
+                    End If
+                    If byFilter <= 0 Then
+                        MsgBox("Usted no tiene los permisos necesarios para acceder a esta data.")
+                    ElseIf ForceSelect And bk.Text.Trim = "" Then
                         MsgBox("Debe seleccionar un bankomunal de la lista.")
                     Else
-                        If ForceSelect Then
-                            cedu = Split(bk.Text, "|")
-                            codi = cedu(0).Trim
-                        End If
                         Menu1.Show()
                         Me.Close()
                     End If
