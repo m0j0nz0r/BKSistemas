@@ -16,39 +16,7 @@ Namespace My
                 'noclose.Opacity = 0
                 'noclose.Show()
                 Debug.WriteLine("Shutting down...")
-                If HaveInternetConnection() Then
-                    Dim adapter As New DatabaseWebAdapter()
-                    adapter.UpdateCommand = New DatabaseWebCommand("", New DatabaseWebConnection(My.Settings.ConnectionString))
-                    adapter.Update(MainDSO)
-                End If
-                If My.Settings.SaveData <> "" Then
-                    If Not IO.File.Exists(My.Settings.SaveData) Then
-                        My.Settings.SaveData = ""
-                    End If
-                End If
-                Dim rst As DialogResult
-                If My.Settings.SaveData = "" Then
-                    Dim openfileDlg As New SaveFileDialog
-                    openfileDlg.Filter = "Respaldo BkSistema (*.bks)|*.bks"
-                    openfileDlg.AddExtension = True
-                    openfileDlg.Title = "Seleccionar el directorio donde desea respaldar la Data"
-                    rst = openfileDlg.ShowDialog()
-                    If rst = DialogResult.OK Then
-                        My.Settings.SaveData = openfileDlg.FileName
-                        My.Settings.Save()
-                    End If
-                End If
-                If rst = DialogResult.OK And My.Settings.SaveData <> "" Then
-                    Dim file As IO.StreamWriter
-                    Try
-                        file = My.Computer.FileSystem.OpenTextFileWriter(My.Settings.SaveData, False)
-                        file.Write(JsonConvert.SerializeObject(MainDSO))
-                        file.Close()
-                        MessageBox.Show("Respaldo exitoso!")
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message)
-                    End Try
-                End If
+                SaveData()
                 logged = False
                 'noclose.Close()
             End If

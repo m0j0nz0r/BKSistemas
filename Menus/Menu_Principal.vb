@@ -55,9 +55,8 @@ Friend Class Menu_Principal
 
     Private Sub Command6_Click(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles BtnVolver.Click
         Dim Autentificacion As New Autentificacion
-        Dim adapter As New DatabaseWebAdapter()
-        adapter.Update(MainDSO)
         tuser = 0
+        SaveData()
         logged = False
         Autentificacion.Show()
         Close()
