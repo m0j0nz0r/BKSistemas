@@ -7,6 +7,7 @@ Friend Class Autentificacion
     Private estadosView As New DataView
     Private municipiosView As New DataView
     Private bankos As New DataView
+    Private filter As String = ""
 	Private Sub bk_KeyPress(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyPressEventArgs) Handles bk.KeyPress
 		Dim KeyAscii As Short = Asc(eventArgs.KeyChar)
 		If (KeyAscii = 13) Then
@@ -130,7 +131,6 @@ Friend Class Autentificacion
 	
     Private Sub Autentificacion_Load(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles MyBase.Load
         logged = False
-        Debug.WriteLine(My.Settings.SaveData)
         If HaveInternetConnection() Then
             Try
                 Dim conn As DatabaseWebConnection
@@ -154,7 +154,9 @@ Friend Class Autentificacion
             LoadOffline(MainDSO)
         End If
         estadosView.Table = MainDSO.TblEstados
+        estadosView.Sort = "ID"
         municipiosView.Table = MainDSO.TblMunicipios
+        municipiosView.Sort = "ID"
         codi = ""
         TblPaisesBindingSource.DataSource = MainDSO.TblPaises
         TblEstadosBindingSource.DataSource = estadosView
@@ -162,12 +164,10 @@ Friend Class Autentificacion
         UpdateBankos()
     End Sub
     Private Sub UpdateBankos()
-        Dim view As New DataView, filter As String = "Municipio=" & municipio.SelectedValue
+        Dim view As New DataView
         view.Table = MainDSO.TblBanko
         view.Sort = "CodBk"
-        If filter.Length > 10 Then
-            view.RowFilter = filter
-        End If
+        view.RowFilter = filter
         bk.Items.Clear()
         For Each row As DataRowView In view
             bk.Items.Add(row.Item("CodBK") + " | " + row.Item("NombreBk"))
@@ -185,23 +185,27 @@ Friend Class Autentificacion
     End Sub
 
     Private Sub pais_SelectedIndexChanged(sender As Object, e As EventArgs) Handles pais.SelectedIndexChanged
-        Dim filter As String = "PID=" & pais.SelectedValue
-        If filter.Length > 4 Then
-            estadosView.RowFilter = filter
+        Dim localFilter As String = "PID=" & pais.SelectedValue
+        If localFilter.Length > 4 Then
+            estadosView.RowFilter = localFilter
         End If
-        Debug.WriteLine(filter)
+        filter = BuildFilterStringByCountry(pais.SelectedValue)
+        UpdateBankos()
     End Sub
 
     Private Sub estado_SelectedIndexChanged(sender As Object, e As EventArgs) Handles estado.SelectedIndexChanged
-        Dim filter As String = "EID=" & estado.SelectedValue
-        If filter.Length > 4 Then
-            municipiosView.RowFilter = "EID=" & estado.SelectedValue
+        Dim localFilter As String = "EID=" & estado.SelectedValue
+        If localFilter.Length > 4 Then
+            municipiosView.RowFilter = localFilter
         End If
-        Debug.WriteLine(filter)
+        filter = BuildFilterStringByState(estado.SelectedValue)
+        UpdateBankos()
     End Sub
-
     Private Sub municipio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles municipio.SelectedIndexChanged
-        Debug.WriteLine(municipio.SelectedValue)
+        Dim localFilter As String = "Municipio=" & municipio.SelectedValue
+        If localFilter.Length > 10 Then
+            filter = localFilter
+        End If
         UpdateBankos()
     End Sub
 End Class

@@ -924,4 +924,56 @@ Module Module1
             End Try
         End If
     End Sub
+    Public Function BuildFilterStringByCountry(PID As Integer) As String
+        Dim municipios As New Generic.List(Of Integer),
+            estadosView As New DataView,
+            municipiosView As New DataView
+        estadosView.Table = MainDSO.TblEstados
+        municipiosView.Table = MainDSO.TblMunicipios
+        estadosView.RowFilter = "PID=" & PID
+        For Each r As DataRowView In estadosView
+            municipiosView.RowFilter = "EID=" & r("ID")
+            For Each c As DataRowView In municipiosView
+                municipios.Add(c("ID"))
+            Next
+        Next
+        Return BuildFilterString(municipios, "Municipio")
+    End Function
+    Public Function BuildFilterStringByState(EID As Integer) As String
+        Dim municipios As New Generic.List(Of Integer),
+            municipiosView As New DataView
+        municipiosView.Table = MainDSO.TblMunicipios
+        municipiosView.RowFilter = "EID=" & EID
+        For Each c As DataRowView In municipiosView
+            municipios.Add(c("ID"))
+        Next
+        Return BuildFilterString(municipios, "Municipio")
+    End Function
+    Public Function BuildFilterString(list As Generic.List(Of Integer), field As String) As String
+        Dim initialValue As Integer, currentValue As Integer, previousValue As Integer = -1, filter As String = ""
+        list.Sort()
+        If list.Count > 0 Then
+            initialValue = list(0)
+            For Each n As Integer In list
+                currentValue = n
+                If previousValue >= 0 And previousValue + 1 <> currentValue Then
+                    If initialValue = previousValue Then
+                        filter = filter & field & "=" & initialValue & " OR "
+                    Else
+                        filter = filter & "(" & field & ">=" & initialValue & " AND " & field & "<=" & previousValue & ") OR "
+                    End If
+                    initialValue = currentValue
+                End If
+                previousValue = currentValue
+            Next
+            If previousValue <> initialValue Then
+                filter = filter & field & ">=" & initialValue & " AND " & field & "<=" & previousValue
+            Else
+                If filter.Length > 0 Then
+                    filter = filter.Substring(0, filter.Length - 4)
+                End If
+            End If
+        End If
+        Return filter
+    End Function
 End Module

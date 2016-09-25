@@ -30,22 +30,13 @@ Friend Class FilterDlg
             Estado = "Proyecto: " & CBProyect.Text
             Filter = "Proyecto=" & CBProyect.SelectedValue
         ElseIf CheckCountry.Checked Then
+            Dim previousID As Integer = -1, initialID As Integer = -1
             Estado = "Pais: " & CBCountry.Text
-            StateView.RowFilter = "PID=" & CBCountry.SelectedValue
-            For Each r As DataRowView In StateView
-                ProvinceView.RowFilter = "EID=" & r("ID")
-                For Each c As DataRowView In ProvinceView
-                    Filter = Filter & "Municipio=" & c("ID") & " OR "
-                Next
-            Next
-            Filter = Filter.Substring(0, Filter.Length - 4)
+            Filter = BuildFilterStringByCountry(CBCountry.SelectedValue)
         ElseIf CheckState.Checked Then
+            Dim previousID As Integer = -1, initialID As Integer = -1
             Estado = "Estado: " & CBState.Text
-            ProvinceView.RowFilter = "EID=" & CBState.SelectedValue
-            For Each c As DataRowView In ProvinceView
-                Filter = Filter & "Municipio=" & c("ID") & " OR "
-            Next
-            Filter = Filter.Substring(0, Filter.Length - 4)
+            Filter = BuildFilterStringByState(CBState.SelectedValue)
         ElseIf CheckProvince.Checked Then
             Estado = "Municipio: " & CBProvince.Text
             Filter = "Municipio=" & CBProvince.SelectedValue
