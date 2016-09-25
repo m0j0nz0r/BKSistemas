@@ -6,7 +6,7 @@
       <Value Profile="(Default)">http://www.fundefir.org/bksistema/interface.php</Value>
     </Setting>
     <Setting Name="Offline" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="SaveData" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

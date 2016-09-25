@@ -4,7 +4,9 @@ Friend Class Autentificacion
 	Inherits System.Windows.Forms.Form
 	'Variables Publicas del Sistema
 	'Public codi As String
-	
+    Private estadosView As New DataView
+    Private municipiosView As New DataView
+    Private bankos As New DataView
 	Private Sub bk_KeyPress(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyPressEventArgs) Handles bk.KeyPress
 		Dim KeyAscii As Short = Asc(eventArgs.KeyChar)
 		If (KeyAscii = 13) Then
@@ -135,6 +137,12 @@ Friend Class Autentificacion
                 conn = New DatabaseWebConnection(My.Settings.ConnectionString)
                 Dim DS As New DataSet()
                 Dim Adapter As New DatabaseWebAdapter()
+                Adapter.SelectCommand = New DatabaseWebCommand("SELECT * FROM TblPaises", conn)
+                Adapter.Fill(MainDSO)
+                Adapter.SelectCommand = New DatabaseWebCommand("SELECT * FROM TblEstados", conn)
+                Adapter.Fill(MainDSO)
+                Adapter.SelectCommand = New DatabaseWebCommand("SELECT * FROM TblMunicipios", conn)
+                Adapter.Fill(MainDSO)
                 Adapter.SelectCommand = New DatabaseWebCommand("SELECT * FROM TblBanko ORDER BY CodBK", conn)
                 Adapter.Fill(MainDSO)
             Catch ex As Exception
@@ -145,16 +153,26 @@ Friend Class Autentificacion
             MsgBox("No se detectó conección a internet... ingresando en modo offline.")
             LoadOffline(MainDSO)
         End If
-            Dim view As New DataView
-            view.Table = MainDSO.Tables("TblBanko")
-            view.Sort = "CodBk"
-            For Each row As DataRowView In view
-                bk.Items.Add(row.Item("CodBK") + " | " + row.Item("NombreBk"))
-            Next
-            codi = ""
-
+        estadosView.Table = MainDSO.TblEstados
+        municipiosView.Table = MainDSO.TblMunicipios
+        codi = ""
+        TblPaisesBindingSource.DataSource = MainDSO.TblPaises
+        TblEstadosBindingSource.DataSource = estadosView
+        TblMunicipiosBindingSource.DataSource = municipiosView
+        UpdateBankos()
     End Sub
-	
+    Private Sub UpdateBankos()
+        Dim view As New DataView, filter As String = "Municipio=" & municipio.SelectedValue
+        view.Table = MainDSO.TblBanko
+        view.Sort = "CodBk"
+        If filter.Length > 10 Then
+            view.RowFilter = filter
+        End If
+        bk.Items.Clear()
+        For Each row As DataRowView In view
+            bk.Items.Add(row.Item("CodBK") + " | " + row.Item("NombreBk"))
+        Next
+    End Sub
 	Private Sub usuario_KeyPress(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyPressEventArgs) Handles usuario.KeyPress
 		Dim KeyAscii As Short = Asc(eventArgs.KeyChar)
 		If (KeyAscii = 13) Then
@@ -166,4 +184,24 @@ Friend Class Autentificacion
 		End If
     End Sub
 
+    Private Sub pais_SelectedIndexChanged(sender As Object, e As EventArgs) Handles pais.SelectedIndexChanged
+        Dim filter As String = "PID=" & pais.SelectedValue
+        If filter.Length > 4 Then
+            estadosView.RowFilter = filter
+        End If
+        Debug.WriteLine(filter)
+    End Sub
+
+    Private Sub estado_SelectedIndexChanged(sender As Object, e As EventArgs) Handles estado.SelectedIndexChanged
+        Dim filter As String = "EID=" & estado.SelectedValue
+        If filter.Length > 4 Then
+            municipiosView.RowFilter = "EID=" & estado.SelectedValue
+        End If
+        Debug.WriteLine(filter)
+    End Sub
+
+    Private Sub municipio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles municipio.SelectedIndexChanged
+        Debug.WriteLine(municipio.SelectedValue)
+        UpdateBankos()
+    End Sub
 End Class
