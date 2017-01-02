@@ -2,10 +2,15 @@
 
     Private Sub RptFondo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim rstsocios As New DataView
+        Dim totalHombres, totalMujeres As Integer
         With rstsocios
             .Table = MainDSO.Tables("TblSocios")
-            .RowFilter = "Estatus = 1 AND AcumMoras = 1"
             .Sort = "Nombres"
+            .RowFilter = "Estatus = 1 AND AcumMoras = 1 AND (Sexo='M' OR Sexo='m')"
+            totalHombres = rstsocios.Count
+            .RowFilter = "Estatus = 1 AND AcumMoras = 1 AND (Sexo='F' OR Sexo='f')"
+            totalMujeres = rstsocios.Count
+            .RowFilter = "Estatus = 1 AND AcumMoras = 1"
         End With
         Dim tbl As DataTable = rstsocios.ToTable
         If rstsocios.Count > 0 Then
@@ -15,6 +20,10 @@
             Dim p As New Microsoft.Reporting.WinForms.ReportParameterCollection()
             p.Add(param)
             param = New Microsoft.Reporting.WinForms.ReportParameter("Activos", False)
+            p.Add(param)
+            param = New Microsoft.Reporting.WinForms.ReportParameter("TotalHombres", totalHombres)
+            p.Add(param)
+            param = New Microsoft.Reporting.WinForms.ReportParameter("TotalMujeres", totalMujeres)
             p.Add(param)
             Try
                 ReportViewer1.LocalReport.SetParameters(p)

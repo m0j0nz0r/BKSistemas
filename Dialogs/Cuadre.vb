@@ -29,7 +29,7 @@ Friend Class Cuadre
     Private Function GetZOPE(FechaPrimero As Date, FechaUltimo As Date, CodOpe As String, Ingreso As Boolean, Optional Nominal As Boolean = True) As Double
         Dim retval As Double = 0
         Dim rstlibro As New DataView
-        rstlibro.Table = MainDSO.Tables("TblLibroIE")
+        rstlibro.Table = MainDSO.TblLibroIE
         rstlibro.RowFilter = "Anulado=0 AND IdBK='" & codi & "' AND CodOpe = '" & CodOpe & "' AND Fecha >=#" & FechaPrimero.ToString("yyyy-MM-dd") & "# AND Fecha <=#" & FechaUltimo.ToString("yyyy-MM-dd") & "#"
         Dim colname As String = IIf(Ingreso, "Ingreso", "Egreso")
         For Each r As DataRowView In rstlibro
@@ -52,7 +52,7 @@ Friend Class Cuadre
         view.RowFilter = "Anulado=0 AND IdBK='" & codi & "' AND CodOpe = '" & CodOpe & "' AND Fecha >=#" & FechaPrimero.ToString("yyyy-MM-dd") & "# AND Fecha <=#" & FechaUltimo.ToString("yyyy-MM-dd") & "#"
         Return view.Count
     End Function
-    Public Sub Calculate()
+    Public Function Calculate() As MainDS.gestiontempRow
         Dim ZIFG1ACUM As Double
         Dim difDias As Integer
         Dim NTSFRACUM As Double
@@ -66,9 +66,9 @@ Friend Class Cuadre
         Dim rstACUM As New DataView
         Dim rstGestemp As DataRow
         Dim Fecha As Date
-        Dim diaultimo As String
-        Dim mes As String
-        Dim ano As String
+        Dim diaultimo As Integer
+        Dim mes As Integer
+        Dim ano As Integer
         Dim FechaUltimo As Date
         Dim NTSM As Double
         Dim NTSF As Double
@@ -140,30 +140,30 @@ Friend Class Cuadre
         Dim PRFP As Double
         Dim tope As Double
         Dim FechaPrimero As Date
-        If (CFecha.Text <> "" Or MovAcum) Then
-            If MovAcum Then
-                ThisBanko = MainDSO.Tables("TblBanko").Rows.Find(Banko)
-                codi = Banko
-            End If
-            rstLibro.Table = MainDSO.Tables("TblLibroIE")
-            rstLibro.RowFilter = "IdBK='" & codi & "' AND bloqueo=0 AND Anulado=0"
+        If MovAcum Then
+            ThisBanko = MainDSO.TblBanko.Rows.Find(Banko)
+            codi = Banko
+        End If
+        rstLibro.Table = MainDSO.TblLibroIE
+        rstLibro.RowFilter = "IdBK='" & codi & "' AND bloqueo=0 AND Anulado=0"
+        If ((CFecha.Text <> "" Or MovAcum) And rstLibro.Count > 0) Then
             rstLibro.Sort = "Fecha ASC"
-            rstACUM.Table = MainDSO.Tables("Gestion")
+            rstACUM.Table = MainDSO.Gestion
             rstACUM.Sort = "FInicio DESC"
             rstACUM.RowFilter = "codBK='" & codi & "'"
             LibroSaldo(0)
 
-            valnominal = ThisBanko("Val_nominal")
-            PRFP = ThisBanko("PRFP")
-            PRGR = ThisBanko("PRGR")
-            ppi = ThisBanko("PRI")
+            valnominal = ThisBanko.Val_nominal
+            PRFP = ThisBanko.PRFP
+            PRGR = ThisBanko.PRGR
+            ppi = ThisBanko.PRI
             Fecha = rstLibro(0)("Fecha")
             Finicio = Fecha
-            mes = CStr(DatePart(Microsoft.VisualBasic.DateInterval.Month, Fecha))
-            ano = CStr(DatePart(Microsoft.VisualBasic.DateInterval.Year, Fecha))
-            diaultimo = CStr(VB.Day(DateSerial(Year(Fecha), Month(Fecha) + 1, 0)))
-            FechaPrimero = CDate("01/" & mes & "/" & ano)
-            FechaUltimo = CDate(diaultimo & "/" & mes & "/" & ano)
+            mes = DatePart(Microsoft.VisualBasic.DateInterval.Month, Fecha)
+            ano = DatePart(Microsoft.VisualBasic.DateInterval.Year, Fecha)
+            diaultimo = VB.Day(DateSerial(Year(Fecha), Month(Fecha) + 1, 0))
+            FechaPrimero = New Date(ano, mes, 1)
+            FechaUltimo = New Date(ano, mes, diaultimo)
 
             'Dim Socios As New DataView
             'Socios.Table = MainDSO.Tables("TblSocios")
@@ -173,7 +173,7 @@ Friend Class Cuadre
             'Calcular los totales de Socios Nuevos Masculinos y Femeninos
             NTSFACUM = GetNTSAcum(NTSF, False)
             NTSMACUM = GetNTSAcum(NTSM, True)
-            
+
             'Calcula el numero total de Socios Retirados Masculinos
             NTSMR = GetNTS(FechaPrimero, FechaUltimo, True, True)
 
@@ -184,7 +184,7 @@ Friend Class Cuadre
             'Calcular el Acumunado de Socios Retirados Femeninos y Masculinos
             NTSMRACUM = GetNTSAcum(NTSMR, True, True)
             NTSFRACUM = GetNTSAcum(NTSFR, False, True)
-            
+
             'Calculo del total de VC y VCRR
             ZVC = GetZOPE(FechaPrimero, FechaUltimo, "VC", True) + GetZOPE(FechaPrimero, FechaUltimo, "VCRR", True)
 
@@ -200,7 +200,7 @@ Friend Class Cuadre
 
             'Calcular el total de LC
             ZLC = GetZOPE(FechaPrimero, FechaUltimo, "LC", False)
-            
+
             'Calcular los Acumulados de LC
             If rstACUM.Count > 0 Then
                 ZLCACUM = (rstACUM(0)("ZLCACUM") + ZLC)
@@ -225,7 +225,7 @@ Friend Class Cuadre
 
             'Calcular el monto en creditos Refinanciados en el mes (ZCOR)
             ZCOR = GetZOPE(FechaPrimero, FechaUltimo, "COR", False, False)
-            
+
             'Calcular los Totales del Otorgamiento de Creditos
             If rstACUM.Count > 0 Then
                 qCONACUM = rstACUM(0)("qCONACUM") + qCON
@@ -601,7 +601,7 @@ Friend Class Cuadre
             rstGestemp("ZURACUM") = ZURACUM
             rstGestemp("idgestion") = 1
             ThisBanko("SAFGASTOS") = safgastos - ZMRF - ZPRFP
-            MainDSO.Tables("gestiontemp").Rows.Add(rstGestemp)
+            MainDSO.gestiontemp.Rows.Add(rstGestemp)
             If Not MovAcum Then
                 '###############################################################################
                 'Muestra el reporte de Gestion y el Balance
@@ -617,8 +617,11 @@ Friend Class Cuadre
                 rpt2.ShowDialog()
                 '###############################################################################
             End If
+            Return rstGestemp
+        Else
+            Return Nothing
         End If
-    End Sub
+    End Function
 
     Private Sub CFecha_KeyPress(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyPressEventArgs) Handles CFecha.KeyPress
         Dim KeyAscii As Short = Asc(eventArgs.KeyChar)

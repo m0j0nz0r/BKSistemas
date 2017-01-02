@@ -35,6 +35,16 @@ Module Module1
     Public idregistro As Double
     Public CurrentUserPermits As MainDS.TblUserconfigDataTable
 
+    Sub setBindingSource(ByRef obj As ComboBox, ByRef dataSource As Object, ByRef bindingSource As BindingSource)
+        Dim displayMember As String = obj.DisplayMember
+        Dim valueMember As String = obj.ValueMember
+        obj.DataSource = Nothing
+        bindingSource.DataSource = dataSource
+        obj.DataSource = bindingSource
+        obj.DisplayMember = displayMember
+        obj.ValueMember = valueMember
+    End Sub
+
     Function FindPermit(ID As Integer, var As String) As String
         Dim retval As String = ""
         If CurrentUserPermits.Rows.Contains({ID, var}) Then
@@ -890,11 +900,20 @@ Module Module1
         e.Cancel = True
     End Sub
     Public Sub SaveData()
+
+
+
         If HaveInternetConnection() Then
+
             Dim adapter As New DatabaseWebAdapter()
             adapter.UpdateCommand = New DatabaseWebCommand("", New DatabaseWebConnection(My.Settings.ConnectionString))
             adapter.Update(MainDSO)
+
         End If
+
+
+
+
         If My.Settings.SaveData <> "" Then
             If Not IO.File.Exists(My.Settings.SaveData) Then
                 My.Settings.SaveData = ""

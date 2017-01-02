@@ -94,22 +94,20 @@ Friend Class FilterDlg
     Private Sub ClasifCreditoxClase_Load(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles MyBase.Load
         If Field = "Tipo" Then Me.Text = "..:: Clasificacion de Credito por Tipo ::.."
         ProyectView = New DataView
-        ProyectView.Table = MainDSO.Tables("TblProyectos")
-        TblProyectosBindingSource.DataSource = ProyectView
+        ProyectView.Table = MainDSO.TblProyectos
+        setBindingSource(CBProyect, ProyectView, TblProyectosBindingSource)
         CountryView = New DataView
-        CountryView.Table = MainDSO.Tables("TblPaises")
-        TblPaisesBindingSource.DataSource = CountryView
+        CountryView.Table = MainDSO.TblPaises
+        setBindingSource(CBCountry, CountryView, TblPaisesBindingSource)
         StateView = New DataView
-        StateView.Table = MainDSO.Tables("TblEstados")
-        TblEstadosBindingSource.DataSource = StateView
+        StateView.Table = MainDSO.TblEstados
+        setBindingSource(CBState, StateView, TblEstadosBindingSource)
         ProvinceView = New DataView
-        ProvinceView.Table = MainDSO.Tables("TblMunicipios")
-        TblMunicipiosBindingSource.DataSource = ProvinceView
+        ProvinceView.Table = MainDSO.TblMunicipios
+        setBindingSource(CBProvince, ProvinceView, TblMunicipiosBindingSource)
         BankoView = New DataView
-
-        BankoView.Table = MainDSO.Tables("TblBanko")
+        BankoView.Table = MainDSO.TblBanko
         TblBankoBindingSource.DataSource = BankoView
-
         CBBanko.DataSource = GetComboItems()
         CBBanko.DisplayMember = "Name"
         CBBanko.ValueMember = "ID"
@@ -117,15 +115,21 @@ Friend Class FilterDlg
 
 
     Private Sub CBCountry_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBCountry.SelectedIndexChanged
-        StateView.RowFilter = "PID=" & CBCountry.SelectedValue
+        If Not DataView.Equals(StateView, Nothing) Then
+            StateView.RowFilter = "PID=" & CBCountry.SelectedValue
+        End If
     End Sub
 
     Private Sub CBState_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBState.SelectedIndexChanged
-        ProvinceView.RowFilter = "EID=" & CBState.SelectedValue
+        If Not DataView.Equals(ProvinceView, Nothing) Then
+            ProvinceView.RowFilter = "EID=" & CBState.SelectedValue
+        End If
     End Sub
 
     Private Sub CBProvince_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBProvince.SelectedIndexChanged
-        BankoView.RowFilter = "Municipio=" & CBProvince.SelectedValue
+        If Not DataView.Equals(BankoView, Nothing) Then
+            BankoView.RowFilter = "Municipio=" & CBProvince.SelectedValue
+        End If
     End Sub
 
 

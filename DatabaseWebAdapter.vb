@@ -524,6 +524,7 @@ Public Class DatabaseWebAdapter
         inst.Add(Me.SelectCommand.CommandText)
         Dim table As String = GetTableFromCommand(inst(1))
         Dim dTable As DataTable
+        Dim culture As System.Globalization.CultureInfo = New Globalization.CultureInfo("en-US")
         Debug.WriteLine("Filling: " & table)
         While stream Is Nothing
             stream = GetStream(inst, Me.SelectCommand.Connection.ConnectionString)
@@ -572,7 +573,7 @@ Public Class DatabaseWebAdapter
                                 kv.Value Like "*#.#" Or
                                 kv.Value Like "#.#") And
                                 kv.Key <> "Email" Then
-                                row(kv.Key) = Double.Parse(kv.Value.ToString.Replace(".", ","))
+                                row(kv.Key) = Double.Parse(kv.Value, culture.NumberFormat)
                             End If
                         End If
                     Next

@@ -2,61 +2,47 @@
     Public filter As String = ""
     Public Estado As String
     Private Sub RptMovAcum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim rstBanko As New DataView
-        Dim rstmovacumulado As New DataView
-        Dim rstmovnew As DataRow
-        Dim Libro As New DataView
-        Dim cuadre As New Cuadre
-
-        Libro.Table = MainDSO.Tables("TblLibroIE")
+        Dim rstBanko As New DataView(MainDSO.TblBanko)
+        Dim socios As New DataView(MainDSO.TblSocios)
+        Dim creditos As New DataView(MainDSO.TblCredito)
+        Dim gestion As New DataView(MainDSO.Gestion)
+        Dim rstmovnew As MainDS.MovAcumuladoRow
 
         'Se buscan los bankos que pertenezcan a ese Estado
-        rstBanko.Table = MainDSO.Tables("TblBanko")
         rstBanko.RowFilter = filter
 
         'borra el contenido de la tabla para generar un nuevo reporte
+        MainDSO.MovAcumulado.Rows.Clear()
 
-        MainDSO.Tables("MovAcumulado").Rows.Clear()
         'Se busca el ultimo registro de la gestion que corresponda a los Bankos encontrados para ese Estado
-        rstmovacumulado.Table = MainDSO.Tables("Gestion")
-
         For Each r As DataRowView In rstBanko
-            Debug.WriteLine("Begin: " & r("CodBk"))
-            'Debug.WriteLine("Gestion count: " & rstmovacumulado.Count.ToString & " ID: " & rstmovacumulado(0)("idgestion"))
-            cuadre.Calculate()
-            Libro.RowFilter = "IdBK='" & r("CodBk") & "'"
-            rstmovacumulado.RowFilter = "codBK='" & r("CodBk") & "'"
-            rstmovacumulado.Sort = "idgestion DESC"
-            If rstmovacumulado.Count > 0 Then
-                rstmovnew = MainDSO.Tables("MovAcumulado").NewRow
-                rstmovnew("Banko") = r("NombreBk")
-                rstmovnew("NTSM") = rstmovacumulado(0)("NTSMACUM") - rstmovacumulado(0)("NTSMRACUM")
-                rstmovnew("NTSF") = rstmovacumulado(0)("NTSFACUM") - rstmovacumulado(0)("NTSFRACUM")
-                rstmovnew("NTS") = rstmovnew("NTSM") + rstmovnew("NTSF")
-                rstmovnew("NTCAPS") = rstmovacumulado(0)("ZVCACUM") - rstmovacumulado(0)("ZLCACUM")
-                rstmovnew("NTCRED") = rstmovacumulado(0)("qCONACUM") + rstmovacumulado(0)("qCORACUM")
-                rstmovnew("CIERRE") = rstmovacumulado(0)("FCorte")
-                'check this
-                Dim zconacum As Double = 0
-                Dim zcoracum As Double = 0
-                For Each q As DataRowView In rstmovacumulado
-                    zconacum += q("ZCON")
-                    zcoracum += q("ZCOR")
-                Next
-                Debug.WriteLine("ZCOR: " & zconacum & " | ZCON: " & zcoracum & "| Total: " & (zconacum + zcoracum))
-                Debug.WriteLine("ZCOR: " & rstmovacumulado(0)("ZCONACUM") & " | ZCON: " & rstmovacumulado(0)("ZCORACUM") & "| Total: " & (rstmovacumulado(0)("ZCONACUM") + rstmovacumulado(0)("ZCORACUM")))
-                rstmovnew("MCRED") = rstmovacumulado(0)("ZCONACUM") + rstmovacumulado(0)("ZCORACUM")
-                MainDSO.Tables("MovAcumulado").Rows.Add(rstmovnew)
-                MainDSO.Tables("Gestion").Rows.Remove(rstmovacumulado(0).Row)
-                Debug.WriteLine("Gestion count: " & rstmovacumulado.Count.ToString & " ID: " & rstmovacumulado(0)("idgestion"))
-            Else
-                Debug.WriteLine("Skipped: " & r("CodBk"))
+            socios.RowFilter = "Estatus=1 AND CodBk='" & r("CodBk") & "'"
+            creditos.RowFilter = "VBK='" & r("CodBk") & "' AND IdOp=0"
+            gestion.RowFilter = "codBK='" & r("CodBk") & "'"
+            gestion.Sort = "idgestion DESC"
+            If socios.Count > 0 Then
+                rstmovnew = MainDSO.MovAcumulado.NewRow
+                rstmovnew.BanKo = r("CodBk") & " | " & r("NombreBk")
+                rstmovnew.NTS = socios.Count
+                rstmovnew.NTSM = MainDSO.TblSocios.Compute("Count(CI)", socios.RowFilter & " AND (Sexo='M' OR Sexo='m')")
+                rstmovnew.NTSF = MainDSO.TblSocios.Compute("Count(CI)", socios.RowFilter & " AND (Sexo='F' OR Sexo='f')")
+                rstmovnew.NTCAPS = MainDSO.TblSocios.Compute("Sum(cap)", socios.RowFilter)
+                rstmovnew.NTCRED = creditos.Count
+                If creditos.Count > 0 Then
+                    rstmovnew.MCRED = MainDSO.TblCredito.Compute("Sum(MontoCred)", creditos.RowFilter)
+                Else
+                    rstmovnew.MCRED = 0
+                End If
+                If gestion.Count > 0 Then
+                    rstmovnew.CIERRE = gestion(0)("FCorte")
+                End If
+                MainDSO.MovAcumulado.Rows.Add(rstmovnew)
             End If
         Next
         'Se manda a mostrar el reporte con los resultados del rst
-        If MainDSO.Tables("MovAcumulado").Rows.Count > 0 Then
+        If MainDSO.MovAcumulado.Rows.Count > 0 Then
             Dim view As New DataView
-            view.Table = MainDSO.Tables("MovAcumulado")
+            view.Table = MainDSO.MovAcumulado
             view.Sort = "Banko"
             ReportViewer1.LocalReport.DataSources.Clear()
             ReportViewer1.LocalReport.SetParameters(New Microsoft.Reporting.WinForms.ReportParameter("NombreBk", Estado))

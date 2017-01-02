@@ -8,18 +8,19 @@ Friend Class Autentificacion
     Private municipiosView As New DataView
     Private bankos As New DataView
     Private filter As String = ""
-	Private Sub bk_KeyPress(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyPressEventArgs) Handles bk.KeyPress
-		Dim KeyAscii As Short = Asc(eventArgs.KeyChar)
-		If (KeyAscii = 13) Then
-			Command1.Focus()
-		Else
-			KeyAscii = 0
-		End If
-		eventArgs.KeyChar = Chr(KeyAscii)
-		If KeyAscii = 0 Then
-			eventArgs.Handled = True
-		End If
-	End Sub
+
+    Private Sub bk_KeyPress(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyPressEventArgs) Handles bk.KeyPress
+        Dim KeyAscii As Short = Asc(eventArgs.KeyChar)
+        If (KeyAscii = 13) Then
+            Command1.Focus()
+        Else
+            KeyAscii = 0
+        End If
+        eventArgs.KeyChar = Chr(KeyAscii)
+        If KeyAscii = 0 Then
+            eventArgs.Handled = True
+        End If
+    End Sub
 	
 	Private Sub clave_KeyPress(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyPressEventArgs) Handles clave.KeyPress
 		Dim KeyAscii As Short = Asc(eventArgs.KeyChar)
@@ -111,6 +112,9 @@ Friend Class Autentificacion
                     ElseIf ForceSelect And bk.Text.Trim = "" Then
                         MsgBox("Debe seleccionar un bankomunal de la lista.")
                     Else
+                        pais.DataSource = Nothing
+                        estado.DataSource = Nothing
+                        municipio.DataSource = Nothing
                         Menu1.Show()
                         Me.Close()
                     End If
@@ -158,9 +162,9 @@ Friend Class Autentificacion
         municipiosView.Table = MainDSO.TblMunicipios
         municipiosView.Sort = "ID"
         codi = ""
-        TblPaisesBindingSource.DataSource = MainDSO.TblPaises
-        TblEstadosBindingSource.DataSource = estadosView
-        TblMunicipiosBindingSource.DataSource = municipiosView
+        setBindingSource(pais, MainDSO.TblPaises, TblPaisesBindingSource)
+        setBindingSource(estado, estadosView, TblEstadosBindingSource)
+        setBindingSource(municipio, municipiosView, TblMunicipiosBindingSource)
         UpdateBankos()
     End Sub
     Private Sub UpdateBankos()
