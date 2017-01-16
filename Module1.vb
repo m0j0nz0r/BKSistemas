@@ -1,6 +1,7 @@
 Option Strict Off
 Option Explicit On
 Module Module1
+    Public openFile As String
     Public ForceSelect As Boolean
     Public FilterCode As String = ""
     Public user As String
@@ -249,7 +250,7 @@ Module Module1
         End Try
         'checks if being started from a file. If so, it loads only file data.
 
-        
+
         'Filter data
         If Not ForceSelect And FilterCode <> "" Then 'No point in filtering twice or filtering with no filter
             FilterTables(FilterCode, MainDSO)
@@ -994,5 +995,12 @@ Module Module1
             End If
         End If
         Return filter
+    End Function
+    Public Function getDbValue(reader As OleDb.OleDbDataReader, field As String)
+        If (IsDBNull(reader(field))) Then
+            Throw New Exception("El campo '" & field & "' en la tabla '" & reader.GetSchemaTable().Rows(0)("BaseTableName") & "' tiene un valor nulo, por favor corrija el archivo e intente de nuevo." & vbNewLine & "Archivo: " & openFile)
+        Else
+            Return reader(field)
+        End If
     End Function
 End Module

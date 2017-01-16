@@ -211,380 +211,387 @@
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
         'Establecer equivalencias de datos
-        Dim tables As String() = {"Gestion",
-                                  "TblBanko",
-                                  "TblBenef",
-                                  "TblCredito",
-                                  "TblFiadores",
-                                  "TblLibroIE",
-                                  "TblSocios"}
-        For Each file As BKfile In fileList
-            Using conn As New OleDb.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & file.path)
-                For Each bk As Banko In file.BKS
-                    If bk.Checked = CheckState.Checked Then
-                        For Each t As String In tables
-                            Dim command As String = "SELECT * FROM " & t
-                            Select Case t
-                                Case "Gestion"
-                                    command += " WHERE CodBK = '" + bk.CodBk + "'"
-                                Case "TblBanko"
-                                    command += " WHERE CodBk='" + bk.CodBk + "'"
-                                Case "TblBenef"
-                                    command += " WHERE CodBK = '" + bk.CodBk + "'"
-                                Case "TblCredito"
-                                    command += " WHERE VBK = '" + bk.CodBk + "'"
-                                Case "TblFiadores"
-                                    command += " WHERE CodBK = '" + bk.CodBk + "'"
-                                Case "TblLibroIE"
-                                    command += " WHERE IdBK = '" + bk.CodBk + "'"
-                                Case "TblSocios"
-                                    command += " WHERE CodBK = '" + bk.CodBk + "'"
-                            End Select
-                            If conn.State <> ConnectionState.Open Then conn.Open()
-                            Dim objCommand As New OleDb.OleDbCommand(command, conn)
-                            Dim reader As OleDb.OleDbDataReader = objCommand.ExecuteReader
-                            While reader.Read
-                                Dim add As Boolean = True
+        Try
+            MainDSO.AcceptChanges()
+            Dim tables As String() = {"Gestion",
+                                      "TblBanko",
+                                      "TblBenef",
+                                      "TblCredito",
+                                      "TblFiadores",
+                                      "TblLibroIE",
+                                      "TblSocios"}
+            For Each file As BKfile In fileList
+                Using conn As New OleDb.OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & file.path)
+                    For Each bk As Banko In file.BKS
+                        If bk.Checked = CheckState.Checked Then
+                            For Each t As String In tables
+                                Dim command As String = "SELECT * FROM " & t
                                 Select Case t
                                     Case "Gestion"
-                                        Dim row As MainDS.GestionRow
-                                        If MainDSO.Gestion.Rows.Contains({reader("idgestion"), reader("codBK")}) Then
-                                            Continue While
-                                            row = MainDSO.Gestion.Rows.Find({reader("idgestion"), reader("codBK")})
-                                            If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
-                                                              "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
-                                                              "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
-                                                              "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
-                                                Continue While
-                                            End If
-                                            add = False
-                                        Else
-                                            row = MainDSO.Gestion.NewGestionRow()
-                                        End If
-
-                                        row.DEXCAPITAL = CDbl(reader("DEXCAPITAL"))
-                                        row.DEXINTERES = CDbl(reader("DEXINTERES"))
-                                        row.idgestion = CInt(reader("idgestion"))
-                                        row.codBK = reader("codBK")
-                                        row.Finicio = CDate(reader("Finicio"))
-                                        row.FCorte = CDate(reader("FCorte"))
-                                        row.NTSM = CInt(reader("NTSM"))
-                                        row.NTSMACUM = CInt(reader("NTSMACUM"))
-                                        row.NTSMR = CInt(reader("NTSMR"))
-                                        row.NTSMRACUM = CInt(reader("NTSMRACUM"))
-                                        row.NTSMA = CInt(reader("NTSMA"))
-                                        row.NTSF = (CInt(reader("NTSF")))
-                                        row.NTSFACUM = CInt(reader("NTSFACUM"))
-                                        row.NTSFR = CInt(reader("NTSFR"))
-                                        row.NTSFRACUM = CInt(reader("NTSFRACUM"))
-                                        row.NTSFA = CInt(reader("NTSFA"))
-                                        row.qVCt = CInt(reader("qVCt"))
-                                        row.qVCACUMt = CInt(reader("qVCACUMt"))
-                                        row.ZVC = CDbl(reader("ZVC"))
-                                        row.ZVCACUM = CDbl(reader("ZVCACUM"))
-                                        row.qCON = CDbl(reader("qCON"))
-                                        row.qCONACUM = CDbl(reader("qCONACUM"))
-                                        row.qCOR = CDbl(reader("qCOR"))
-                                        row.qCORACUM = CDbl(reader("qCORACUM"))
-                                        row.ZCON = CDbl(reader("ZCON"))
-                                        row.ZCONACUM = CDbl(reader("ZCONACUM"))
-                                        row.ZCOR = CDbl(reader("ZCOR"))
-                                        row.ZCORACUM = CDbl(reader("ZCORACUM"))
-                                        row.qLCt = CInt(reader("qLCt"))
-                                        row.qLCACUMt = CInt(reader("qLCACUMt"))
-                                        row.ZLC = CDbl(reader("ZLC"))
-                                        row.ZLCACUM = CDbl(reader("ZLCACUM"))
-                                        row.qRI = CInt(reader("qRI"))
-                                        row.ZPC = CDbl(reader("ZPC"))
-                                        row.ZPCACUM = CDbl(reader("ZPCACUM"))
-                                        row.MPRECUP = CDbl(reader("MPRECUP"))
-                                        row.MPRECUP30 = CDbl(reader("MPRECUP30"))
-                                        row.MPRECUP60 = CDbl(reader("MPRECUP60"))
-                                        row.MPRECUP90 = CDbl(reader("MPRECUP90"))
-                                        row.ZICB = CDbl(reader("ZICB"))
-                                        row.ZICBACUM = CDbl(reader("ZICBACUM"))
-                                        row.ZOR = CDbl(reader("ZOR"))
-                                        row.ZORACUM = CDbl(reader("ZORACUM"))
-                                        row.ZMO = CDbl(reader("ZMO"))
-                                        row.ZMOACUM = CDbl(reader("ZMOACUM"))
-                                        row.ZOI = CDbl(reader("ZOI"))
-                                        row.ZOIACUM = CDbl(reader("ZOIACUM"))
-                                        row.ZRICB = CDbl(reader("ZRICB"))
-                                        row.ZRICBACUM = CDbl(reader("ZRICBACUM"))
-                                        row.ZEG = CDbl(reader("ZEG"))
-                                        row.ZEGACUM = CDbl(reader("ZEGACUM"))
-                                        row.ZPEX = CDbl(reader("ZPEX"))
-                                        row.ZPEXACUM = CDbl(reader("ZPEXACUM"))
-                                        row.ZIEX = CDbl(reader("ZIEX"))
-                                        row.ZIEXACUM = CDbl(reader("ZIEXACUM"))
-                                        row.ZDEX = CDbl(reader("ZDEX"))
-                                        row.ZDEXACUM = CDbl(reader("ZDEXACUM"))
-                                        row.ZMEX = CDbl(reader("ZMEX"))
-                                        row.ZMEXACUM = CDbl(reader("ZMEXACUM"))
-                                        row.ZUR = CDbl(reader("ZUR"))
-                                        row.ZURACUM = CDbl(reader("ZURACUM"))
-                                        row.GR = CDbl(reader("GR"))
-                                        row.MRFt = CDbl(reader("MRFt"))
-                                        row.ZBA = CDbl(reader("ZBA"))
-                                        row.SAFGASTOS = CDbl(reader("SAFGASTOS"))
-                                        row.MTCPAGAR = CDbl(reader("MTCPAGAR"))
-                                        row.DECIERRE = CDbl(reader("DECIERRE"))
-                                        row.ZMONTOGNORep = CDbl(reader("ZMONTOGNORep"))
-                                        row.GestionMBACUM = CDbl(reader("GestionMBACUM"))
-                                        row.GestionMB = CDbl(reader("GestionMB"))
-                                        row.ZMRFACUM = CDbl(reader("ZMRFACUM"))
-                                        row.ZMRF = CDbl(reader("ZMRF"))
-                                        row.ZGestionMNeto = CDbl(reader("ZGestionMNeto"))
-                                        row.ZGestionMNetoACUM = CDbl(reader("ZGestionMNetoACUM"))
-                                        row.ZICp = CDbl(reader("ZICp"))
-                                        row.ZICpACUM = CDbl(reader("ZICpACUM"))
-                                        row.ZECp = CDbl(reader("ZECp"))
-                                        row.ZECpACUM = CDbl(reader("ZECpACUM"))
-                                        row.ZDO1 = CDbl(reader("ZDO1"))
-                                        row.ZDO1ACUM = CDbl(reader("ZDO1ACUM"))
-                                        row.ZDO2 = CDbl(reader("ZDO2"))
-                                        row.ZDO2ACUM = CDbl(reader("ZDO2ACUM"))
-                                        row.ZBAACUM = CDbl(reader("ZBAACUM"))
-                                        row.RESTCAPS = CDbl(reader("RESTCAPS"))
-                                        row.ZIFG1 = CDbl(reader("ZIFG1"))
-                                        row.ZIFG1ACUM = CDbl(reader("ZIFG1ACUM"))
-                                        row.ZIFG2 = CDbl(reader("ZIFG2"))
-                                        row.ZIFG2ACUM = CDbl(reader("ZIFG2ACUM"))
-                                        row.ZGBK1 = CDbl(reader("ZGBK1"))
-                                        row.ZGBK1ACUM = CDbl(reader("ZGBK1ACUM"))
-                                        row.ZGBK2 = CDbl(reader("ZGBK2"))
-                                        row.ZGBK2ACUM = CDbl(reader("ZGBK2ACUM"))
-                                        If add Then MainDSO.Gestion.AddGestionRow(row)
-
+                                        command += " WHERE CodBK = '" + bk.CodBk + "'"
                                     Case "TblBanko"
-                                        Dim row As MainDS.TblBankoRow
-                                        Dim Proyecto As Integer = GetProyecto(reader)
-                                        If Proyecto < 0 Then Continue While
-                                        Dim Pais As Integer = GetPais(reader("Pais"))
-                                        If Pais < 0 Then Continue While
-                                        Dim Estado As Integer = GetEstado(reader("Estado"), Pais)
-                                        If Estado < 0 Then Continue While
-                                        Dim Municipio As Integer = GetMunicipio(reader("Municipio"), Estado)
-                                        If Municipio < 0 Then Continue While
-                                        If MainDSO.TblBanko.Rows.Contains(reader("CodBk")) Then
-                                            Continue While
-                                            row = MainDSO.TblBanko.FindByCodBk(reader("CodBk"))
-                                            If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
-                                                               "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
-                                                               "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
-                                                               "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
-                                                Continue While
-                                            End If
-                                            add = False
-                                        Else
-                                            row = MainDSO.TblBanko.NewTblBankoRow
-                                        End If
-                                        row.CodBk = reader("CodBk")
-                                        row.NombreBk = reader("NombreBk")
-                                        row.Proyecto = Proyecto
-                                        row.Municipio = Municipio
-                                        row.PRI = CInt(reader("PRI"))
-                                        row.VCR = CInt(reader("VCR"))
-                                        row.PRFG = CInt(reader("PRFG"))
-                                        row.PRGR = CInt(reader("PRGR"))
-                                        row.ICCFG = CInt(reader("ICCFG"))
-                                        row.SaldoBk = CDbl(reader("SaldoBk"))
-                                        row.FechaI = CDate(reader("FechaI"))
-                                        row.Val_nominal = CInt(reader("Val_nominal"))
-                                        row.moneda = reader("moneda")
-                                        row.TasaIO1 = CDbl(reader("TasaIO1"))
-                                        row.TasaIO2 = CDbl(reader("TasaIO2"))
-                                        row.TasaM1 = CDbl(reader("TasaM1"))
-                                        row.TasaM2 = CDbl(reader("TasaM2"))
-                                        row.MontoMaximo = CDbl(reader("MontoMaximo"))
-                                        row._Caps_Creditos = CDbl(reader("Caps-Creditos"))
-                                        row.GarantiaFiador = CInt(reader("GarantiaFiador"))
-                                        row.SAFGASTOS = CDbl(reader("SAFGASTOS"))
-                                        row.Plazo = CInt(reader("Plazo"))
-                                        row.PRFP = CInt(reader("PRFP"))
-                                        If add Then MainDSO.TblBanko.AddTblBankoRow(row)
+                                        command += " WHERE CodBk='" + bk.CodBk + "'"
                                     Case "TblBenef"
-                                        Dim row As MainDS.TblBenefRow
-                                        If MainDSO.TblBenef.Rows.Contains(reader("IdReq")) Then
-                                            Continue While
-                                            row = MainDSO.TblBenef.Rows.Find(reader("IdReq"))
-                                            If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
-                                                              "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
-                                                              "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
-                                                              "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
-                                                Continue While
-                                            End If
-                                            add = False
-                                        Else
-                                            row = MainDSO.TblBenef.NewTblBenefRow
-                                        End If
-                                        row.IdReq = CInt(reader("Idreq"))
-                                        row.VinSocio = reader("VinSocio")
-                                        row.NombresB = reader("NombresB")
-                                        row.CIB = reader("CIB")
-                                        row.FechaNace = CDate(reader("FechaNace"))
-                                        row.Direccion = reader("Direccion")
-                                        row.Oficio = reader("Oficio")
-                                        row.Parentesco = reader("Parentesco")
-                                        row.sexo = reader("sexo")
-                                        row.CodBK = reader("CodBK")
-                                        If add Then MainDSO.TblBenef.AddTblBenefRow(row)
+                                        command += " WHERE CodBK = '" + bk.CodBk + "'"
                                     Case "TblCredito"
-                                        Dim row As MainDS.TblCreditoRow
-                                        If MainDSO.TblCredito.Rows.Contains({reader("VBK"), reader("NoCredito")}) Then
-                                            Continue While
-                                            row = MainDSO.TblCredito.Rows.Find({reader("VBK"), reader("NoCredito")})
-                                            If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
-                                                              "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
-                                                              "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
-                                                              "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
-                                                Continue While
-                                            End If
-                                            add = False
-                                        Else
-                                            row = MainDSO.TblCredito.NewTblCreditoRow
-                                        End If
-
-                                        row.IdOp = 0
-                                        row.VCI = reader("VCI")
-                                        row.VBK = reader("VBK")
-                                        row.NoCredito = CInt(reader("NoCredito"))
-                                        row.Fecha = CDate(reader("Fecha"))
-                                        row.FechaVence = CDate(reader("FechaVence"))
-                                        row.MontoCred = CDbl(reader("MontoCred"))
-                                        row.Tipo = reader("Tipo")
-                                        row.Saldo = CDbl(reader("Saldo"))
-                                        row.IntDEX = reader("IntDEX")
-                                        row.MontoIntDEX = reader("IntDEX")
-                                        row.MoraDEX = reader("MoraDEX")
-                                        row.Cancelado = reader("Cancelado")
-                                        If Not reader.IsDBNull(reader.GetOrdinal("FechaCancela")) Then
-                                            row.FechaCancela = CDate(reader("FechaCancela"))
-                                        End If
-                                        row.sexo = reader("sexo")
-                                        row.deuda = CDbl(reader("deuda"))
-                                        row.incobrable = reader("incobrable")
-                                        row.TasaIO = reader("TasaIO")
-                                        row.TasaMO = reader("TasaMO")
-                                        row.Riezgo = reader("Riezgo")
-                                        row.Frecuencia = reader("Frecuencia")
-                                        row.Clase = reader("Clase")
-                                        If add Then MainDSO.TblCredito.AddTblCreditoRow(row)
+                                        command += " WHERE VBK = '" + bk.CodBk + "'"
                                     Case "TblFiadores"
-                                        Dim row As MainDS.TblFiadoresRow
-                                        If MainDSO.TblFiadores.Rows.Contains({reader("CodBk"), reader("NoCredito"), reader("CI")}) Then
-                                            Continue While
-                                            row = MainDSO.TblFiadores.Rows.Find({reader("CodBk"), reader("NoCredito"), reader("CI")})
-                                            If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
-                                                              "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
-                                                              "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
-                                                              "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
-                                                Continue While
-                                            End If
-                                            add = False
-                                        Else
-                                            row = MainDSO.TblFiadores.NewTblFiadoresRow
-                                        End If
-
-                                        row.CodBk = reader("CodBk")
-                                        row.NoCredito = CInt(reader("NoCredito"))
-                                        row.CI = reader("CI")
-                                        row.CapsGarantia = CDbl(reader("CapsGarantia"))
-                                        row.porcentajegarantizado = CDbl(reader("porcentajegarantizado"))
-                                        If Not reader.IsDBNull(reader.GetOrdinal("Observacion")) Then
-                                            row.Observacion = reader("Observacion")
-                                        End If
-                                        If add Then MainDSO.TblFiadores.AddTblFiadoresRow(row)
+                                        command += " WHERE CodBK = '" + bk.CodBk + "'"
                                     Case "TblLibroIE"
-                                        Dim row As MainDS.TblLibroIERow
-                                        If MainDSO.TblLibroIE.Rows.Contains({reader("IdBK"), reader("Fecha"), reader("NoRecibo"), reader("CodOpe")}) Then
-                                            Continue While
-                                            row = MainDSO.TblLibroIE.Rows.Find({reader("IdBK"), reader("Fecha"), reader("NoRecibo"), reader("CodOpe")})
-                                            If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
-                                                              "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
-                                                              "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
-                                                              "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
-                                                Continue While
-                                            End If
-                                            add = False
-                                        Else
-                                            row = MainDSO.TblLibroIE.NewTblLibroIERow
-                                        End If
-                                        Dim tblSchema As DataTable = reader.GetSchemaTable
-                                        tblSchema.PrimaryKey = {tblSchema.Columns("ColumnName")}
-                                        row.IdReg = CInt(reader("IdReg"))
-                                        If reader.IsDBNull(tblSchema.Rows.Find("IdOpe")("ColumnOrdinal")) Then
-                                            row.IdOpe = ""
-                                        Else
-                                            row.IdOpe = reader("IdOpe")
-                                        End If
-                                        row.IdBK = reader("IdBK")
-                                        row.Fecha = CDate(reader("Fecha"))
-                                        row.NoCredito = CInt(reader("NoCredito"))
-                                        row.NoRecibo = CInt(reader("NoRecibo"))
-                                        row.CI = reader("CI")
-                                        row.CodOpe = reader("CodOpe")
-                                        row.Descripcion = reader("Descripcion")
-                                        row.Ingreso = CDbl(reader("Ingreso"))
-                                        row.Egreso = CDbl(reader("Egreso"))
-                                        row.Saldo = CDbl(reader("Saldo"))
-                                        row.Bloqueo = CByte(reader("Bloqueo"))
-                                        row.Anulado = 0
-                                        If add Then MainDSO.TblLibroIE.AddTblLibroIERow(row)
-
+                                        command += " WHERE IdBK = '" + bk.CodBk + "'"
                                     Case "TblSocios"
-                                        Dim row As MainDS.TblSociosRow
-                                        If MainDSO.TblSocios.Rows.Contains(reader("CI")) Then
-                                            Continue While
-                                            row = MainDSO.TblSocios.Rows.Find(reader("CI"))
-                                            If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
-                                                              "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
-                                                              "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
-                                                              "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
-                                                Continue While
-                                            End If
-                                            add = False
-                                        Else
-                                            row = MainDSO.TblSocios.NewTblSociosRow
-                                        End If
-
-                                        row.CI = reader("CI")
-                                        row.CodBk = reader("CodBk")
-                                        row.Nombres = reader("Nombres")
-                                        row.Sexo = reader("Sexo")
-                                        If Not reader.IsDBNull(reader.GetOrdinal("FNace")) Then
-                                            row.FNace = CDate(reader("FNace"))
-                                        End If
-                                        If Not reader.IsDBNull(reader.GetOrdinal("Profesion")) Then
-                                            row.Profesion = reader("Profesion")
-                                        End If
-                                        If Not reader.IsDBNull(reader.GetOrdinal("Direccion")) Then
-                                            row.Direccion = reader("Direccion")
-                                        End If
-                                        row.Telefono = reader("Telefono")
-                                        row.FIngreso = CDate(reader("FIngreso"))
-                                        row.AcumMoras = CInt(reader("AcumMoras"))
-                                        row.Estatus = CInt(reader("Estatus"))
-                                        row.Deuda = CDbl(reader("Deuda"))
-                                        If Not reader.IsDBNull(reader.GetOrdinal("Fretiro")) Then
-                                            row.Fretiro = CDate(reader("Fretiro"))
-                                        End If
-                                        row.cap = CInt(reader("cap"))
-                                        row.CapLiq = CInt(reader("CapLiq"))
-                                        If Not reader.IsDBNull(reader.GetOrdinal("Email")) Then
-                                            row.Email = reader("Email")
-                                        End If
-                                        If add Then MainDSO.TblSocios.AddTblSociosRow(row)
+                                        command += " WHERE CodBK = '" + bk.CodBk + "'"
                                 End Select
-                            End While
-                        Next
-                    End If
+                                If conn.State <> ConnectionState.Open Then conn.Open()
+                                openFile = conn.DataSource
+                                Dim objCommand As New OleDb.OleDbCommand(command, conn)
+                                Dim reader As OleDb.OleDbDataReader = objCommand.ExecuteReader(CommandBehavior.KeyInfo)
+                                While reader.Read
+                                    Dim add As Boolean = True
+                                    Select Case t
+                                        Case "Gestion"
+                                            Dim row As MainDS.GestionRow
+                                            If MainDSO.Gestion.Rows.Contains({getDbValue(reader, "idgestion"), getDbValue(reader, "codBK")}) Then
+                                                Continue While
+                                                row = MainDSO.Gestion.Rows.Find({getDbValue(reader, "idgestion"), getDbValue(reader, "codBK")})
+                                                If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
+                                                                  "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
+                                                                  "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
+                                                                  "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
+                                                    Continue While
+                                                End If
+                                                add = False
+                                            Else
+                                                row = MainDSO.Gestion.NewGestionRow()
+                                            End If
 
-                Next
-                conn.Close()
-            End Using
+                                            row.DEXCAPITAL = CDbl(getDbValue(reader, "DEXCAPITAL"))
+                                            row.DEXINTERES = CDbl(getDbValue(reader, "DEXINTERES"))
+                                            row.idgestion = CInt(getDbValue(reader, "idgestion"))
+                                            row.codBK = getDbValue(reader, "codBK")
+                                            row.Finicio = CDate(getDbValue(reader, "Finicio"))
+                                            row.FCorte = CDate(getDbValue(reader, "FCorte"))
+                                            row.NTSM = CInt(getDbValue(reader, "NTSM"))
+                                            row.NTSMACUM = CInt(getDbValue(reader, "NTSMACUM"))
+                                            row.NTSMR = CInt(getDbValue(reader, "NTSMR"))
+                                            row.NTSMRACUM = CInt(getDbValue(reader, "NTSMRACUM"))
+                                            row.NTSMA = CInt(getDbValue(reader, "NTSMA"))
+                                            row.NTSF = (CInt(getDbValue(reader, "NTSF")))
+                                            row.NTSFACUM = CInt(getDbValue(reader, "NTSFACUM"))
+                                            row.NTSFR = CInt(getDbValue(reader, "NTSFR"))
+                                            row.NTSFRACUM = CInt(getDbValue(reader, "NTSFRACUM"))
+                                            row.NTSFA = CInt(getDbValue(reader, "NTSFA"))
+                                            row.qVCt = CInt(getDbValue(reader, "qVCt"))
+                                            row.qVCACUMt = CInt(getDbValue(reader, "qVCACUMt"))
+                                            row.ZVC = CDbl(getDbValue(reader, "ZVC"))
+                                            row.ZVCACUM = CDbl(getDbValue(reader, "ZVCACUM"))
+                                            row.qCON = CDbl(getDbValue(reader, "qCON"))
+                                            row.qCONACUM = CDbl(getDbValue(reader, "qCONACUM"))
+                                            row.qCOR = CDbl(getDbValue(reader, "qCOR"))
+                                            row.qCORACUM = CDbl(getDbValue(reader, "qCORACUM"))
+                                            row.ZCON = CDbl(getDbValue(reader, "ZCON"))
+                                            row.ZCONACUM = CDbl(getDbValue(reader, "ZCONACUM"))
+                                            row.ZCOR = CDbl(getDbValue(reader, "ZCOR"))
+                                            row.ZCORACUM = CDbl(getDbValue(reader, "ZCORACUM"))
+                                            row.qLCt = CInt(getDbValue(reader, "qLCt"))
+                                            row.qLCACUMt = CInt(getDbValue(reader, "qLCACUMt"))
+                                            row.ZLC = CDbl(getDbValue(reader, "ZLC"))
+                                            row.ZLCACUM = CDbl(getDbValue(reader, "ZLCACUM"))
+                                            row.qRI = CInt(getDbValue(reader, "qRI"))
+                                            row.ZPC = CDbl(getDbValue(reader, "ZPC"))
+                                            row.ZPCACUM = CDbl(getDbValue(reader, "ZPCACUM"))
+                                            row.MPRECUP = CDbl(getDbValue(reader, "MPRECUP"))
+                                            row.MPRECUP30 = CDbl(getDbValue(reader, "MPRECUP30"))
+                                            row.MPRECUP60 = CDbl(getDbValue(reader, "MPRECUP60"))
+                                            row.MPRECUP90 = CDbl(getDbValue(reader, "MPRECUP90"))
+                                            row.ZICB = CDbl(getDbValue(reader, "ZICB"))
+                                            row.ZICBACUM = CDbl(getDbValue(reader, "ZICBACUM"))
+                                            row.ZOR = CDbl(getDbValue(reader, "ZOR"))
+                                            row.ZORACUM = CDbl(getDbValue(reader, "ZORACUM"))
+                                            row.ZMO = CDbl(getDbValue(reader, "ZMO"))
+                                            row.ZMOACUM = CDbl(getDbValue(reader, "ZMOACUM"))
+                                            row.ZOI = CDbl(getDbValue(reader, "ZOI"))
+                                            row.ZOIACUM = CDbl(getDbValue(reader, "ZOIACUM"))
+                                            row.ZRICB = CDbl(getDbValue(reader, "ZRICB"))
+                                            row.ZRICBACUM = CDbl(getDbValue(reader, "ZRICBACUM"))
+                                            row.ZEG = CDbl(getDbValue(reader, "ZEG"))
+                                            row.ZEGACUM = CDbl(getDbValue(reader, "ZEGACUM"))
+                                            row.ZPEX = CDbl(getDbValue(reader, "ZPEX"))
+                                            row.ZPEXACUM = CDbl(getDbValue(reader, "ZPEXACUM"))
+                                            row.ZIEX = CDbl(getDbValue(reader, "ZIEX"))
+                                            row.ZIEXACUM = CDbl(getDbValue(reader, "ZIEXACUM"))
+                                            row.ZDEX = CDbl(getDbValue(reader, "ZDEX"))
+                                            row.ZDEXACUM = CDbl(getDbValue(reader, "ZDEXACUM"))
+                                            row.ZMEX = CDbl(getDbValue(reader, "ZMEX"))
+                                            row.ZMEXACUM = CDbl(getDbValue(reader, "ZMEXACUM"))
+                                            row.ZUR = CDbl(getDbValue(reader, "ZUR"))
+                                            row.ZURACUM = CDbl(getDbValue(reader, "ZURACUM"))
+                                            row.GR = CDbl(getDbValue(reader, "GR"))
+                                            row.MRFt = CDbl(getDbValue(reader, "MRFt"))
+                                            row.ZBA = CDbl(getDbValue(reader, "ZBA"))
+                                            row.SAFGASTOS = CDbl(getDbValue(reader, "SAFGASTOS"))
+                                            row.MTCPAGAR = CDbl(getDbValue(reader, "MTCPAGAR"))
+                                            row.DECIERRE = CDbl(getDbValue(reader, "DECIERRE"))
+                                            row.ZMONTOGNORep = CDbl(getDbValue(reader, "ZMONTOGNORep"))
+                                            row.GestionMBACUM = CDbl(getDbValue(reader, "GestionMBACUM"))
+                                            row.GestionMB = CDbl(getDbValue(reader, "GestionMB"))
+                                            row.ZMRFACUM = CDbl(getDbValue(reader, "ZMRFACUM"))
+                                            row.ZMRF = CDbl(getDbValue(reader, "ZMRF"))
+                                            row.ZGestionMNeto = CDbl(getDbValue(reader, "ZGestionMNeto"))
+                                            row.ZGestionMNetoACUM = CDbl(getDbValue(reader, "ZGestionMNetoACUM"))
+                                            row.ZICp = CDbl(getDbValue(reader, "ZICp"))
+                                            row.ZICpACUM = CDbl(getDbValue(reader, "ZICpACUM"))
+                                            row.ZECp = CDbl(getDbValue(reader, "ZECp"))
+                                            row.ZECpACUM = CDbl(getDbValue(reader, "ZECpACUM"))
+                                            row.ZDO1 = CDbl(getDbValue(reader, "ZDO1"))
+                                            row.ZDO1ACUM = CDbl(getDbValue(reader, "ZDO1ACUM"))
+                                            row.ZDO2 = CDbl(getDbValue(reader, "ZDO2"))
+                                            row.ZDO2ACUM = CDbl(getDbValue(reader, "ZDO2ACUM"))
+                                            row.ZBAACUM = CDbl(getDbValue(reader, "ZBAACUM"))
+                                            row.RESTCAPS = CDbl(getDbValue(reader, "RESTCAPS"))
+                                            row.ZIFG1 = CDbl(getDbValue(reader, "ZIFG1"))
+                                            row.ZIFG1ACUM = CDbl(getDbValue(reader, "ZIFG1ACUM"))
+                                            row.ZIFG2 = CDbl(getDbValue(reader, "ZIFG2"))
+                                            row.ZIFG2ACUM = CDbl(getDbValue(reader, "ZIFG2ACUM"))
+                                            row.ZGBK1 = CDbl(getDbValue(reader, "ZGBK1"))
+                                            row.ZGBK1ACUM = CDbl(getDbValue(reader, "ZGBK1ACUM"))
+                                            row.ZGBK2 = CDbl(getDbValue(reader, "ZGBK2"))
+                                            row.ZGBK2ACUM = CDbl(getDbValue(reader, "ZGBK2ACUM"))
+                                            If add Then MainDSO.Gestion.AddGestionRow(row)
 
-        Next
+                                        Case "TblBanko"
+                                            Dim row As MainDS.TblBankoRow
+                                            Dim Proyecto As Integer = GetProyecto(reader)
+                                            If Proyecto < 0 Then Continue While
+                                            Dim Pais As Integer = GetPais(getDbValue(reader, "Pais"))
+                                            If Pais < 0 Then Continue While
+                                            Dim Estado As Integer = GetEstado(getDbValue(reader, "Estado"), Pais)
+                                            If Estado < 0 Then Continue While
+                                            Dim Municipio As Integer = GetMunicipio(getDbValue(reader, "Municipio"), Estado)
+                                            If Municipio < 0 Then Continue While
+                                            If MainDSO.TblBanko.Rows.Contains(getDbValue(reader, "CodBk")) Then
+                                                Continue While
+                                                row = MainDSO.TblBanko.FindByCodBk(getDbValue(reader, "CodBk"))
+                                                If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
+                                                                   "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
+                                                                   "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
+                                                                   "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
+                                                    Continue While
+                                                End If
+                                                add = False
+                                            Else
+                                                row = MainDSO.TblBanko.NewTblBankoRow
+                                            End If
+                                            row.CodBk = getDbValue(reader, "CodBk")
+                                            row.NombreBk = getDbValue(reader, "NombreBk")
+                                            row.Proyecto = Proyecto
+                                            row.Municipio = Municipio
+                                            row.PRI = CInt(getDbValue(reader, "PRI"))
+                                            row.VCR = CInt(getDbValue(reader, "VCR"))
+                                            row.PRFG = CInt(getDbValue(reader, "PRFG"))
+                                            row.PRGR = CInt(getDbValue(reader, "PRGR"))
+                                            row.ICCFG = CInt(getDbValue(reader, "ICCFG"))
+                                            row.SaldoBk = CDbl(getDbValue(reader, "SaldoBk"))
+                                            row.FechaI = CDate(getDbValue(reader, "FechaI"))
+                                            row.Val_nominal = CInt(getDbValue(reader, "Val_nominal"))
+                                            row.moneda = getDbValue(reader, "moneda")
+                                            row.TasaIO1 = CDbl(getDbValue(reader, "TasaIO1"))
+                                            row.TasaIO2 = CDbl(getDbValue(reader, "TasaIO2"))
+                                            row.TasaM1 = CDbl(getDbValue(reader, "TasaM1"))
+                                            row.TasaM2 = CDbl(getDbValue(reader, "TasaM2"))
+                                            row.MontoMaximo = CDbl(getDbValue(reader, "MontoMaximo"))
+                                            row._Caps_Creditos = CDbl(getDbValue(reader, "Caps-Creditos"))
+                                            row.GarantiaFiador = CInt(getDbValue(reader, "GarantiaFiador"))
+                                            row.SAFGASTOS = CDbl(getDbValue(reader, "SAFGASTOS"))
+                                            row.Plazo = CInt(getDbValue(reader, "Plazo"))
+                                            row.PRFP = CInt(getDbValue(reader, "PRFP"))
+                                            If add Then MainDSO.TblBanko.AddTblBankoRow(row)
+                                        Case "TblBenef"
+                                            Dim row As MainDS.TblBenefRow
+                                            If MainDSO.TblBenef.Rows.Contains(getDbValue(reader, "IdReq")) Then
+                                                Continue While
+                                                row = MainDSO.TblBenef.Rows.Find(getDbValue(reader, "IdReq"))
+                                                If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
+                                                                  "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
+                                                                  "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
+                                                                  "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
+                                                    Continue While
+                                                End If
+                                                add = False
+                                            Else
+                                                row = MainDSO.TblBenef.NewTblBenefRow
+                                            End If
+                                            row.IdReq = CInt(getDbValue(reader, "Idreq"))
+                                            row.VinSocio = getDbValue(reader, "VinSocio")
+                                            row.NombresB = getDbValue(reader, "NombresB")
+                                            row.CIB = getDbValue(reader, "CIB")
+                                            row.FechaNace = CDate(getDbValue(reader, "FechaNace"))
+                                            row.Direccion = getDbValue(reader, "Direccion")
+                                            row.Oficio = getDbValue(reader, "Oficio")
+                                            row.Parentesco = getDbValue(reader, "Parentesco")
+                                            row.sexo = getDbValue(reader, "sexo")
+                                            row.CodBK = getDbValue(reader, "CodBK")
+                                            If add Then MainDSO.TblBenef.AddTblBenefRow(row)
+                                        Case "TblCredito"
+                                            Dim row As MainDS.TblCreditoRow
+                                            If MainDSO.TblCredito.Rows.Contains({getDbValue(reader, "VBK"), getDbValue(reader, "NoCredito")}) Then
+                                                Continue While
+                                                row = MainDSO.TblCredito.Rows.Find({getDbValue(reader, "VBK"), getDbValue(reader, "NoCredito")})
+                                                If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
+                                                                  "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
+                                                                  "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
+                                                                  "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
+                                                    Continue While
+                                                End If
+                                                add = False
+                                            Else
+                                                row = MainDSO.TblCredito.NewTblCreditoRow
+                                            End If
+
+                                            row.IdOp = 0
+                                            row.VCI = getDbValue(reader, "VCI")
+                                            row.VBK = getDbValue(reader, "VBK")
+                                            row.NoCredito = CInt(getDbValue(reader, "NoCredito"))
+                                            row.Fecha = CDate(getDbValue(reader, "Fecha"))
+                                            row.FechaVence = CDate(getDbValue(reader, "FechaVence"))
+                                            row.MontoCred = CDbl(getDbValue(reader, "MontoCred"))
+                                            row.Tipo = getDbValue(reader, "Tipo")
+                                            row.Saldo = CDbl(getDbValue(reader, "Saldo"))
+                                            row.IntDEX = getDbValue(reader, "IntDEX")
+                                            row.MontoIntDEX = getDbValue(reader, "IntDEX")
+                                            row.MoraDEX = getDbValue(reader, "MoraDEX")
+                                            row.Cancelado = getDbValue(reader, "Cancelado")
+                                            If Not reader.IsDBNull(reader.GetOrdinal("FechaCancela")) Then
+                                                row.FechaCancela = CDate(getDbValue(reader, "FechaCancela"))
+                                            End If
+                                            row.sexo = getDbValue(reader, "sexo")
+                                            row.deuda = CDbl(getDbValue(reader, "deuda"))
+                                            row.incobrable = getDbValue(reader, "incobrable")
+                                            row.TasaIO = getDbValue(reader, "TasaIO")
+                                            row.TasaMO = getDbValue(reader, "TasaMO")
+                                            row.Riezgo = getDbValue(reader, "Riezgo")
+                                            row.Frecuencia = getDbValue(reader, "Frecuencia")
+                                            row.Clase = getDbValue(reader, "Clase")
+                                            If add Then MainDSO.TblCredito.AddTblCreditoRow(row)
+                                        Case "TblFiadores"
+                                            Dim row As MainDS.TblFiadoresRow
+                                            If MainDSO.TblFiadores.Rows.Contains({getDbValue(reader, "CodBk"), getDbValue(reader, "NoCredito"), getDbValue(reader, "CI")}) Then
+                                                Continue While
+                                                row = MainDSO.TblFiadores.Rows.Find({getDbValue(reader, "CodBk"), getDbValue(reader, "NoCredito"), getDbValue(reader, "CI")})
+                                                If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
+                                                                  "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
+                                                                  "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
+                                                                  "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
+                                                    Continue While
+                                                End If
+                                                add = False
+                                            Else
+                                                row = MainDSO.TblFiadores.NewTblFiadoresRow
+                                            End If
+
+                                            row.CodBk = getDbValue(reader, "CodBk")
+                                            row.NoCredito = CInt(getDbValue(reader, "NoCredito"))
+                                            row.CI = getDbValue(reader, "CI")
+                                            row.CapsGarantia = CDbl(getDbValue(reader, "CapsGarantia"))
+                                            row.porcentajegarantizado = CDbl(getDbValue(reader, "porcentajegarantizado"))
+                                            If Not reader.IsDBNull(reader.GetOrdinal("Observacion")) Then
+                                                row.Observacion = getDbValue(reader, "Observacion")
+                                            End If
+                                            If add Then MainDSO.TblFiadores.AddTblFiadoresRow(row)
+                                        Case "TblLibroIE"
+                                            Dim row As MainDS.TblLibroIERow
+                                            If MainDSO.TblLibroIE.Rows.Contains({getDbValue(reader, "IdBK"), getDbValue(reader, "Fecha"), getDbValue(reader, "NoRecibo"), getDbValue(reader, "CodOpe")}) Then
+                                                Continue While
+                                                row = MainDSO.TblLibroIE.Rows.Find({getDbValue(reader, "IdBK"), getDbValue(reader, "Fecha"), getDbValue(reader, "NoRecibo"), getDbValue(reader, "CodOpe")})
+                                                If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
+                                                                  "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
+                                                                  "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
+                                                                  "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
+                                                    Continue While
+                                                End If
+                                                add = False
+                                            Else
+                                                row = MainDSO.TblLibroIE.NewTblLibroIERow
+                                            End If
+                                            Dim tblSchema As DataTable = reader.GetSchemaTable
+                                            tblSchema.PrimaryKey = {tblSchema.Columns("ColumnName")}
+                                            row.IdReg = CInt(getDbValue(reader, "IdReg"))
+                                            If reader.IsDBNull(tblSchema.Rows.Find("IdOpe")("ColumnOrdinal")) Then
+                                                row.IdOpe = ""
+                                            Else
+                                                row.IdOpe = getDbValue(reader, "IdOpe")
+                                            End If
+                                            row.IdBK = getDbValue(reader, "IdBK")
+                                            row.Fecha = CDate(getDbValue(reader, "Fecha"))
+                                            row.NoCredito = CInt(getDbValue(reader, "NoCredito"))
+                                            row.NoRecibo = CInt(getDbValue(reader, "NoRecibo"))
+                                            row.CI = getDbValue(reader, "CI")
+                                            row.CodOpe = getDbValue(reader, "CodOpe")
+                                            row.Descripcion = getDbValue(reader, "Descripcion")
+                                            row.Ingreso = CDbl(getDbValue(reader, "Ingreso"))
+                                            row.Egreso = CDbl(getDbValue(reader, "Egreso"))
+                                            row.Saldo = CDbl(getDbValue(reader, "Saldo"))
+                                            row.Bloqueo = CByte(getDbValue(reader, "Bloqueo"))
+                                            row.Anulado = 0
+                                            If add Then MainDSO.TblLibroIE.AddTblLibroIERow(row)
+
+                                        Case "TblSocios"
+                                            Dim row As MainDS.TblSociosRow
+                                            If MainDSO.TblSocios.Rows.Contains(getDbValue(reader, "CI")) Then
+                                                Continue While
+                                                row = MainDSO.TblSocios.Rows.Find(getDbValue(reader, "CI"))
+                                                If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
+                                                                  "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
+                                                                  "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
+                                                                  "Desea sobreescribir el registro local?", MsgBoxStyle.YesNo) Then
+                                                    Continue While
+                                                End If
+                                                add = False
+                                            Else
+                                                row = MainDSO.TblSocios.NewTblSociosRow
+                                            End If
+
+                                            row.CI = getDbValue(reader, "CI")
+                                            row.CodBk = getDbValue(reader, "CodBk")
+                                            row.Nombres = getDbValue(reader, "Nombres")
+                                            row.Sexo = getDbValue(reader, "Sexo")
+                                            If Not reader.IsDBNull(reader.GetOrdinal("FNace")) Then
+                                                row.FNace = CDate(getDbValue(reader, "FNace"))
+                                            End If
+                                            If Not reader.IsDBNull(reader.GetOrdinal("Profesion")) Then
+                                                row.Profesion = getDbValue(reader, "Profesion")
+                                            End If
+                                            If Not reader.IsDBNull(reader.GetOrdinal("Direccion")) Then
+                                                row.Direccion = getDbValue(reader, "Direccion")
+                                            End If
+                                            row.Telefono = getDbValue(reader, "Telefono")
+                                            row.FIngreso = CDate(getDbValue(reader, "FIngreso"))
+                                            row.AcumMoras = CInt(getDbValue(reader, "AcumMoras"))
+                                            row.Estatus = CInt(getDbValue(reader, "Estatus"))
+                                            row.Deuda = CDbl(getDbValue(reader, "Deuda"))
+                                            If Not reader.IsDBNull(reader.GetOrdinal("Fretiro")) Then
+                                                row.Fretiro = CDate(getDbValue(reader, "Fretiro"))
+                                            End If
+                                            row.cap = CInt(getDbValue(reader, "cap"))
+                                            row.CapLiq = CInt(getDbValue(reader, "CapLiq"))
+                                            If Not reader.IsDBNull(reader.GetOrdinal("Email")) Then
+                                                row.Email = getDbValue(reader, "Email")
+                                            End If
+                                            If add Then MainDSO.TblSocios.AddTblSociosRow(row)
+                                    End Select
+                                End While
+                            Next
+                        End If
+
+                    Next
+                    conn.Close()
+                End Using
+            Next
+            MsgBox("Carga completada!")
+        Catch ex As Exception
+            MainDSO.RejectChanges()
+            MsgBox(ex.Message)
+        End Try
 
         'correr Update() por banko
     End Sub
