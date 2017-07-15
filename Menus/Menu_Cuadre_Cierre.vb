@@ -164,11 +164,11 @@ Friend Class Menu_Cuadre_Cierre
 
     Private Sub Menu_Cuadre_Cierre_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If My.Settings.DynamicPermits Then
-            BtnCuadre.Visible = (FindPermit(tuser, "CuadreCierreCuadre") = "1")
+            BtnCuadre.Visible = (FindPermit(tuser, "CuadreCierreCuadre") = "1") And ForceSelect
             LblCuadre.Visible = BtnCuadre.Visible
-            BtnCierre.Visible = (FindPermit(tuser, "CuadreCierreCierre") = "1")
+            BtnCierre.Visible = (FindPermit(tuser, "CuadreCierreCierre") = "1") And ForceSelect
             LblCierre.Visible = BtnCierre.Visible
-            BtnUndo.Visible = (FindPermit(tuser, "CuadreCierreUndo") = "1")
+            BtnUndo.Visible = (FindPermit(tuser, "CuadreCierreUndo") = "1") And ForceSelect
             LblUndo.Visible = BtnUndo.Visible
         End If
     End Sub

@@ -28,7 +28,6 @@
         Me.Frame1 = New System.Windows.Forms.GroupBox()
         Me.CheckAll = New System.Windows.Forms.RadioButton()
         Me.CBBanko = New System.Windows.Forms.ComboBox()
-        Me.TblBankoBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.CheckBanko = New System.Windows.Forms.RadioButton()
         Me.CheckProvince = New System.Windows.Forms.RadioButton()
         Me.CheckState = New System.Windows.Forms.RadioButton()
@@ -43,14 +42,15 @@
         Me.CBProyect = New System.Windows.Forms.ComboBox()
         Me.TblProyectosBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.TblBankoBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Command1 = New System.Windows.Forms.Button()
         Me.Command2 = New System.Windows.Forms.Button()
         Me.Frame1.SuspendLayout()
-        CType(Me.TblBankoBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TblMunicipiosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TblEstadosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TblPaisesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TblProyectosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TblBankoBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Frame1
@@ -251,11 +251,11 @@
         Me.Text = "..:: Reportes ::.."
         Me.Frame1.ResumeLayout(False)
         Me.Frame1.PerformLayout()
-        CType(Me.TblBankoBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TblMunicipiosBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TblEstadosBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TblPaisesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TblProyectosBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TblBankoBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

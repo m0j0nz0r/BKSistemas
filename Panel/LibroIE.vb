@@ -454,8 +454,6 @@ Friend Class LibroIE
                 End If
                 'Tabla fiadores
                 PC.RecalcularFiadores(credito.NoCredito, 0)
-
-
             Case "LC"
                 Dim socio As MainDS.TblSociosRow = MainDSO.TblSocios.Rows.Find(LibroRow.CI)
                 Dim caps As Double = sign * (CDbl(LibroRow.Egreso / ThisBanko.Val_nominal))

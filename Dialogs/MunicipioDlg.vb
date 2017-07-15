@@ -9,7 +9,7 @@
         If Estado >= 0 Then
             view.RowFilter = "EID=" & Estado
         End If
-        TblMunicipiosBindingSource.DataSource = view
+        setBindingSource(ProyectList, view, TblMunicipiosBindingSource)
         Label1.Text = Prompt
         AddMunicipio.Visible = FindPermit(tuser, "PanelConfigMunicipios") = "1"
     End Sub

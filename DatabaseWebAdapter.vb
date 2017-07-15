@@ -563,17 +563,28 @@ Public Class DatabaseWebAdapter
                     End If
 
                     Dim row As DataRow = dTable.NewRow()
+                    Dim test As String = "String"
                     For Each kv As KeyValuePair(Of String, String) In lineArr
-                        If kv.Value.Contains("0000-00-00") Or kv.Value.Contains("0001-01-01") Then
-                            row(kv.Key) = CType(Nothing, DateTime)
+                        test = dTable.Columns(kv.Key).DataType.ToString()
+
+                        If test = "System.DateTime" Then
+                            If IsDate(kv.Value) Then
+                                row(kv.Key) = DateTime.Parse(kv.Value)
+                            Else
+                                row(kv.Key) = New DateTime(Nothing)
+                            End If
                         Else
-                            row(kv.Key) = kv.Value
-                            If (kv.Value Like "*#.#*" Or
-                                kv.Value Like "#.#*" Or
-                                kv.Value Like "*#.#" Or
-                                kv.Value Like "#.#") And
-                                kv.Key <> "Email" Then
+                            If test = "System.Int32" Then
+                                row(kv.Key) = Int32.Parse(kv.Value, culture.NumberFormat)
+                            ElseIf test = "System.Double" Then
                                 row(kv.Key) = Double.Parse(kv.Value, culture.NumberFormat)
+                            ElseIf test = "System.Byte" Then
+                                row(kv.Key) = Byte.Parse(kv.Value, culture.NumberFormat)
+                            ElseIf test = "System.String" Then
+                                row(kv.Key) = kv.Value
+                            Else
+                                Debug.WriteLine(test)
+                                row(kv.Key) = kv.Value
                             End If
                         End If
                     Next

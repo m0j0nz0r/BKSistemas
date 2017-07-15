@@ -58,23 +58,23 @@ Friend Class Menu_Reportes
 
     Private Sub Menu_Reportes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If My.Settings.DynamicPermits Then
-            BtnSociosActivos.Visible = (FindPermit(tuser, "PanelReportesSociosActivos") = "1")
+            BtnSociosActivos.Visible = (FindPermit(tuser, "PanelReportesSociosActivos") = "1") And ForceSelect
             LblSociosActivos.Visible = BtnSociosActivos.Visible
-            BtnGestion.Visible = (FindPermit(tuser, "PanelReportesGestion") = "1")
+            BtnGestion.Visible = (FindPermit(tuser, "PanelReportesGestion") = "1") And ForceSelect
             LblGestion.Visible = BtnGestion.Visible
-            BtnBalance.Visible = (FindPermit(tuser, "PanelReportesBalance") = "1")
+            BtnBalance.Visible = (FindPermit(tuser, "PanelReportesBalance") = "1") And ForceSelect
             LblBalance.Visible = BtnBalance.Visible
-            BtnFiadores.Visible = (FindPermit(tuser, "PanelReportesFiadores") = "1")
+            BtnFiadores.Visible = (FindPermit(tuser, "PanelReportesFiadores") = "1") And ForceSelect
             LblFiadores.Visible = BtnFiadores.Visible
-            BtnVencidos.Visible = (FindPermit(tuser, "PanelReportesCreditosVencidos") = "1")
+            BtnVencidos.Visible = (FindPermit(tuser, "PanelReportesCreditosVencidos") = "1") And ForceSelect
             LblVencidos.Visible = BtnVencidos.Visible
-            BtnVigentes.Visible = (FindPermit(tuser, "PanelReportesCreditosVigentes") = "1")
+            BtnVigentes.Visible = (FindPermit(tuser, "PanelReportesCreditosVigentes") = "1") And ForceSelect
             LblVigentes.Visible = BtnVigentes.Visible
-            BtnLibroIE.Visible = (FindPermit(tuser, "PanelReportesLibroIE") = "1")
+            BtnLibroIE.Visible = (FindPermit(tuser, "PanelReportesLibroIE") = "1") And ForceSelect
             LblLibroIE.Visible = BtnLibroIE.Visible
-            BtnRendimiento.Visible = (FindPermit(tuser, "PanelReportesRendimiento") = "1")
+            BtnRendimiento.Visible = (FindPermit(tuser, "PanelReportesRendimiento") = "1") And ForceSelect
             LblRendimiento.Visible = BtnRendimiento.Visible
-            BtnFondo.Visible = (FindPermit(tuser, "PanelReporteFondoProteccion") = "1")
+            BtnFondo.Visible = (FindPermit(tuser, "PanelReporteFondoProteccion") = "1") And ForceSelect
             LblFondo.Visible = BtnBalance.Visible
         End If
     End Sub

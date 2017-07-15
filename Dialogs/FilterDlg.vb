@@ -108,7 +108,7 @@ Friend Class FilterDlg
         BankoView = New DataView
         BankoView.Table = MainDSO.TblBanko
         TblBankoBindingSource.DataSource = BankoView
-        CBBanko.DataSource = GetComboItems()
+        UpdateBankoList()
         CBBanko.DisplayMember = "Name"
         CBBanko.ValueMember = "ID"
     End Sub
@@ -117,23 +117,43 @@ Friend Class FilterDlg
     Private Sub CBCountry_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBCountry.SelectedIndexChanged
         If Not DataView.Equals(StateView, Nothing) Then
             StateView.RowFilter = "PID=" & CBCountry.SelectedValue
+            BankoView.RowFilter = BuildFilterStringByCountry(CBCountry.SelectedValue)
+            UpdateBankoList()
         End If
     End Sub
 
     Private Sub CBState_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBState.SelectedIndexChanged
         If Not DataView.Equals(ProvinceView, Nothing) Then
             ProvinceView.RowFilter = "EID=" & CBState.SelectedValue
+            BankoView.RowFilter = BuildFilterStringByState(CBState.SelectedValue)
+            UpdateBankoList()
         End If
     End Sub
 
     Private Sub CBProvince_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBProvince.SelectedIndexChanged
         If Not DataView.Equals(BankoView, Nothing) Then
             BankoView.RowFilter = "Municipio=" & CBProvince.SelectedValue
+            UpdateBankoList()
         End If
     End Sub
 
 
     Private Sub CheckProyect_CheckedChanged(sender As Object, e As EventArgs) Handles CheckProyect.CheckedChanged, CheckState.CheckedChanged, CheckProvince.CheckedChanged, CheckCountry.CheckedChanged, CheckBanko.CheckedChanged, CheckAll.CheckedChanged
         If CType(sender, RadioButton).Checked Then ResetButtons(CType(sender, RadioButton).Name)
+    End Sub
+
+    Private Sub CBProyect_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBProyect.SelectedIndexChanged
+        If Not DataView.Equals(BankoView, Nothing) Then
+            BankoView.RowFilter = "Proyecto=" & CBProyect.SelectedValue
+            UpdateBankoList()
+        End If
+    End Sub
+
+    Private Sub UpdateBankoList()
+        If BankoView.Count > 0 And BankoView.RowFilter <> "" Then
+            CBBanko.DataSource = GetComboItems()
+        Else
+            MsgBox("No hay bankos disponibles...")
+        End If
     End Sub
 End Class

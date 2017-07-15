@@ -408,9 +408,16 @@
                                             If add Then MainDSO.TblBanko.AddTblBankoRow(row)
                                         Case "TblBenef"
                                             Dim row As MainDS.TblBenefRow
-                                            If MainDSO.TblBenef.Rows.Contains(getDbValue(reader, "IdReq")) Then
+                                            Dim IdReq As String = "Idreq"
+                                            If Not hasColumn(reader, IdReq) Then
+                                                IdReq = "IdReq"
+                                                If Not hasColumn(reader, IdReq) Then
+                                                    IdReq = "IdReg"
+                                                End If
+                                            End If
+                                            If MainDSO.TblBenef.Rows.Contains(getDbValue(reader, IdReq)) Then
                                                 Continue While
-                                                row = MainDSO.TblBenef.Rows.Find(getDbValue(reader, "IdReq"))
+                                                row = MainDSO.TblBenef.Rows.Find(getDbValue(reader, IdReq))
                                                 If vbYes <> MsgBox("Registro duplicado encontrado!" & vbNewLine &
                                                                   "Registro local: " & vbNewLine & PrintRow(row) & vbNewLine &
                                                                   "Registro entrante: " & vbNewLine & PrintRow(reader) & vbNewLine &
@@ -421,7 +428,8 @@
                                             Else
                                                 row = MainDSO.TblBenef.NewTblBenefRow
                                             End If
-                                            row.IdReq = CInt(getDbValue(reader, "Idreq"))
+
+                                            row.IdReq = CInt(getDbValue(reader, IdReq))
                                             row.VinSocio = getDbValue(reader, "VinSocio")
                                             row.NombresB = getDbValue(reader, "NombresB")
                                             row.CIB = getDbValue(reader, "CIB")

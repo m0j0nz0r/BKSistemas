@@ -115,34 +115,34 @@ Friend Class Menu_Principal
     Private Sub Menu1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init()
         logged = True
-            BtnDatosBanko.Visible = (FindPermit(tuser, "DatosBanko") = "1")
-            LblDatosBanko.Visible = BtnDatosBanko.Visible
-            BtnLibroIE.Visible = (FindPermit(tuser, "LibroIE") = "1")
-            LblLibroIE.Visible = BtnLibroIE.Visible
-            BtnDatosCreditos.Visible = (FindPermit(tuser, "DatosCreditos") = "1")
-            LblDatosCreditos.Visible = BtnDatosCreditos.Visible
-            BtnPanelSocios.Visible = (FindPermit(tuser, "PanelSocios") = "1")
-            LblPanelSocios.Visible = BtnPanelSocios.Visible
-            BtnCuadreCierre.Visible = (FindPermit(tuser, "CuadreCierre") = "1")
-            LblCuadreCierre.Visible = BtnCuadreCierre.Visible
-            BtnPanelRpt.Visible = (FindPermit(tuser, "PanelReportes") = "1")
-            LblPanelRpt.Visible = BtnPanelRpt.Visible
-            'BtnVolver.Visible = (FindPermit(tuser, "Volver") = "1")
-            'LblVolver.Visible = BtnVolver.Visible
-            BtnBackup.Visible = (FindPermit(tuser, "Respaldo") = "1")
-            LblBackup.Visible = BtnBackup.Visible
-            BtnProfiles.Visible = (FindPermit(tuser, "Perfiles") = "1")
-            LblProfiles.Visible = BtnProfiles.Visible
-            BtnNewBk.Visible = (FindPermit(tuser, "CrearBk") = "1")
-            LblNewBk.Visible = BtnNewBk.Visible
-            BtnTablas.Visible = (FindPermit(tuser, "Tablas") = "1")
-            LblTablas.Visible = BtnTablas.Visible
-            BtnClasifCred.Visible = (FindPermit(tuser, "ClaseCreditos") = "1")
-            LblClasifCred.Visible = BtnClasifCred.Visible
-            BtnRptFinancieros.Visible = (FindPermit(tuser, "ReportesFinancieros") = "1")
-            LblRptFinancieros.Visible = BtnRptFinancieros.Visible
-            BtnProcesar.Visible = (FindPermit(tuser, "Procesar") = "1")
-            LblProcesar.Visible = BtnProcesar.Visible
+        BtnDatosBanko.Visible = (FindPermit(tuser, "DatosBanko") = "1") And ForceSelect
+        LblDatosBanko.Visible = BtnDatosBanko.Visible
+        BtnLibroIE.Visible = (FindPermit(tuser, "LibroIE") = "1") And ForceSelect
+        LblLibroIE.Visible = BtnLibroIE.Visible
+        BtnDatosCreditos.Visible = (FindPermit(tuser, "DatosCreditos") = "1") And ForceSelect
+        LblDatosCreditos.Visible = BtnDatosCreditos.Visible
+        BtnPanelSocios.Visible = (FindPermit(tuser, "PanelSocios") = "1") And ForceSelect
+        LblPanelSocios.Visible = BtnPanelSocios.Visible
+        BtnCuadreCierre.Visible = (FindPermit(tuser, "CuadreCierre") = "1") And ForceSelect
+        LblCuadreCierre.Visible = BtnCuadreCierre.Visible
+        BtnPanelRpt.Visible = (FindPermit(tuser, "PanelReportes") = "1") And ForceSelect
+        LblPanelRpt.Visible = BtnPanelRpt.Visible
+        'BtnVolver.Visible = (FindPermit(tuser, "Volver") = "1")
+        'LblVolver.Visible = BtnVolver.Visible
+        BtnBackup.Visible = (FindPermit(tuser, "Respaldo") = "1")
+        LblBackup.Visible = BtnBackup.Visible
+        BtnProfiles.Visible = (FindPermit(tuser, "Perfiles") = "1")
+        LblProfiles.Visible = BtnProfiles.Visible
+        BtnNewBk.Visible = (FindPermit(tuser, "CrearBk") = "1")
+        LblNewBk.Visible = BtnNewBk.Visible
+        BtnTablas.Visible = (FindPermit(tuser, "Tablas") = "1")
+        LblTablas.Visible = BtnTablas.Visible
+        BtnClasifCred.Visible = (FindPermit(tuser, "ClaseCreditos") = "1")
+        LblClasifCred.Visible = BtnClasifCred.Visible
+        BtnRptFinancieros.Visible = (FindPermit(tuser, "ReportesFinancieros") = "1")
+        LblRptFinancieros.Visible = BtnRptFinancieros.Visible
+        BtnProcesar.Visible = (FindPermit(tuser, "Procesar") = "1")
+        LblProcesar.Visible = BtnProcesar.Visible
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

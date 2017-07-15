@@ -9,7 +9,7 @@
         If Pais >= 0 Then
             view.RowFilter = "PID=" & Pais
         End If
-        TblEstadosBindingSource.DataSource = view
+        setBindingSource(ProyectList, view, TblEstadosBindingSource)
         Label1.Text = Prompt
         AddEstado.Visible = FindPermit(tuser, "PanelConfigEstados") = "1"
     End Sub

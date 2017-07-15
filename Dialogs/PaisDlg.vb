@@ -3,7 +3,7 @@
     Public Property ID As Integer = -1
     Public Property Again As Boolean = False
     Private Sub ProyectoDlg_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TblPaisesBindingSource.DataSource = MainDSO.TblPaises
+        setBindingSource(ProyectList, MainDSO.TblPaises, TblPaisesBindingSource)
         Label1.Text = Prompt
         AddPais.Visible = FindPermit(tuser, "PanelConfigPaises")
     End Sub

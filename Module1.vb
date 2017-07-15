@@ -223,17 +223,25 @@ Module Module1
     End Function
 
     Sub Init()
-        Try
-            Dim path As String
-            If My.Application.CommandLineArgs.Count > 0 Then
-                path = My.Application.CommandLineArgs(0)
-            Else
-                path = AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData(0)
-                Dim uri As New Uri(path)
-                If uri.IsFile Then
-                    path = uri.LocalPath
+        Dim path As String = ""
+        Dim ok As Boolean = False
+        If My.Application.CommandLineArgs.Count > 0 Then
+            path = My.Application.CommandLineArgs(0)
+            ok = True
+        Else
+            If Not AppDomain.CurrentDomain.SetupInformation.ActivationArguments Is Nothing Then
+                If Not AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData Is Nothing Then
+                    path = AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData(0)
+                    Dim uri As New Uri(path)
+                    If uri.IsFile Then
+                        path = uri.LocalPath
+                    End If
+                    ok = True
                 End If
             End If
+        End If
+        'checks if being started from a file. If so, it loads only file data.
+        If ok Then
             MsgBox("Cargando data de: " & path)
             Dim save As String = My.Settings.SaveData
             My.Settings.SaveData = path
@@ -241,15 +249,13 @@ Module Module1
             LoadOffline(MainDSO)
             My.Settings.SaveData = save
             My.Settings.Save()
-        Catch ex As Exception
+        Else
             If HaveInternetConnection() Then
                 LoadOnline(MainDSO)
             Else
                 LoadOffline(MainDSO)
             End If
-        End Try
-        'checks if being started from a file. If so, it loads only file data.
-
+        End If
 
         'Filter data
         If Not ForceSelect And FilterCode <> "" Then 'No point in filtering twice or filtering with no filter
@@ -997,10 +1003,21 @@ Module Module1
         Return filter
     End Function
     Public Function getDbValue(reader As OleDb.OleDbDataReader, field As String)
-        If (IsDBNull(reader(field))) Then
+        If Not hasColumn(reader, field) Then
+            MsgBox("El campo '" & field & "' en la tabla '" & reader.GetSchemaTable().Rows(0)("BaseTableName") & "' no contiene la columna " & field & " se asumirá un valor nulo." & vbNewLine & "Archivo: " & openFile)
+            Return Nothing
+        ElseIf (IsDBNull(reader(field))) Then
             Throw New Exception("El campo '" & field & "' en la tabla '" & reader.GetSchemaTable().Rows(0)("BaseTableName") & "' tiene un valor nulo, por favor corrija el archivo e intente de nuevo." & vbNewLine & "Archivo: " & openFile)
         Else
             Return reader(field)
         End If
+    End Function
+    Public Function hasColumn(reader As IDataReader, columnName As String)
+        For i As Integer = 0 To reader.FieldCount - 1
+            If reader.GetName(i) = columnName Then
+                Return True
+            End If
+        Next
+        Return False
     End Function
 End Module
